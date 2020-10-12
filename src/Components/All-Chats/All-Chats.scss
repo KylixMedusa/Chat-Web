@@ -1,0 +1,202 @@
+.all-chats-container{
+    height:100vh;
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: rgb(245,247,251);
+    box-shadow: inset 0 2px 4px rgba(15,34,58,.12);
+    .container{
+        padding:10px 16px;
+        padding-bottom: 25px;
+        position: relative;
+        h2{
+            margin-top: 0;
+            font-weight: 600;
+        }
+    }
+    .search--container{
+        width:100%;
+        background-color: #e6ebf5;
+        border-radius: 10px;
+        display: flex;
+        padding: 0.5rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .container.search::after{
+        content:'';
+        position: absolute;
+        bottom:0;
+        left:0;
+        height:1px;
+        width:100%;
+        display: block;
+        background-color: rgba(126, 126, 126, 0.2);
+    }
+    .container.search:focus-within{
+        box-shadow: 0 2px 3px rgba(139, 139, 139, 0.1);
+    }
+    .search--container div{
+        height:24px;
+    }
+    .search--container input{
+        width:100%;
+        border:none;
+        outline: 0;
+        margin: 0 20px  0 20px;
+        font-size: 1rem;
+        background-color: inherit;
+    }
+    .search--container input::placeholder{
+        color:gray;
+    }
+    .container.search{
+        background-color: rgb(246,246,246);
+        transition: all 0.25s ease-in-out;
+    }
+    .container.search:focus-within{
+        background-color: white;
+    }
+    .search--container .search-icon{
+        opacity: 1;
+        transition: all 0.25s ease-in-out;
+    }
+    .search--container .back-icon{
+        position: absolute;
+        opacity: 0;
+        transition: all 0.25s ease-in-out;
+    }
+    .search--container:focus-within  .search-icon{
+        animation: rotate 0.3s forwards;
+    }
+    @keyframes rotate{
+        0%{
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+        100%{
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+    }
+    .search--container:focus-within  .back-icon{
+        animation: rotate2 0.3s forwards;
+        display: block;
+    }
+    @keyframes rotate2{
+        0%{
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+        100%{
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+    }
+
+    .main{
+        width:100%;
+        overflow: hidden;
+        height: 100%;
+        .wrapper{
+            width:100%;
+            height:100%;
+            overflow: auto;
+            // box-shadow: inset 0 2px 4px rgba(15,34,58,.12);
+            .card{
+                height: 72px;
+                // background-color: white;
+                display: flex;
+                align-items: center;
+                margin: 1px 2%;
+                padding: 10% 5%;
+                border-radius: 10px;
+                width: calc(100% - 4%);
+                transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-in-out;
+                &:hover,&.active{
+                    background-color: #e6ebf5;
+                }
+                .card-image{
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    img{
+                        height: 100%;
+                        width: 40px;
+                        border-radius: 50%;
+                    }
+                }
+                .card-contents{
+                    padding-left: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    overflow: hidden;
+                    width: 100%;
+                    .top,.bottom{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width:100%
+                    }
+                    .top{
+                        h3{
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            margin: 0;
+                            font-weight: 600;
+                        }
+                        .date-time{
+                            font-size: small;
+                        }
+                    }
+                    .bottom{
+                        .card-icons{
+                            display: flex;
+                            align-items: center;
+                            .icon{
+                                height:25px;
+                                width:25px;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                // transition: background-color 0.2s ease-in-out;
+                                path{
+                                    fill:rgb(185, 185, 185);
+                                }
+                                &:hover, &:focus{
+                                    path{
+                                        fill:gray;
+                                    }
+                                }
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                &.badge{
+                                    background-color: #7269ef;
+                                    color: white;
+                                    width: auto;
+                                    min-width: 25px;
+                                    padding: 0 5px;
+                                    border-radius: 15px;
+                                }
+                            }
+                        }
+                        p{
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            margin: 0;
+                            color: #7a7f9a;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    #menu{
+        top:40%;
+    }
+}
