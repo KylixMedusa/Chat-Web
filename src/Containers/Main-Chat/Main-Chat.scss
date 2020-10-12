@@ -1,18 +1,17 @@
 .main-chat-container{
     height:100vh;
     width:100%;
-    max-width:500px;
     display: flex;
     flex-direction: column;
     .icon{
         height:35px;
         width:35px;
         border-radius: 50%;
-        transition: background-color 0.2s ease-in-out;
+        // transition: background-color 0.2s ease-in-out;
         &:hover, &:focus{
-            background-color: rgb(228, 228, 228);
+            background-color: #f7f7ff;
             path{
-                fill:gray;
+                fill:#7269ef;
             }
         }
         display: flex;
@@ -25,49 +24,76 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
             path{
-                fill:rgb(204, 203, 203)
+                fill:#878a92;
             }
         }
     }
     .top-section{
         width:100%;
-        padding: 20px 5%;
+        padding: 20px 2%;
         height: 64px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid #dee2e6!important;
-        &>div{
+        &{
             display: flex;
             align-items: center;
+            width: 100%;
+            &:last-child{
+                width: max-content;
+                justify-content: flex-end;
+            }
             .image{
                 height:50px;
                 width: 50px;
-                border-radius: 50%;
-                overflow: hidden;
                 img{
                     height: 100%;
-                    width: 100%;
+                    width: 50px;
+                    border-radius: 50%;
                 }
             }
             .content{
                 margin-left: 10px;
+                height: 100%;
+                width: 100%;
+                position: relative;
                 h3{
                     margin: 0;
+                    width: 100%;
+                    height: 25px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    position: absolute;
+                    top:-12px;
+                    left:0;
                 }
+                small{
+                    position: absolute;
+                    top:12px;
+                }
+            }
+            &>div:last-child{
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }
     .chat-holder{
         height: 100%;
+        padding-top: 20px;
+        overflow-y: auto;
     }
     .input-section{
         border-top: 1px solid #dee2e6!important;
         height:max-content;
         width: 100%;
         display: flex;
-        padding: 10px 5% 10px 2%;
+        padding: 10px 2% 10px 2%;
         .input-holder{
             flex: 1 1 auto;
             box-sizing: border-box;
@@ -81,9 +107,9 @@
             will-change: width;
             margin: 5px 10px;
             padding: 9px 12px 11px;
-            background-color: whitesmoke;
-            border: 1px solid #dee2e6;
-            border-radius: 21px;
+            background-color: #e6ebf5;
+            border: 1px solid #e6ebf5;
+            border-radius: 10px;
             user-select: text;
             .input-wrapper{
                 position: relative;
@@ -91,6 +117,10 @@
                 flex: 1;
                 overflow: hidden;
                 outline: 0;
+                .placeholder{
+                    position: absolute;
+                    color:gray;
+                }
                 .input{
                     position: relative;
                     z-index: 1;
@@ -119,6 +149,28 @@
             align-items: center;
             align-self: flex-end;
             margin-bottom: 10px;
+        }
+        .send{
+            height:40px;
+            width:45px;
+            border-radius: 5px;
+            background-color: transparent;
+            border: none;
+            outline: 0;
+            background-color: #7269ef;
+            border-color: #7269ef;
+            padding: 0;
+            margin-bottom: -5px;
+            i{
+                height: 100%;
+                width:100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            path{
+                fill:white;
+            }
         }
     }
 }

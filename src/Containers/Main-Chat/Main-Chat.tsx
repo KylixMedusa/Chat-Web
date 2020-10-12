@@ -1,28 +1,116 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
 
 const MainChat: React.FC = () => {
+  const [cursor, setCursor] = useState(0);
+  const [visiblity, setVisiblity] = useState("visible");
+  const [messages,setMessages] = useState([{id:0,text:'',author:0,time:''}]); 
+  const inputElem = useRef<HTMLDivElement>(null);
 
-
-    function focus(){
-        let p = document.getElementById('input')?.focus();
+  useEffect(() => {
+    if(inputElem.current){
+      let len = inputElem.current.innerText.length;
+      setCursor(len);
+      setPos(len);
     }
+  }, []);
+
+  function focus() {
+      setPos(cursor);
+  }
+
+  function setPos(pos: number) {
+    if(inputElem.current){
+      if (inputElem.current.innerText.length > 0) {
+        // Creates range object
+        let setpos = document.createRange();
+
+        // Creates object for selection
+        let set = window.getSelection();
+
+        // Set start position of range
+        setpos.setStart(inputElem.current.childNodes[0], pos);
+
+        // Collapse range within its boundary points
+        // Returns boolean
+        setpos.collapse(true);
+        if (set) {
+          // Remove all ranges set
+          set.removeAllRanges();
+
+          // Add range with respect to range object.
+          set.addRange(setpos);
+        }
+      }
+      // Set cursor on focus
+      inputElem.current.focus();
+    }
+    return;
+  }
+  function setCursorPos(event: React.SyntheticEvent<HTMLDivElement, Event>) {
+    let val;
+    let sel = window.getSelection();
+    let pos = sel?.toString().length;
+    if(pos === 0){
+      if (inputElem.current) {
+        let _range = document.getSelection()?.getRangeAt(0);
+        if (_range) {
+          inputElem.current.focus();
+          let range = _range.cloneRange();
+          range.selectNodeContents(inputElem.current);
+          range.setEnd(_range.endContainer, _range.endOffset);
+          val = range.toString().length;
+          setCursor(val);
+        }
+      }
+    }
+    else{
+      let setpos = document.createRange();
+      if(inputElem.current && sel){
+        setpos = sel.getRangeAt(0).cloneRange();
+        sel.removeAllRanges();
+        console.log(setpos);
+        sel.addRange(setpos);
+        return;
+      }
+    }
+  }
+
+  function setVisiblityHandler() {
+    if (inputElem.current?.innerText.length && inputElem.current?.innerText.length > 0) {
+      setVisiblity("hidden");
+    } else {
+      setVisiblity("visible");
+    }
+  }
+
+  function sendMessage(){
+    let text = inputElem.current?.innerText;
+    if(text && inputElem.current){
+      let d = new Date();
+      let curr_hour = d.getHours();
+      let curr_min = d.getMinutes();
+      let time = curr_hour + ":" + curr_min;
+      setMessages([...messages,{id:messages.length,text:text,author:1,time:time}]);
+      inputElem.current.innerText = '';
+      setVisiblityHandler();
+    }
+  }
 
   return (
     <div className="main-chat-container">
       <div className="top-section">
-        <div>
-          <div className="image">
-            <img
-              src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
-              alt=""
-            />
-          </div>
-          <div className="content">
+        <div className="image">
+          <img
+            src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+            alt=""
+          />
+        </div>
+        <div className="content">
             <h3>Aayush Agarwal</h3>
             <small>Online</small>
           </div>
-        </div>
         <div>
           <div role="button" className="icon">
             <i>
@@ -56,15 +144,23 @@ const MainChat: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="chat-holder"></div>
-      <div className="input-section">
-        <div className="input-holder" onClick={focus}>
-          <div className="input-wrapper" tabIndex={-1}>
-            <div className="input" contentEditable spellCheck dir="ltr" id="input">
-              Enter Message...
-            </div>
-          </div>
-        </div>
+      <div className="chat-holder">
+        {
+          messages
+          .filter(message =>
+            message.id && message.id!==0
+          )
+          .map(message =>
+            <Chat
+              text = {message.text}
+              author = {message.author}
+              time = {message.time}
+              key={message.id}
+            ></Chat>
+          )
+        }
+      </div>
+      <div className="input-section" onClick={focus}>
         <div className="icons">
           <div className="icon">
             <i>
@@ -96,6 +192,45 @@ const MainChat: React.FC = () => {
               </svg>
             </i>
           </div>
+        </div>
+        <div className="input-holder" tabIndex={-1}>
+          <div className="input-wrapper" tabIndex={-1}>
+            <span
+              className="placeholder"
+              style={{
+                visibility: visiblity === "visible" ? "visible" : "hidden",
+              }}
+            >
+              Enter Message...
+            </span>
+            <div
+              className="input"
+              contentEditable
+              spellCheck
+              dir="ltr"
+              id="input"
+              ref={inputElem}
+              onSelectCapture={(e)=>setCursorPos(e)}
+              onInput={setVisiblityHandler}
+            ></div>
+          </div>
+        </div>
+        <div className="icons" onClick={sendMessage}>
+          <button className="send">
+            <i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"
+                ></path>
+              </svg>
+            </i>
+          </button>
         </div>
       </div>
     </div>
