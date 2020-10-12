@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
+import AllChats from './Components/All-Chats/All-Chats';
+import Navbar from './Components/Navbar/Navbar';
 import MainChat from './Containers/Main-Chat/Main-Chat';
 
 function App() {
   return (
-    <React.Fragment>
+    <div className="flex-container">
+      <Navbar></Navbar>
+      <AllChats></AllChats>
       <MainChat></MainChat>
-    </React.Fragment>
+    </div>
   );
 }
 
