@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
+import 'emoji-mart/css/emoji-mart.css'
+import Picker from 'emoji-picker-react';
 
 const MainChat: React.FC = () => {
   const [cursor, setCursor] = useState(0);
@@ -97,6 +99,21 @@ const MainChat: React.FC = () => {
       setVisiblityHandler();
     }
   }
+
+  // const addEmoji = (e: any) => {
+  //   let sym = e.unified.split('-')
+  //   let codesArray: any[] = []
+  //   sym.forEach((el: any) => codesArray.push('0x' + el))
+  //   let emoji = String.fromCodePoint(...codesArray);
+  //   if(inputElem.current)
+  //     inputElem.current.innerText = inputElem.current.innerText + emoji;
+  //   setVisiblityHandler();
+  // }
+  const onEmojiClick = (event: any, emojiObject: any) => {
+    if(inputElem.current)
+      inputElem.current.innerText = inputElem.current.innerText + emojiObject.emoji;
+    setVisiblityHandler();
+  };
 
   return (
     <div className="main-chat-container">
@@ -232,6 +249,9 @@ const MainChat: React.FC = () => {
             </i>
           </button>
         </div>
+      </div>
+      <div className="picker">
+        <Picker onEmojiClick={onEmojiClick} />
       </div>
     </div>
   );
