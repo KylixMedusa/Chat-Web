@@ -1,0 +1,41 @@
+.side-section{
+    border-left: 4px solid #f0eff5;
+    height: 100%;
+    width: 350px;
+    min-width: 350px;
+    .top-bar{
+        width: 100%;
+        padding: 20px 5%;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #dee2e6 !important;
+    }
+    .icon{
+        height:35px;
+        width:35px;
+        border-radius: 50%;
+        // transition: background-color 0.2s ease-in-out;
+        &:hover, &:focus{
+            background-color: #f7f7ff;
+            path{
+                fill:#7269ef;
+            }
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:not(:last-child){
+            margin-right: 10px;
+        }
+        i{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            path{
+                fill:#878a92;
+            }
+        }
+    }
+}
