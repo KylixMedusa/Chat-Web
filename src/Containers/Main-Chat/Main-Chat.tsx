@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
-import 'emoji-mart/css/emoji-mart.css'
 import Picker from 'emoji-picker-react';
 
 const MainChat: React.FC = () => {
@@ -9,6 +8,7 @@ const MainChat: React.FC = () => {
   const [visiblity, setVisiblity] = useState("visible");
   const [messages,setMessages] = useState([{id:0,text:'',author:0,time:''}]); 
   const inputElem = useRef<HTMLDivElement>(null);
+  const [pickerClass,setPickerClass] = useState('');
 
   useEffect(() => {
     if(inputElem.current){
@@ -110,10 +110,20 @@ const MainChat: React.FC = () => {
   //   setVisiblityHandler();
   // }
   const onEmojiClick = (event: any, emojiObject: any) => {
+    console.log(emojiObject);
     if(inputElem.current)
       inputElem.current.innerText = inputElem.current.innerText + emojiObject.emoji;
     setVisiblityHandler();
   };
+
+  function emojiPickerHandler(){
+    if(pickerClass === 'open'){
+      setPickerClass('close');
+    }
+    else{
+      setPickerClass('open');
+    }
+  }
 
   return (
     <div className="main-chat-container">
@@ -177,9 +187,14 @@ const MainChat: React.FC = () => {
           )
         }
       </div>
+      <div className={`picker ${pickerClass}`}>
+        <Picker onEmojiClick={onEmojiClick} />
+      </div>
       <div className="input-section" onClick={focus}>
         <div className="icons">
-          <div className="icon">
+          <div className="icon"
+            onClick={emojiPickerHandler}
+          >
             <i>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -249,9 +264,6 @@ const MainChat: React.FC = () => {
             </i>
           </button>
         </div>
-      </div>
-      <div className="picker">
-        <Picker onEmojiClick={onEmojiClick} />
       </div>
     </div>
   );
