@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
-import Picker from 'emoji-picker-react';
+import Picker from "emoji-picker-react";
 
 const MainChat: React.FC = () => {
   const [cursor, setCursor] = useState(0);
   const [visiblity, setVisiblity] = useState("visible");
-  const [messages,setMessages] = useState([{id:0,text:'',author:0,time:''}]); 
+  const [messages, setMessages] = useState([
+    { id: 0, text: "", author: 0, time: "" },
+  ]);
   const inputElem = useRef<HTMLDivElement>(null);
-  const [pickerClass,setPickerClass] = useState('');
+  const [pickerClass, setPickerClass] = useState("");
 
   useEffect(() => {
-    if(inputElem.current){
+    if (inputElem.current) {
       let len = inputElem.current.innerText.length;
       setCursor(len);
       setPos(len);
@@ -19,11 +21,11 @@ const MainChat: React.FC = () => {
   }, []);
 
   function focus() {
-      setPos(cursor);
+    setPos(cursor);
   }
 
   function setPos(pos: number) {
-    if(inputElem.current){
+    if (inputElem.current) {
       if (inputElem.current.innerText.length > 0) {
         // Creates range object
         let setpos = document.createRange();
@@ -54,7 +56,7 @@ const MainChat: React.FC = () => {
     let val;
     let sel = window.getSelection();
     let pos = sel?.toString().length;
-    if(pos === 0){
+    if (pos === 0) {
       if (inputElem.current) {
         let _range = document.getSelection()?.getRangeAt(0);
         if (_range) {
@@ -66,10 +68,9 @@ const MainChat: React.FC = () => {
           setCursor(val);
         }
       }
-    }
-    else{
+    } else {
       let setpos = document.createRange();
-      if(inputElem.current && sel){
+      if (inputElem.current && sel) {
         setpos = sel.getRangeAt(0).cloneRange();
         sel.removeAllRanges();
         console.log(setpos);
@@ -80,22 +81,28 @@ const MainChat: React.FC = () => {
   }
 
   function setVisiblityHandler() {
-    if (inputElem.current?.innerText.length && inputElem.current?.innerText.length > 0) {
+    if (
+      inputElem.current?.innerText.length &&
+      inputElem.current?.innerText.length > 0
+    ) {
       setVisiblity("hidden");
     } else {
       setVisiblity("visible");
     }
   }
 
-  function sendMessage(){
+  function sendMessage() {
     let text = inputElem.current?.innerText;
-    if(text && inputElem.current){
+    if (text && inputElem.current) {
       let d = new Date();
       let curr_hour = d.getHours();
       let curr_min = d.getMinutes();
       let time = curr_hour + ":" + curr_min;
-      setMessages([...messages,{id:messages.length,text:text,author:1,time:time}]);
-      inputElem.current.innerText = '';
+      setMessages([
+        ...messages,
+        { id: messages.length, text: text, author: 1, time: time },
+      ]);
+      inputElem.current.innerText = "";
       setVisiblityHandler();
     }
   }
@@ -111,17 +118,17 @@ const MainChat: React.FC = () => {
   // }
   const onEmojiClick = (event: any, emojiObject: any) => {
     console.log(emojiObject);
-    if(inputElem.current)
-      inputElem.current.innerText = inputElem.current.innerText + emojiObject.emoji;
+    if (inputElem.current)
+      inputElem.current.innerText =
+        inputElem.current.innerText + emojiObject.emoji;
     setVisiblityHandler();
   };
 
-  function emojiPickerHandler(){
-    if(pickerClass === 'open'){
-      setPickerClass('close');
-    }
-    else{
-      setPickerClass('open');
+  function emojiPickerHandler() {
+    if (pickerClass === "open") {
+      setPickerClass("close");
+    } else {
+      setPickerClass("open");
     }
   }
 
@@ -135,9 +142,9 @@ const MainChat: React.FC = () => {
           />
         </div>
         <div className="content">
-            <h3>Aayush Agarwal</h3>
-            <small>Online</small>
-          </div>
+          <h3>Aayush Agarwal</h3>
+          <small>Online</small>
+        </div>
         <div>
           <div role="button" className="icon">
             <i>
@@ -172,41 +179,49 @@ const MainChat: React.FC = () => {
         </div>
       </div>
       <div className="chat-holder">
-        {
-          messages
-          .filter(message =>
-            message.id && message.id!==0
-          )
-          .map(message =>
+        {messages
+          .filter((message) => message.id && message.id !== 0)
+          .map((message) => (
             <Chat
-              text = {message.text}
-              author = {message.author}
-              time = {message.time}
+              text={message.text}
+              author={message.author}
+              time={message.time}
               key={message.id}
             ></Chat>
-          )
-        }
+          ))}
       </div>
       <div className={`picker ${pickerClass}`}>
         <Picker onEmojiClick={onEmojiClick} />
       </div>
       <div className="input-section" onClick={focus}>
         <div className="icons">
-          <div className="icon"
-            onClick={emojiPickerHandler}
-          >
+          <div className="icon" onClick={emojiPickerHandler}>
             <i>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-              >
-                <path
-                  fill="currentColor"
-                  d="M9.153 11.603c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962zm-3.204 1.362c-.026-.307-.131 5.218 6.063 5.551 6.066-.25 6.066-5.551 6.066-5.551-6.078 1.416-12.129 0-12.129 0zm11.363 1.108s-.669 1.959-5.051 1.959c-3.505 0-5.388-1.164-5.607-1.959 0 0 5.912 1.055 10.658 0zM11.804 1.011C5.609 1.011.978 6.033.978 12.228s4.826 10.761 11.021 10.761S23.02 18.423 23.02 12.228c.001-6.195-5.021-11.217-11.216-11.217zM12 21.354c-5.273 0-9.381-3.886-9.381-9.159s3.942-9.548 9.215-9.548 9.548 4.275 9.548 9.548c-.001 5.272-4.109 9.159-9.382 9.159zm3.108-9.751c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962z"
-                ></path>
-              </svg>
+              {
+                pickerClass === 'open'?
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M19.1 17.2l-5.3-5.3 5.3-5.3-1.8-1.8-5.3 5.4-5.3-5.3-1.8 1.7 5.3 5.3-5.3 5.3L6.7 19l5.3-5.3 5.3 5.3 1.8-1.8z"
+                  ></path>
+                </svg>:
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M9.153 11.603c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962zm-3.204 1.362c-.026-.307-.131 5.218 6.063 5.551 6.066-.25 6.066-5.551 6.066-5.551-6.078 1.416-12.129 0-12.129 0zm11.363 1.108s-.669 1.959-5.051 1.959c-3.505 0-5.388-1.164-5.607-1.959 0 0 5.912 1.055 10.658 0zM11.804 1.011C5.609 1.011.978 6.033.978 12.228s4.826 10.761 11.021 10.761S23.02 18.423 23.02 12.228c.001-6.195-5.021-11.217-11.216-11.217zM12 21.354c-5.273 0-9.381-3.886-9.381-9.159s3.942-9.548 9.215-9.548 9.548 4.275 9.548 9.548c-.001 5.272-4.109 9.159-9.382 9.159zm3.108-9.751c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962z"
+                  ></path>
+                </svg>
+              }
             </i>
           </div>
           <div className="icon">
@@ -242,7 +257,7 @@ const MainChat: React.FC = () => {
               dir="ltr"
               id="input"
               ref={inputElem}
-              onSelectCapture={(e)=>setCursorPos(e)}
+              onSelectCapture={(e) => setCursorPos(e)}
               onInput={setVisiblityHandler}
             ></div>
           </div>
