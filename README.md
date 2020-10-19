@@ -1,3 +1,10 @@
+# ChatApp Website
+  
+  This is the website part of the ChatApp made in React.
+  
+Added Imports:
+- emoji-react-picker
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
