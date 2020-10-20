@@ -22,6 +22,11 @@ const SideSection: React.FC = () => {
         </div>
         <p>Contact Info</p>
       </div>
+      <div>
+        <div className="main-image">
+          <img src="https://www.aayushagarwal.me/assets/img/profilepic.jpg" alt=""/>
+        </div>
+      </div>
     </div>
   );
 };
