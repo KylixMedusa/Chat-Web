@@ -22,11 +22,11 @@ const SideSection: React.FC = () => {
         </div>
         <p>Contact Info</p>
       </div>
-      <div style={{textAlign:"center"}}>
+      <div style={{textAlign:"center", borderBottom:'1px solid #dee2e6', padding: '5% 0'}}>
         <div className="main-image">
           <img src="https://www.aayushagarwal.me/assets/img/profilepic.jpg" alt=""/>
         </div>
-        <h1>Aayush Agarwal</h1>
+        <h2 style={{marginBottom:'5px'}}>Aayush Agarwal</h2>
         <p style={{margin:0}}>Online</p>
       </div>
     </div>
