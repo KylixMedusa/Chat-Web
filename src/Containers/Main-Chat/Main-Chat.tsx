@@ -12,6 +12,7 @@ const MainChat: React.FC = () => {
   ]);
   const inputElem = useRef<HTMLDivElement>(null);
   const [pickerClass, setPickerClass] = useState("");
+  var currentEmoji:any = undefined;
 
   useEffect(() => {
     // if (inputElem.current) {
@@ -110,17 +111,8 @@ const MainChat: React.FC = () => {
     }
   }
 
-  // const addEmoji = (e: any) => {
-  //   let sym = e.unified.split('-')
-  //   let codesArray: any[] = []
-  //   sym.forEach((el: any) => codesArray.push('0x' + el))
-  //   let emoji = String.fromCodePoint(...codesArray);
-  //   if(inputElem.current)
-  //     inputElem.current.innerText = inputElem.current.innerText + emoji;
-  //   setVisiblityHandler();
-  // }
   const onEmojiClick = (event: any, emojiObject: any) => {
-    // console.log(emojiObject);
+    currentEmoji = emojiObject;
   };
 
   function getImageSrc(event:any){
@@ -129,11 +121,17 @@ const MainChat: React.FC = () => {
     if (inputElem.current){
       if(src1){
         let img = document.createElement('img');
+        img.setAttribute('data-is-emoji','true');
+        img.setAttribute('data-plain-text',currentEmoji.emoji);
+        img.setAttribute('alt',currentEmoji.emoji);
         img.src = src1;
         inputElem.current.appendChild(img);
       }
       else if(src2){
         let img = document.createElement('img');
+        img.setAttribute('data-is-emoji','true');
+        img.setAttribute('data-plain-text',currentEmoji.emoji);
+        img.setAttribute('alt',currentEmoji.emoji);
         img.src = src2;
         inputElem.current.appendChild(img);
       }
