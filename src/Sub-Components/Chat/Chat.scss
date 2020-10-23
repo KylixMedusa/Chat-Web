@@ -9,10 +9,10 @@
     line-height: 1.8;
     display: inline-block;
     background: #7269ef;
-    padding: 5px 30px 30px 15px;
+    padding: 5px 10px;
     position: relative;
     color: #fff;
-    border-radius: 15px 0 15px 15px;
+    border-radius: 10px 0 10px 10px;
     text-align: left;
     max-width: 70%;
     font-weight: 400;
@@ -33,9 +33,10 @@
   }
   .message-right .message-time {
     color: #e4e8f0;
-    position: absolute;
-    right: 13px;
-    bottom: 8px;
+    position: relative;
+    bottom: -5px;
+    margin-left: 5px;
+    float: right;
     font-size: 11px;
     font-weight: 400;
   }
@@ -50,10 +51,10 @@
     max-width: 70%;
     display: inline-block;
     background: #f4f6fc;
-    padding: 5px 30px 30px 15px;
+    padding: 5px 10px;
     position: relative;
     color: #2e384d;
-    border-radius: 0px 15px 15px 15px;
+    border-radius: 0px 10px 10px 10px;
     line-height: 1.8;
     font-weight: 400;
     font-size: 13px;
@@ -73,9 +74,10 @@
   }
   .message-left .message-time {
     color: #8097b1;
-    position: absolute;
-    right: 13px;
-    bottom: 8px;
+    position: relative;
+    bottom: -5px;
+    float: right;
+    margin-left: 5px;
     font-size: 11px;
     font-weight: 400;
   }
