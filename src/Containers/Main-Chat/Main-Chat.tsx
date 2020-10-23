@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
 import Picker from "emoji-picker-react";
+import ContentEditable from "../../Components/ContentEditable";
 
 const MainChat: React.FC = () => {
   const [cursor, setCursor] = useState(0);
@@ -13,77 +14,79 @@ const MainChat: React.FC = () => {
   const [pickerClass, setPickerClass] = useState("");
 
   useEffect(() => {
-    if (inputElem.current) {
-      let len = inputElem.current.innerText.length;
-      setCursor(len);
-      setPos(len);
-    }
+    // if (inputElem.current) {
+    //   let len = inputElem.current.innerText.length;
+    //   setCursor(len);
+    //   setPos(len);
+    // }
   }, []);
 
   function focus() {
-    setPos(cursor);
+    // setPos(cursor);
   }
 
   function setPos(pos: number) {
-    if (inputElem.current) {
-      if (inputElem.current.innerText.length > 0) {
-        // Creates range object
-        let setpos = document.createRange();
+    // if (inputElem.current) {
+    //   if (inputElem.current.innerText.length > 0) {
+    //     // Creates range object
+    //     let setpos = document.createRange();
 
-        // Creates object for selection
-        let set = window.getSelection();
+    //     // Creates object for selection
+    //     let set = window.getSelection();
 
-        // Set start position of range
-        setpos.setStart(inputElem.current.childNodes[0], pos);
+    //     // Set start position of range
+    //     setpos.setStart(inputElem.current.childNodes[0], pos);
 
-        // Collapse range within its boundary points
-        // Returns boolean
-        setpos.collapse(true);
-        if (set) {
-          // Remove all ranges set
-          set.removeAllRanges();
+    //     // Collapse range within its boundary points
+    //     // Returns boolean
+    //     setpos.collapse(true);
+    //     if (set) {
+    //       // Remove all ranges set
+    //       set.removeAllRanges();
 
-          // Add range with respect to range object.
-          set.addRange(setpos);
-        }
-      }
-      // Set cursor on focus
-      inputElem.current.focus();
-    }
-    return;
+    //       // Add range with respect to range object.
+    //       set.addRange(setpos);
+    //     }
+    //   }
+    //   // Set cursor on focus
+    //   inputElem.current.focus();
+    // }
+    // return;
   }
   function setCursorPos(event: React.SyntheticEvent<HTMLDivElement, Event>) {
-    let val;
-    let sel = window.getSelection();
-    let pos = sel?.toString().length;
-    if (pos === 0) {
-      if (inputElem.current) {
-        let _range = document.getSelection()?.getRangeAt(0);
-        if (_range) {
-          inputElem.current.focus();
-          let range = _range.cloneRange();
-          range.selectNodeContents(inputElem.current);
-          range.setEnd(_range.endContainer, _range.endOffset);
-          val = range.toString().length;
-          setCursor(val);
-        }
-      }
-    } else {
-      let setpos = document.createRange();
-      if (inputElem.current && sel) {
-        setpos = sel.getRangeAt(0).cloneRange();
-        sel.removeAllRanges();
-        console.log(setpos);
-        sel.addRange(setpos);
-        return;
-      }
-    }
+    // let val;
+    // let sel = window.getSelection();
+    // let pos = sel?.toString().length;
+    // if (pos === 0) {
+    //   if (inputElem.current) {
+    //     let _range = document.getSelection()?.getRangeAt(0);
+    //     if (_range) {
+    //       inputElem.current.focus();
+    //       let range = _range.cloneRange();
+    //       range.selectNodeContents(inputElem.current);
+    //       range.setEnd(_range.endContainer, _range.endOffset);
+    //       val = range.toString().length;
+    //       setCursor(val);
+    //     }
+    //   }
+    // } else {
+    //   let setpos = document.createRange();
+    //   if (inputElem.current && sel) {
+    //     setpos = sel.getRangeAt(0).cloneRange();
+    //     sel.removeAllRanges();
+    //     console.log(setpos);
+    //     sel.addRange(setpos);
+    //     return;
+    //   }
+    // }
   }
 
   function setVisiblityHandler() {
-    if (
+    if ((
       inputElem.current?.innerText.length &&
-      inputElem.current?.innerText.length > 0
+      inputElem.current?.innerText.length > 0) || (
+        inputElem.current?.innerHTML
+      )
     ) {
       setVisiblity("hidden");
     } else {
@@ -117,12 +120,26 @@ const MainChat: React.FC = () => {
   //   setVisiblityHandler();
   // }
   const onEmojiClick = (event: any, emojiObject: any) => {
-    console.log(emojiObject);
-    if (inputElem.current)
-      inputElem.current.innerText =
-        inputElem.current.innerText + emojiObject.emoji;
-    setVisiblityHandler();
+    // console.log(emojiObject);
   };
+
+  function getImageSrc(event:any){
+    let src1 = event.target?.getAttribute("src");
+    let src2 = event.target.children[0]?.getAttribute("src");
+    if (inputElem.current){
+      if(src1){
+        let img = document.createElement('img');
+        img.src = src1;
+        inputElem.current.appendChild(img);
+      }
+      else if(src2){
+        let img = document.createElement('img');
+        img.src = src2;
+        inputElem.current.appendChild(img);
+      }
+    }
+    setVisiblityHandler();
+  }
 
   function emojiPickerHandler() {
     if (pickerClass === "open") {
@@ -190,7 +207,7 @@ const MainChat: React.FC = () => {
             ></Chat>
           ))}
       </div>
-      <div className={`picker ${pickerClass}`}>
+      <div className={`picker ${pickerClass}`} onClick={getImageSrc}>
         <Picker onEmojiClick={onEmojiClick} />
       </div>
       <div className="input-section" onClick={focus}>
