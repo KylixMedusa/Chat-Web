@@ -11,6 +11,7 @@
     "@types/react": "^16.9.47",
     "@types/react-dom": "^16.9.8",
     "emoji-picker-react": "^3.2.4",
+    "emoji-unicode": "^2.0.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
