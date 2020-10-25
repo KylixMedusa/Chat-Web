@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
 import Picker from "emoji-picker-react";
-import * as emojiUnicode from 'emoji-unicode'
 import ContentEditable from "../../Components/ContentEditable";
+
+var emojis = require('../../emojis.json').emojis;
+var emojiRegex = require('emoji-regex');
 
 const MainChat: React.FC = () => {
   const [cursor, setCursor] = useState(0);
@@ -116,32 +118,17 @@ const MainChat: React.FC = () => {
   }
 
   const onEmojiClick = (event: any, emojiObject: any) => {
-    currentEmoji = emojiObject;
+    event.stopPropagation();
+    if(inputElem.current){
+          let img = document.createElement('img');
+          img.setAttribute('data-is-emoji','true');
+          img.setAttribute('data-plain-text',emojiObject.emoji);
+          img.setAttribute('alt',emojiObject.emoji);
+          img.src =`https://cdn.jsdelivr.net/gh/iamcal/emoji-data@master/img-apple-64/${emojiObject.unified}.png`;
+          inputElem.current.appendChild(img);
+          setVisiblityHandler();
+      }
   };
-
-  function getImageSrc(event:any){
-    let src1 = event.target?.getAttribute("src");
-    let src2 = event.target.children[0]?.getAttribute("src");
-    if (inputElem.current){
-      if(src1){
-        let img = document.createElement('img');
-        img.setAttribute('data-is-emoji','true');
-        img.setAttribute('data-plain-text',currentEmoji.emoji);
-        img.setAttribute('alt',currentEmoji.emoji);
-        img.src = src1;
-        inputElem.current.appendChild(img);
-      }
-      else if(src2){
-        let img = document.createElement('img');
-        img.setAttribute('data-is-emoji','true');
-        img.setAttribute('data-plain-text',currentEmoji.emoji);
-        img.setAttribute('alt',currentEmoji.emoji);
-        img.src = src2;
-        inputElem.current.appendChild(img);
-      }
-    }
-    setVisiblityHandler();
-  }
 
   function emojiPickerHandler() {
     if (pickerClass === "open") {
@@ -151,22 +138,24 @@ const MainChat: React.FC = () => {
     }
   }
 
-  function checkEmoji(){
-    let temp = inputElem.current?.innerText.charAt(inputElem.current.innerText.length - 1);
-    if(temp && temp!=''){
-      if(isEmoji(temp)){
-        console.log(emojiUnicode(temp))
+  function checkEmoji(event:any){
+    event.stopPropagation();
+    let temp = inputElem.current?.innerText;
+    if(temp?.match(emojiRegex)){
+      if(temp && inputElem.current){
+        for(let emoji of emojis){
+          if(emoji.emoji === temp){
+            let unicode = String(emoji.unicode).toLowerCase().split(" ").join("-");
+            let img = document.createElement('img');
+            img.setAttribute('data-is-emoji','true');
+            img.setAttribute('data-plain-text',emoji.emoji);
+            img.setAttribute('alt',emoji.emoji);
+            img.src =`https://cdn.jsdelivr.net/gh/iamcal/emoji-data@master/img-apple-64/${unicode}.png`;
+            inputElem.current.appendChild(img);
+            break;
+          }
+        }
       }
-    }
-  }
-  function isEmoji(str:any) {
-    var ranges = [
-        '(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff]|[\u0023-\u0039]\ufe0f?\u20e3|\u3299|\u3297|\u303d|\u3030|\u24c2|\ud83c[\udd70-\udd71]|\ud83c[\udd7e-\udd7f]|\ud83c\udd8e|\ud83c[\udd91-\udd9a]|\ud83c[\udde6-\uddff]|[\ud83c[\ude01-\ude02]|\ud83c\ude1a|\ud83c\ude2f|[\ud83c[\ude32-\ude3a]|[\ud83c[\ude50-\ude51]|\u203c|\u2049|[\u25aa-\u25ab]|\u25b6|\u25c0|[\u25fb-\u25fe]|\u00a9|\u00ae|\u2122|\u2139|\ud83c\udc04|[\u2600-\u26FF]|\u2b05|\u2b06|\u2b07|\u2b1b|\u2b1c|\u2b50|\u2b55|\u231a|\u231b|\u2328|\u23cf|[\u23e9-\u23f3]|[\u23f8-\u23fa]|\ud83c\udccf|\u2934|\u2935|[\u2190-\u21ff])' // U+1F680 to U+1F6FF
-    ];
-    if (str.match(ranges.join('|'))) {
-        return true;
-    } else {
-        return false;
     }
   }
 
@@ -228,8 +217,8 @@ const MainChat: React.FC = () => {
             ></Chat>
           ))}
       </div>
-      <div className={`picker ${pickerClass}`} onClick={getImageSrc}>
-        <Picker onEmojiClick={onEmojiClick} />
+      <div className={`picker ${pickerClass}`}>
+        <Picker onEmojiClick={onEmojiClick} preload/>
       </div>
       <div className="input-section" onClick={focus}>
         <div className="icons">
@@ -296,7 +285,7 @@ const MainChat: React.FC = () => {
               id="input"
               ref={inputElem}
               onSelectCapture={(e) => setCursorPos(e)}
-              onInput={()=>{setVisiblityHandler(); checkEmoji()}}
+              onInput={(e)=>{setVisiblityHandler(); checkEmoji(e)}}
             ></div>
           </div>
         </div>
