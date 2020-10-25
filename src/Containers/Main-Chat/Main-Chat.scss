@@ -204,6 +204,9 @@
             justify-content: center;
             transition: 0.1s background;
             border-radius: 50%;
+            &:hover{
+                background-color: transparent !important;
+            }
         }
     }
     .picker{

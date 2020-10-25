@@ -102,7 +102,7 @@ const MainChat: React.FC = () => {
   }
 
   function sendMessage() {
-    let text = inputElem.current?.innerText;
+    let text = inputElem.current?.innerHTML;
     if (text && inputElem.current) {
       let d = new Date();
       let curr_hour = d.getHours();
@@ -112,7 +112,7 @@ const MainChat: React.FC = () => {
         ...messages,
         { id: messages.length, text: text, author: 1, time: time },
       ]);
-      inputElem.current.innerText = "";
+      inputElem.current.innerHTML = "";
       setVisiblityHandler();
     }
   }
@@ -206,16 +206,18 @@ const MainChat: React.FC = () => {
         </div>
       </div>
       <div className="chat-holder">
-        {messages
-          .filter((message) => message.id && message.id !== 0)
-          .map((message) => (
-            <Chat
-              text={message.text}
-              author={message.author}
-              time={message.time}
-              key={message.id}
-            ></Chat>
-          ))}
+        <div className="chat-wrapper">
+          {messages
+            .filter((message) => message.id && message.id !== 0)
+            .map((message) => (
+              <Chat
+                text={message.text}
+                author={message.author}
+                time={message.time}
+                key={message.id}
+              ></Chat>
+            ))}
+        </div>
       </div>
       <div className={`picker ${pickerClass}`}>
         <Picker onEmojiClick={onEmojiClick} preload/>
