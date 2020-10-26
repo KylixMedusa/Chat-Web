@@ -5,7 +5,9 @@
     padding-right: 15px;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    .icon-menu{
+      height: max-content;
+    }
   }
   .message-right .message-text {
     line-height: 1.8;
@@ -48,9 +50,11 @@
     padding-bottom: 15px;
     padding-left: 15px;
     display: flex;
-    align-items: center;
     .icon{
       margin-left: 10px;
+    }
+    .icon-menu{
+      height: max-content;
     }
   }
   .message-left .message-text {
