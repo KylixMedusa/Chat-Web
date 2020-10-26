@@ -3,7 +3,9 @@
     position: relative;
     padding-bottom: 15px;
     padding-right: 15px;
-    display: block;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
   .message-right .message-text {
     line-height: 1.8;
@@ -45,7 +47,11 @@
     position: relative;
     padding-bottom: 15px;
     padding-left: 15px;
-    display: list-item;
+    display: flex;
+    align-items: center;
+    .icon{
+      margin-left: 10px;
+    }
   }
   .message-left .message-text {
     max-width: 70%;
@@ -86,5 +92,6 @@
     img{
       height: 20px;
       vertical-align: top;
+      image-rendering: -webkit-optimize-contrast;
     }
   }
