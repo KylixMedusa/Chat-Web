@@ -3,6 +3,7 @@ import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
 import Picker from "emoji-picker-react";
 import ContentEditable from "../../Components/ContentEditable";
+import ListMenu from "../../Components/ListMenu/ListMenu";
 
 var emojis = require('../../emojis.json').emojis;
 var emojiRegex = require('emoji-regex');
@@ -15,7 +16,7 @@ const MainChat: React.FC = () => {
   ]);
   const inputElem = useRef<HTMLDivElement>(null);
   const [pickerClass, setPickerClass] = useState("");
-  var currentEmoji:any = undefined;
+  const [menuClass,setMenuClass] = useState("");
 
   useEffect(() => {
     // if (inputElem.current) {
@@ -107,13 +108,23 @@ const MainChat: React.FC = () => {
       let d = new Date();
       let curr_hour = d.getHours();
       let curr_min = d.getMinutes();
-      let time = curr_hour + ":" + curr_min;
+      let time = formatTime(curr_hour) + ":" + formatTime(curr_min);
       setMessages([
         ...messages,
         { id: messages.length, text: text, author: 1, time: time },
       ]);
       inputElem.current.innerHTML = "";
       setVisiblityHandler();
+    }
+  }
+
+  function formatTime(time:number){
+    let temp = String(time)
+    if(temp.length == 1){
+      return(`0${temp}`);
+    }
+    else{
+      return(temp);
     }
   }
 
@@ -158,6 +169,14 @@ const MainChat: React.FC = () => {
       }
     }
   }
+  const menuToggleHandler = ()=>{
+    if(menuClass === 'open-top-right'){
+      setMenuClass('close-top-right');
+    }
+    else{
+      setMenuClass('open-top-right');
+    }
+  }
 
   return (
     <div className="main-chat-container">
@@ -188,20 +207,33 @@ const MainChat: React.FC = () => {
               </svg>
             </i>
           </div>
-          <div role="button" className="icon">
-            <i>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
+          <div className="icon-menu">
+            <div role="button" className={`icon ${menuClass === 'open-top-right'?'active':''}`} onClick={menuToggleHandler}>
+              <i>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
+                  ></path>
+                </svg>
+              </i>
+            </div>
+              <ListMenu
+                class={menuClass}
+                style={{top:'120%',right:'50%'}}
+                toggle={menuToggleHandler}
               >
-                <path
-                  fill="currentColor"
-                  d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
-                ></path>
-              </svg>
-            </i>
+                <li>Contact Info</li>
+                <li>Select Messages</li>
+                <li>Mute Notifications</li>
+                <li>Clear Messages</li>
+                <li>Delete Chat</li>
+              </ListMenu>
           </div>
         </div>
       </div>
