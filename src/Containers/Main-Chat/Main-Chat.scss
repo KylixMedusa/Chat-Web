@@ -8,7 +8,7 @@
         width:35px;
         border-radius: 50%;
         // transition: background-color 0.2s ease-in-out;
-        &:hover, &:focus{
+        &:hover, &.active{
             background-color: #f7f7ff;
             path{
                 fill:#7269ef;
@@ -146,6 +146,11 @@
                     img{
                         height: 20px;
                         vertical-align: top;
+                        image-rendering: -webkit-optimize-contrast;
+                        -webkit-user-select: text;
+                        -moz-user-select: text;
+                        -ms-user-select: text;
+                        user-select: text;
                     }
                 }
             }
@@ -207,6 +212,9 @@
             &:hover{
                 background-color: transparent !important;
             }
+            img{
+                image-rendering: -webkit-optimize-contrast;
+            }
         }
     }
     .picker{
@@ -222,5 +230,8 @@
             height: 0px;
             min-height:0 ;
         }
+    }
+    .icon-menu{
+        position: relative;
     }
 }
