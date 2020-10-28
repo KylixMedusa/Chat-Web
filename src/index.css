@@ -34,3 +34,7 @@ code {
 :hover::-webkit-scrollbar-thumb {
   background: rgb(156, 156, 156);
 }
+
+img{
+  image-rendering: -webkit-optimize-contrast !important;
+}
