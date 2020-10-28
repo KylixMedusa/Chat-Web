@@ -4,6 +4,7 @@
   
 Added Imports:
 - emoji-react-picker
+- html-react-parser
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
