@@ -1,6 +1,6 @@
 # ChatApp Website
   
-  This is the website part of the ChatApp made in React.
+  This is the website part of the ChatApp made in React using Typescript and SCSS.
   
 Added Imports:
 - emoji-react-picker
