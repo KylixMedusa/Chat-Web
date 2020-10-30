@@ -29,6 +29,13 @@ const SideSection: React.FC = () => {
         <h2 style={{marginBottom:'5px'}}>Aayush Agarwal</h2>
         <p style={{margin:0}}>Online</p>
       </div>
+      <div>
+        <small>
+          About and Phone Number
+        </small>
+        <p>Can't talk chat only</p>
+        <p>+919679883985</p>
+      </div>
     </div>
   );
 };
