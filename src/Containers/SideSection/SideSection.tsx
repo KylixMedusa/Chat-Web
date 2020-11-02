@@ -22,7 +22,7 @@ const SideSection: React.FC = () => {
         </div>
         <p>Contact Info</p>
       </div>
-      <div style={{display:'flex', flexDirection:'column'}}>
+      <div style={{display:'flex', flexDirection:'column', height:'100%'}}>
         <div style={{textAlign:"center", borderBottom:'1px solid #dee2e6', padding: '5% 0'}}>
           <div className="main-image">
             <img src="https://www.aayushagarwal.me/assets/img/profilepic.jpg" alt=""/>
