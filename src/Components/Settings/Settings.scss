@@ -1,0 +1,59 @@
+.settings-container {
+    height: 100%;
+    width: 100%;
+    .top-section{
+        width:100%;
+        padding: 0px 2%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            .image{
+                height:100px;
+                width: 100px;
+                img{
+                    height: 100%;
+                    width: 100px;
+                    border-radius: 50%;
+                }
+            }
+            .content{
+                margin-left: 10px;
+                height: 100%;
+                width: calc(100% - 110px);
+                padding: 20px 0;
+                cursor: pointer;
+                h3{
+                    margin: 0;
+                    margin-bottom: 5px;
+                    width: 100%;
+                    // height: 25px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    // position: absolute;
+                    // top:8px;
+                    // left:0;
+                }
+                p{
+                    // position: relative;
+                    // top:10px;'
+                    margin: 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+
+.channel-title {
+  padding: 10px 16px;
+  position: relative;
+  margin-top: 0;
+  font-weight: 600;
+}
