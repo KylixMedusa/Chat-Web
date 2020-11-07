@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
           </svg>
           <span className="tooltip">Groups</span>
         </li>
-        <li>
+        <li  className="active">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
           </svg>
           <span className="tooltip">Contacts</span>
         </li>
-        <li  className="active">
+        <li>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
