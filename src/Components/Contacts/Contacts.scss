@@ -1,0 +1,92 @@
+.all-chats-container{
+    height: 100%;
+    width: 100%;
+    .container{
+        padding:10px 16px;
+        padding-bottom: 25px;
+        position: relative;
+        h2{
+            margin-top: 0;
+            font-weight: 600;
+        }
+    }
+    .search--container{
+        width:100%;
+        background-color: #e6ebf5;
+        border-radius: 10px;
+        display: flex;
+        padding: 0.5rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .container.search::after{
+        content:'';
+        position: absolute;
+        bottom:0;
+        left:0;
+        height:1px;
+        width:100%;
+        display: block;
+        background-color: rgba(126, 126, 126, 0.2);
+    }
+    .container.search:focus-within{
+        box-shadow: 0 2px 3px rgba(139, 139, 139, 0.1);
+    }
+    .search--container div{
+        height:24px;
+    }
+    .search--container input{
+        width:100%;
+        border:none;
+        outline: 0;
+        margin: 0 20px  0 20px;
+        font-size: 1rem;
+        background-color: inherit;
+    }
+    .search--container input::placeholder{
+        color:gray;
+    }
+    .container.search{
+        background-color: rgb(246,246,246);
+        transition: all 0.25s ease-in-out;
+    }
+    .container.search:focus-within{
+        background-color: white;
+    }
+    .search--container .search-icon{
+        opacity: 1;
+        transition: all 0.25s ease-in-out;
+    }
+    .search--container .back-icon{
+        position: absolute;
+        opacity: 0;
+        transition: all 0.25s ease-in-out;
+    }
+    .search--container:focus-within  .search-icon{
+        animation: rotate 0.3s forwards;
+    }
+    @keyframes rotate{
+        0%{
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+        100%{
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+    }
+    .search--container:focus-within  .back-icon{
+        animation: rotate2 0.3s forwards;
+        display: block;
+    }
+    @keyframes rotate2{
+        0%{
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+        100%{
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+    }
+}
