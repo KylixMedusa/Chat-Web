@@ -89,4 +89,16 @@
             transform: rotate(0deg);
         }
     }
+
+    .contacts-list{
+        padding: 0 5%;
+        .group-list{
+            .group-header{
+                color:#7269ef;
+            }
+            p{
+                padding-left: 2%;
+            }
+        }
+    }
 }
