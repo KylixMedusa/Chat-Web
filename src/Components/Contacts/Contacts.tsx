@@ -40,6 +40,14 @@ const Contacts: React.FC = () => {
           </div>
         </div>
       </div>
+      <div className="contacts-list">
+        <div className="group-list">
+          <h3 className="group-header">A</h3>
+          <p>Aayush Agarwal</p>
+          <p>Aditya Kumar</p>
+          <p>Aditya Singh</p>
+        </div>
+      </div>
     </div>
   );
 };
