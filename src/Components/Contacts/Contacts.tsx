@@ -1,5 +1,5 @@
 import React from "react";
-import './Contacts.scss'
+import "./Contacts.scss";
 
 const Contacts: React.FC = () => {
   return (
@@ -43,9 +43,54 @@ const Contacts: React.FC = () => {
       <div className="contacts-list">
         <div className="group-list">
           <h3 className="group-header">A</h3>
-          <p>Aayush Agarwal</p>
-          <p>Aditya Kumar</p>
-          <p>Aditya Singh</p>
+          <p>
+            Aayush Agarwal
+            <i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
+                ></path>
+              </svg>
+            </i>
+          </p>
+          <p>
+            Aditya Kumar
+            <i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
+                ></path>
+              </svg>
+            </i>
+          </p>
+          <p>
+            Aditya Singh
+            <i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
+                ></path>
+              </svg>
+            </i>
+          </p>
         </div>
       </div>
     </div>
