@@ -98,6 +98,13 @@
             }
             p{
                 padding-left: 2%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                i{
+                    height: 24px;
+                    cursor: pointer;
+                }
             }
         }
     }
