@@ -4,6 +4,7 @@ import "./Contacts.scss";
 
 const Contacts: React.FC = () => {
   const [menuClass,setMenuClass] = useState("");
+  const [pos,setPos] = useState({top:'0', right:'0'});
   const menuToggleHandler = ()=>{
     if(menuClass === 'open-top-right'){
       setMenuClass('close-top-right');
@@ -11,6 +12,9 @@ const Contacts: React.FC = () => {
     else{
       setMenuClass('open-top-right');
     }
+  }
+  function setPosition(event:any){
+    setPos({top:`${event.target.getBoundingClientRect().top}px`,right: `${event.target.getBoundingClientRect().right}px`});
   }
   return (
     <div className="all-chats-container">
@@ -55,7 +59,7 @@ const Contacts: React.FC = () => {
           <h3 className="group-header">A</h3>
           <p>
             Aayush Agarwal
-            <i onClick={menuToggleHandler}>
+            <i onClick={e=>{setPosition(e);menuToggleHandler();}}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -71,7 +75,7 @@ const Contacts: React.FC = () => {
           </p>
           <p>
             Aditya Kumar
-            <i onClick={menuToggleHandler}>
+            <i onClick={e=>{setPosition(e);menuToggleHandler();}}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -87,7 +91,7 @@ const Contacts: React.FC = () => {
           </p>
           <p>
             Aditya Singh
-            <i onClick={menuToggleHandler}>
+            <i onClick={e=>{setPosition(e);menuToggleHandler();}}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -105,7 +109,7 @@ const Contacts: React.FC = () => {
       </div>
       <ListMenu
                 class={menuClass}
-                style={{top:'0%',right:'0%'}}
+                style={{top:pos.top,right:pos.right}}
                 toggle={menuToggleHandler}
               >
                 <li>Share</li>
