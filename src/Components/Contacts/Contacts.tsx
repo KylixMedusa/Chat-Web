@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import ListMenu from "../ListMenu/ListMenu";
 import "./Contacts.scss";
 
 const Contacts: React.FC = () => {
+  const [menuClass,setMenuClass] = useState("");
+  const menuToggleHandler = ()=>{
+    if(menuClass === 'open-top-right'){
+      setMenuClass('close-top-right');
+    }
+    else{
+      setMenuClass('open-top-right');
+    }
+  }
   return (
     <div className="all-chats-container">
       <div className="container">
@@ -45,7 +55,7 @@ const Contacts: React.FC = () => {
           <h3 className="group-header">A</h3>
           <p>
             Aayush Agarwal
-            <i>
+            <i onClick={menuToggleHandler}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -61,7 +71,7 @@ const Contacts: React.FC = () => {
           </p>
           <p>
             Aditya Kumar
-            <i>
+            <i onClick={menuToggleHandler}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -77,7 +87,7 @@ const Contacts: React.FC = () => {
           </p>
           <p>
             Aditya Singh
-            <i>
+            <i onClick={menuToggleHandler}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -93,6 +103,15 @@ const Contacts: React.FC = () => {
           </p>
         </div>
       </div>
+      <ListMenu
+                class={menuClass}
+                style={{top:'0%',right:'0%'}}
+                toggle={menuToggleHandler}
+              >
+                <li>Share</li>
+                <li>Block</li>
+                <li>Delete</li>
+      </ListMenu>
     </div>
   );
 };
