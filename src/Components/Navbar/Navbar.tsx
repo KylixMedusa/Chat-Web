@@ -1,6 +1,13 @@
 import React from "react";
 import "./Navbar.scss";
-const Navbar: React.FC = () => {
+
+type Props = {
+  channel:string,
+  setChannel:(arg0:string)=>void
+}
+
+const Navbar: React.FC<Props> = (props) => {
+
   return (
     <div className="navbar-container">
       <div className="logo">
@@ -12,7 +19,7 @@ const Navbar: React.FC = () => {
         </li>
       </div>
       <nav>
-        <li>
+        <li className={props.channel === 'Chats'?"active":''} onClick={()=>{props.setChannel('Chats')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -25,7 +32,7 @@ const Navbar: React.FC = () => {
           </svg>
           <span className="tooltip">Chats</span>
         </li>
-        <li>
+        <li className={props.channel === 'Groups'?"active":''} onClick={()=>{props.setChannel('Groups')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -38,7 +45,7 @@ const Navbar: React.FC = () => {
           </svg>
           <span className="tooltip">Groups</span>
         </li>
-        <li  className="active">
+        <li  className={props.channel === 'Contacts'?"active":''} onClick={()=>{props.setChannel('Contacts')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -51,7 +58,7 @@ const Navbar: React.FC = () => {
           </svg>
           <span className="tooltip">Contacts</span>
         </li>
-        <li>
+        <li className={props.channel === 'Settings'?"active":''} onClick={()=>{props.setChannel('Settings')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
