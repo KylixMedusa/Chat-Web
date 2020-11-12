@@ -4,12 +4,30 @@ import AllChats from '../../Components/All-Chats/All-Chats';
 import Settings from '../../Components/Settings/Settings';
 import Contacts from '../../Components/Contacts/Contacts';
 
-const ChannelsSection:React.FC = ()=>{
+type Props = {
+    channel:string
+}
+
+const ChannelsSection:React.FC<Props> = (props)=>{
+
+    function checkSectionHandler(){
+        switch(props.channel){
+            case 'Chats': 
+                return <AllChats></AllChats>
+            case 'Groups':
+                return <AllChats></AllChats>
+            case 'Contacts':
+                return <Contacts></Contacts>
+            case 'Settings':
+                return <Settings></Settings>
+        }
+    }
+
     return(
         <div className="channels-section">
-            {/* <Settings></Settings> */}
-            {/* <AllChats></AllChats> */}
-            <Contacts></Contacts>
+            {
+                checkSectionHandler()
+            }
         </div>
     );
 }
