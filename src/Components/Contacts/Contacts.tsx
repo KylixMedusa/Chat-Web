@@ -14,7 +14,7 @@ const Contacts: React.FC = () => {
     }
   }
   function setPosition(event:any){
-    setPos({top:`${event.target.getBoundingClientRect().top}px`,right: `${event.target.getBoundingClientRect().right}px`});
+    setPos({top:`${event.target.getBoundingClientRect().top + 24}px`,right: `${event.target.getBoundingClientRect().right - 390}px`});
   }
   return (
     <div className="all-chats-container">
