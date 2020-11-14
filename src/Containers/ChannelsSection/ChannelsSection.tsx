@@ -3,6 +3,7 @@ import './ChannelsSection.scss'
 import AllChats from '../../Components/All-Chats/All-Chats';
 import Settings from '../../Components/Settings/Settings';
 import Contacts from '../../Components/Contacts/Contacts';
+import Profile from '../../Components/Profile/Profile';
 
 type Props = {
     channel:string
@@ -20,6 +21,8 @@ const ChannelsSection:React.FC<Props> = (props)=>{
                 return <Contacts></Contacts>
             case 'Settings':
                 return <Settings></Settings>
+            case 'Profile':
+                return <Profile></Profile>
         }
     }
 

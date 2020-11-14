@@ -72,7 +72,7 @@ const Navbar: React.FC<Props> = (props) => {
           <span className="tooltip">Settings</span>
         </li>
       </nav>
-      <div className="avatar">
+      <div className="avatar" onClick={()=>{props.setChannel('Profile')}}>
         <li>
           <img
             className="avatar-image"
