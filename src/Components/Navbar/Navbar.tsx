@@ -1,12 +1,12 @@
 import React from "react";
 import "./Navbar.scss";
+import {observer} from "mobx-react-lite";
 
-type Props = {
-  channel:string,
-  setChannel:(arg0:string)=>void
-}
+import { channelSectionHandler } from "../../App";
 
-const Navbar: React.FC<Props> = (props) => {
+
+
+const Navbar: React.FC = () => {
 
   return (
     <div className="navbar-container">
@@ -19,7 +19,7 @@ const Navbar: React.FC<Props> = (props) => {
         </li>
       </div>
       <nav>
-        <li className={props.channel === 'Chats'?"active":''} onClick={()=>{props.setChannel('Chats')}}>
+        <li className={channelSectionHandler.get() === 'Chats'?"active":''} onClick={()=>{channelSectionHandler.set('Chats')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -32,7 +32,7 @@ const Navbar: React.FC<Props> = (props) => {
           </svg>
           <span className="tooltip">Chats</span>
         </li>
-        <li className={props.channel === 'Groups'?"active":''} onClick={()=>{props.setChannel('Groups')}}>
+        <li className={channelSectionHandler.get() === 'Groups'?"active":''} onClick={()=>{channelSectionHandler.set('Groups')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -45,7 +45,7 @@ const Navbar: React.FC<Props> = (props) => {
           </svg>
           <span className="tooltip">Groups</span>
         </li>
-        <li  className={props.channel === 'Contacts'?"active":''} onClick={()=>{props.setChannel('Contacts')}}>
+        <li  className={channelSectionHandler.get() === 'Contacts'?"active":''} onClick={()=>{channelSectionHandler.set('Contacts')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -58,7 +58,7 @@ const Navbar: React.FC<Props> = (props) => {
           </svg>
           <span className="tooltip">Contacts</span>
         </li>
-        <li className={props.channel === 'Settings'?"active":''} onClick={()=>{props.setChannel('Settings')}}>
+        <li className={channelSectionHandler.get() === 'Settings'?"active":''} onClick={()=>{channelSectionHandler.set('Settings')}}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ const Navbar: React.FC<Props> = (props) => {
           <span className="tooltip">Settings</span>
         </li>
       </nav>
-      <div className="avatar" onClick={()=>{props.setChannel('Profile')}}>
+      <div className="avatar" onClick={()=>{channelSectionHandler.set('Profile')}}>
         <li>
           <img
             className="avatar-image"
@@ -85,4 +85,4 @@ const Navbar: React.FC<Props> = (props) => {
   );
 };
 
-export default Navbar;
+export default observer(Navbar);

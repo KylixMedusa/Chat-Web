@@ -1,11 +1,14 @@
 import React from "react";
 import "./Settings.scss";
+import {observer} from "mobx-react-lite";
+
+import { channelSectionHandler } from "../../App";
 
 const Settings: React.FC = () => {
   return (
     <div className="settings-container">
       <h2 className="channel-title">Settings</h2>
-      <div className="top-section">
+      <div className="top-section" onClick={()=>{channelSectionHandler.set('Profile')}}>
         <div className="image">
           <img
             src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
@@ -103,4 +106,4 @@ const Settings: React.FC = () => {
   );
 };
 
-export default Settings;
+export default observer(Settings);

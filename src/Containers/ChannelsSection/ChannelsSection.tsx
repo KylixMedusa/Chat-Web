@@ -4,15 +4,14 @@ import AllChats from '../../Components/All-Chats/All-Chats';
 import Settings from '../../Components/Settings/Settings';
 import Contacts from '../../Components/Contacts/Contacts';
 import Profile from '../../Components/Profile/Profile';
+import {observer} from "mobx-react-lite";
 
-type Props = {
-    channel:string
-}
+import { channelSectionHandler } from "../../App";
 
-const ChannelsSection:React.FC<Props> = (props)=>{
+const ChannelsSection:React.FC = ()=>{
 
     function checkSectionHandler(){
-        switch(props.channel){
+        switch(channelSectionHandler.get()){
             case 'Chats': 
                 return <AllChats></AllChats>
             case 'Groups':
@@ -35,4 +34,4 @@ const ChannelsSection:React.FC<Props> = (props)=>{
     );
 }
 
-export default ChannelsSection;
+export default observer(ChannelsSection);
