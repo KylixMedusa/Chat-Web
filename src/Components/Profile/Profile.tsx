@@ -1,11 +1,15 @@
 import React from "react";
 import "./Profile.scss";
 
+import {observer} from "mobx-react-lite";
+
+import { channelSectionHandler } from "../../App";
+
 const Profile: React.FC = () => {
   return (
     <div className="profile-section">
       <div className="top-bar">
-        <div role="button" className="icon">
+        <div role="button" className="icon" onClick={()=>{channelSectionHandler.set('Settings')}}>
           <i>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -15,30 +19,29 @@ const Profile: React.FC = () => {
             >
               <path
                 fill="currentColor"
-                d="M19.1 17.2l-5.3-5.3 5.3-5.3-1.8-1.8-5.3 5.4-5.3-5.3-1.8 1.7 5.3 5.3-5.3 5.3L6.7 19l5.3-5.3 5.3 5.3 1.8-1.8z"
+                d="M12 4l1.4 1.4L7.8 11H20v2H7.8l5.6 5.6L12 20l-8-8 8-8z"
               ></path>
             </svg>
           </i>
         </div>
-        <p>Contact Info</p>
+        <h2 className="channel-title"
+          style={{marginBottom:'0px', paddingLeft:'0px'}}
+        >Contact Info</h2>
       </div>
-      <div style={{overflow:'auto'}}>
-        <div style={{textAlign:"center", borderBottom:'1px solid #dee2e6', padding: '5% 0'}}>
+        <div>
           <div className="main-image">
-            <img src="https://www.aayushagarwal.me/assets/img/profilepic.jpg" alt=""/>
+            <img
+              src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+              alt=""
+            />
           </div>
-        </div>
         <div className="temp">
           <div className="card">
-            <small className="card-title">
-              Name
-            </small>
+            <small className="card-title">Name</small>
             <p>Aayush Agarwal</p>
           </div>
           <div className="card">
-            <small className="card-title">
-              Status
-            </small>
+            <small className="card-title">Status</small>
             <p>Can't talk chat only</p>
           </div>
         </div>
