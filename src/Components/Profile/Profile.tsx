@@ -1,7 +1,7 @@
 import React from "react";
 import "./Profile.scss";
 
-import {observer} from "mobx-react-lite";
+import { observer } from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
 
@@ -9,7 +9,13 @@ const Profile: React.FC = () => {
   return (
     <div className="profile-section">
       <div className="top-bar">
-        <div role="button" className="icon" onClick={()=>{channelSectionHandler.set('Settings')}}>
+        <div
+          role="button"
+          className="icon"
+          onClick={() => {
+            channelSectionHandler.set("Settings");
+          }}
+        >
           <i>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -24,22 +30,47 @@ const Profile: React.FC = () => {
             </svg>
           </i>
         </div>
-        <h2 className="channel-title"
-          style={{marginBottom:'0px', paddingLeft:'0px'}}
-        >Contact Info</h2>
+        <h2
+          className="channel-title"
+          style={{ marginBottom: "0px", paddingLeft: "0px" }}
+        >
+          Profile
+        </h2>
       </div>
-        <div>
-          <div className="main-image">
-            <img
-              src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
-              alt=""
-            />
+      <div style={{overflow:'auto'}}>
+        <div className="main-image">
+          <img
+            src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+            alt=""
+          />
+          <div className="hover-overlay">
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill="white"
+                  d="M21.317 4.381H10.971L9.078 2.45c-.246-.251-.736-.457-1.089-.457H4.905c-.352 0-.837.211-1.078.468L1.201 5.272C.96 5.529.763 6.028.763 6.38v1.878l-.002.01v11.189a1.92 1.92 0 0 0 1.921 1.921h18.634a1.92 1.92 0 0 0 1.921-1.921V6.302a1.92 1.92 0 0 0-1.92-1.921zM12.076 18.51a5.577 5.577 0 1 1 0-11.154 5.577 5.577 0 0 1 0 11.154zm0-9.506a3.929 3.929 0 1 0 0 7.858 3.929 3.929 0 0 0 0-7.858z"
+                ></path>
+              </svg>
+            </p>
+            <p>
+              CHANGE <br></br> PROFILE PICTURE
+            </p>
           </div>
+        </div>
         <div className="temp">
           <div className="card">
             <small className="card-title">Name</small>
             <p>Aayush Agarwal</p>
           </div>
+          <p style={{ padding: "0 5%", color: "gray", fontSize: "small" }}>
+            This is not your Username or Pin. This name will be visible to your
+            contacts.
+          </p>
           <div className="card">
             <small className="card-title">Status</small>
             <p>Can't talk chat only</p>
