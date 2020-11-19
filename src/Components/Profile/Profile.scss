@@ -44,7 +44,6 @@
         padding-top: 60%;
         position: relative;
         margin: 5% 0;
-        cursor: pointer;
         img{
             position: absolute;
             height: 100%;
@@ -68,6 +67,7 @@
             background-color: #878a92b9;
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
+            cursor: pointer;
             p{
                 width:60%;
                 color:white;
