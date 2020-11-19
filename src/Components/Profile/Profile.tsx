@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Profile.scss";
 
 import { observer } from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
+import ListMenu from "../ListMenu/ListMenu";
 
 const Profile: React.FC = () => {
+  const [menuClass,setMenuClass] = useState("");
+  const [pos,setPos] = useState({left:'50%', top:'50%'});
+  const menuToggleHandler = ()=>{
+      if(menuClass === `open-top-left`){
+        setMenuClass(`close-top-left`);
+      }
+      else{
+        setMenuClass(`open-top-left`);
+      }
+  }
+  const setPosHandler = (event:any)=>{
+    setPos({left:`${event.pageX - 76}px`, top:`${event.pageY - 77.23863983154297}px`});
+  }
+
   return (
     <div className="profile-section">
       <div className="top-bar">
@@ -37,13 +52,17 @@ const Profile: React.FC = () => {
           Profile
         </h2>
       </div>
-      <div style={{overflow:'auto'}}>
+      <div style={{overflowX:'visible', height:'100%'}}>
         <div className="main-image">
           <img
             src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
             alt=""
           />
-          <div className="hover-overlay">
+          <div className="hover-overlay"
+            onClick={(e)=>{
+              setPosHandler(e);
+              menuToggleHandler();}}
+          >
             <p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +80,16 @@ const Profile: React.FC = () => {
               CHANGE <br></br> PROFILE PICTURE
             </p>
           </div>
+          <ListMenu
+              class={menuClass}
+              style={{top:pos.top,left:pos.left}}
+              toggle={menuToggleHandler}
+          >
+              <li>View Photo</li>
+              <li>Take Photo</li>
+              <li>Upload Photo</li>
+
+          </ListMenu>
         </div>
         <div className="temp">
           <div className="card">
