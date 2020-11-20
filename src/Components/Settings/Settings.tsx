@@ -11,7 +11,7 @@ const Settings: React.FC = () => {
       <div className="top-section" onClick={()=>{channelSectionHandler.set('Profile')}}>
         <div className="image">
           <img
-            src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+            src="https://cliko.in/assets/team/aayush.jpg"
             alt=""
           />
         </div>

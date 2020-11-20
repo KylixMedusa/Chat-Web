@@ -25,7 +25,7 @@ const SideSection: React.FC = () => {
       <div style={{display:'flex', flexDirection:'column', height:'calc(100% - 64px)'}}>
         <div style={{textAlign:"center", borderBottom:'1px solid #dee2e6', padding: '5% 0'}}>
           <div className="main-image">
-            <img src="https://www.aayushagarwal.me/assets/img/profilepic.jpg" alt=""/>
+            <img src="https://cliko.in/assets/team/aayush.jpg" alt=""/>
           </div>
           <h2 style={{marginBottom:'5px'}}>Aayush Agarwal</h2>
           <p style={{margin:0}}>Online</p>

@@ -46,7 +46,7 @@ const AllChats: React.FC = () => {
           <div className="card active">
             <div className="card-image">
               <img
-                src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+                src="https://cliko.in/assets/team/aayush.jpg"
                 alt=""
               />
             </div>
@@ -108,7 +108,7 @@ const AllChats: React.FC = () => {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+                src="https://cliko.in/assets/team/aayush.jpg"
                 alt=""
               />
             </div>

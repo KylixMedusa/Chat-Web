@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
         <li>
           <img
             className="avatar-image"
-            src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+            src="https://cliko.in/assets/team/aayush.jpg"
             alt=""
           />
         </li>
