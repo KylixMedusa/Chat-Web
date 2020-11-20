@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
       }
   }
   const setPosHandler = (event:any)=>{
-    setPos({left:`${event.pageX - 76}px`, top:`${event.pageY - 77.23863983154297}px`});
+    setPos({left:`${event.pageX - 76}px`, top:`${event.pageY}px`});
   }
 
   return (
@@ -52,44 +52,34 @@ const Profile: React.FC = () => {
           Profile
         </h2>
       </div>
-      <div style={{overflowX:'visible', height:'100%'}}>
-        <div className="main-image">
-          <img
-            src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
-            alt=""
-          />
-          <div className="hover-overlay"
-            onClick={(e)=>{
-              setPosHandler(e);
-              menuToggleHandler();}}
-          >
-            <p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="24"
-                height="24"
-              >
-                <path
-                  fill="white"
-                  d="M21.317 4.381H10.971L9.078 2.45c-.246-.251-.736-.457-1.089-.457H4.905c-.352 0-.837.211-1.078.468L1.201 5.272C.96 5.529.763 6.028.763 6.38v1.878l-.002.01v11.189a1.92 1.92 0 0 0 1.921 1.921h18.634a1.92 1.92 0 0 0 1.921-1.921V6.302a1.92 1.92 0 0 0-1.92-1.921zM12.076 18.51a5.577 5.577 0 1 1 0-11.154 5.577 5.577 0 0 1 0 11.154zm0-9.506a3.929 3.929 0 1 0 0 7.858 3.929 3.929 0 0 0 0-7.858z"
-                ></path>
-              </svg>
-            </p>
-            <p>
-              CHANGE <br></br> PROFILE PICTURE
-            </p>
-          </div>
-          <ListMenu
-              class={menuClass}
-              style={{top:pos.top,left:pos.left}}
-              toggle={menuToggleHandler}
-          >
-              <li>View Photo</li>
-              <li>Take Photo</li>
-              <li>Upload Photo</li>
-
-          </ListMenu>
+      <div style={{overflowY:'auto', height:'100%'}}>
+          <div className="main-image">
+            <img
+              src="https://cliko.in/assets/team/aayush.jpg"
+              alt=""
+            />
+            <div className="hover-overlay"
+              onClick={(e)=>{
+                setPosHandler(e);
+                menuToggleHandler();}}
+            >
+              <p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path
+                    fill="white"
+                    d="M21.317 4.381H10.971L9.078 2.45c-.246-.251-.736-.457-1.089-.457H4.905c-.352 0-.837.211-1.078.468L1.201 5.272C.96 5.529.763 6.028.763 6.38v1.878l-.002.01v11.189a1.92 1.92 0 0 0 1.921 1.921h18.634a1.92 1.92 0 0 0 1.921-1.921V6.302a1.92 1.92 0 0 0-1.92-1.921zM12.076 18.51a5.577 5.577 0 1 1 0-11.154 5.577 5.577 0 0 1 0 11.154zm0-9.506a3.929 3.929 0 1 0 0 7.858 3.929 3.929 0 0 0 0-7.858z"
+                  ></path>
+                </svg>
+              </p>
+              <p>
+                CHANGE <br></br> PROFILE PICTURE
+              </p>
+            </div>
         </div>
         <div className="temp">
           <div className="card">
@@ -106,6 +96,16 @@ const Profile: React.FC = () => {
           </div>
         </div>
       </div>
+      <ListMenu
+          class={menuClass}
+          style={{top:pos.top,left:pos.left}}
+          toggle={menuToggleHandler}
+      >
+          <li>View Photo</li>
+          <li>Take Photo</li>
+          <li>Upload Photo</li>
+
+      </ListMenu>
     </div>
   );
 };
