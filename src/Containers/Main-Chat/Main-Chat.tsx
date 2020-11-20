@@ -111,7 +111,7 @@ const MainChat: React.FC = () => {
       let time = formatTime(curr_hour) + ":" + formatTime(curr_min);
       setMessages([
         ...messages,
-        { id: messages.length, text: text, author: 1, time: time },
+        { id: messages.length, text: text.trim(), author: 1, time: time },
       ]);
       inputElem.current.innerHTML = "";
       setVisiblityHandler();
@@ -183,7 +183,7 @@ const MainChat: React.FC = () => {
       <div className="top-section">
         <div className="image">
           <img
-            src="https://www.aayushagarwal.me/assets/img/profilepic.jpg"
+            src="https://cliko.in/assets/team/aayush.jpg"
             alt=""
           />
         </div>
@@ -238,7 +238,7 @@ const MainChat: React.FC = () => {
         </div>
       </div>
       <div className="chat-holder">
-        <div className="chat-wrapper">
+        <div className="chat-wrapper" dir="btt">
           {messages
             .filter((message) => message.id && message.id !== 0)
             .map((message) => (
