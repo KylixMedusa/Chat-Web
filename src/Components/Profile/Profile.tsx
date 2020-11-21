@@ -58,7 +58,7 @@ const Profile: React.FC = () => {
               src="https://cliko.in/assets/team/aayush.jpg"
               alt=""
             />
-            <div className="hover-overlay"
+            <div className={`hover-overlay ${menuClass === "open-top-left"?"active": ""}`}
               onClick={(e)=>{
                 setPosHandler(e);
                 menuToggleHandler();}}
@@ -104,7 +104,7 @@ const Profile: React.FC = () => {
           <li>View Photo</li>
           <li>Take Photo</li>
           <li>Upload Photo</li>
-
+          <li>Remove Photo</li>
       </ListMenu>
     </div>
   );
