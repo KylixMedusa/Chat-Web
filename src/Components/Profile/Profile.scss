@@ -99,9 +99,36 @@
 
             }
             p{
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
+                display: flex;
+                align-items: end;
+                position: relative;
+                div{
+                    height: 100%;
+                    width: 100%;
+                    border: none;
+                    font-size: medium;
+                    word-break: break-word;
+                    &[contenteditable="true"]{
+                        overflow: visible;
+                        white-space: pre-wrap;
+                        word-break: break-word;
+                        outline: none;
+                    }
+                }
+                i{
+                    min-width: 24px;
+                    vertical-align: middle;
+                    cursor: pointer;
+                }
+                &.active::after{
+                    content: '';
+                    height: 2px;
+                    width: 100%;
+                    position: absolute;
+                    bottom: -8px;
+                    left:0px;
+                    background-color: #7269ef;
+                }
             }
         }
         .break{
