@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Profile.scss";
 
 import { observer } from "mobx-react-lite";
@@ -12,6 +12,10 @@ const Profile: React.FC = () => {
   const [pos, setPos] = useState({ left: "50%", top: "50%" });
   const [editHandleOne, setEditHandlerOne] = useState(false);
   const [editHandleTwo, setEditHandlerTwo] = useState(false);
+  const nameInputElem = useRef<HTMLDivElement>(null);
+  const aboutInputElem = useRef<HTMLDivElement>(null);
+  const [name, setName] = useState("Aayush Agarwal");
+  const [about, setAbout] = useState("Can't talk chat only");
   const menuToggleHandler = () => {
     if (menuClass === `open-top-left`) {
       setMenuClass(`close-top-left`);
@@ -22,7 +26,9 @@ const Profile: React.FC = () => {
   const setPosHandler = (event: any) => {
     setPos({ left: `${event.pageX - 76}px`, top: `${event.pageY}px` });
   };
-
+  useEffect(()=>{
+    console.log(name);
+  },[name])
   return (
     <div className="profile-section">
       <div className="top-bar">
@@ -88,16 +94,22 @@ const Profile: React.FC = () => {
           <div className="card">
             <small className="card-title">Name</small>
             <p className={editHandleOne ? "active" : ""}>
-              <div contentEditable={editHandleOne}>Aayush Agarwal</div>
-              <i
-                onClick={()=>setEditHandlerOne(!editHandleOne)}
-              >
+              <div 
+                contentEditable={editHandleOne}
+                ref={nameInputElem}
+                onInput={()=>{
+                  if(nameInputElem.current)
+                    setName(nameInputElem.current?.innerHTML)
+                }}
+              >Aayush Agarwal</div>
+              <i>
                 {!editHandleOne ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     width="24"
                     height="24"
+                    onClick={()=>setEditHandlerOne(!editHandleOne)}
                   >
                     <path
                       fill="currentColor"
@@ -105,17 +117,23 @@ const Profile: React.FC = () => {
                     ></path>
                   </svg>
                 ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M9 17.2l-4-4-1.4 1.3L9 19.9 20.4 8.5 19 7.1 9 17.2z"
-                    ></path>
-                  </svg>
+                  <React.Fragment>
+                    <small>
+                      {`${25 - name.length}`}
+                    </small>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      onClick={()=>setEditHandlerOne(!editHandleOne)}
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M9 17.2l-4-4-1.4 1.3L9 19.9 20.4 8.5 19 7.1 9 17.2z"
+                      ></path>
+                    </svg>
+                  </React.Fragment>
                 )}
               </i>
             </p>
@@ -127,16 +145,22 @@ const Profile: React.FC = () => {
           <div className="card">
             <small className="card-title">Status</small>
             <p className={editHandleTwo ? "active" : ""}>
-              <div contentEditable={editHandleTwo}>Can't talk chat only</div>
-              <i 
-                onClick={()=>setEditHandlerTwo(!editHandleTwo)}
-              >
+              <div 
+                contentEditable={editHandleTwo}
+                ref={aboutInputElem}
+                onInput={()=>{
+                  if(aboutInputElem.current)
+                    setAbout(aboutInputElem.current?.innerHTML)
+                }}
+              >Can't talk chat only</div>
+              <i>
                 {!editHandleTwo ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     width="24"
-                    height="24"
+                    height="24" 
+                    onClick={()=>setEditHandlerTwo(!editHandleTwo)}    
                   >
                     <path
                       fill="currentColor"
@@ -144,17 +168,23 @@ const Profile: React.FC = () => {
                     ></path>
                   </svg>
                 ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M9 17.2l-4-4-1.4 1.3L9 19.9 20.4 8.5 19 7.1 9 17.2z"
-                    ></path>
-                  </svg>
+                  <React.Fragment>
+                    <small>
+                      {`${139 - about.length}`}
+                    </small>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      onClick={()=>setEditHandlerTwo(!editHandleTwo)}
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M9 17.2l-4-4-1.4 1.3L9 19.9 20.4 8.5 19 7.1 9 17.2z"
+                      ></path>
+                    </svg>
+                  </React.Fragment>
                 )}
               </i>
             </p>
