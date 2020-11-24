@@ -110,7 +110,7 @@
                     word-break: break-word;
                     &[contenteditable="true"]{
                         overflow: visible;
-                        white-space: pre-wrap;
+                        white-space: normal;
                         word-break: break-word;
                         outline: none;
                     }
@@ -119,6 +119,12 @@
                     min-width: 24px;
                     vertical-align: middle;
                     cursor: pointer;
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    svg{
+                        min-width: 24px;
+                    }
                 }
                 &::after{
                     content: '';
