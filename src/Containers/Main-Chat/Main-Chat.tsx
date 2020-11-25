@@ -3,7 +3,7 @@ import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
 import Picker from "emoji-picker-react";
 import ContentEditable from "../../Components/ContentEditable";
-import ListMenu from "../../Components/ListMenu/ListMenu";
+import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 
 var emojis = require('../../emojis.json').emojis;
 var emojiRegex = require('emoji-regex');

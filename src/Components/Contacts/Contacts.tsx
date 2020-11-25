@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ListMenu from "../ListMenu/ListMenu";
+import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import "./Contacts.scss";
 
 const Contacts: React.FC = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ListMenu from '../../Components/ListMenu/ListMenu';
+import ListMenu from '../ListMenu/ListMenu';
 import './Chat.scss';
 
 var parse = require('html-react-parser')
