@@ -4,7 +4,7 @@ import "./Profile.scss";
 import { observer } from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
-import ListMenu from "../ListMenu/ListMenu";
+import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import { readConfigFile } from "typescript";
 
 const Profile: React.FC = () => {
@@ -26,9 +26,14 @@ const Profile: React.FC = () => {
   const setPosHandler = (event: any) => {
     setPos({ left: `${event.pageX - 76}px`, top: `${event.pageY}px` });
   };
-  useEffect(()=>{
-    console.log(name);
-  },[name])
+  const checkInputLength = (event:any, field:string, length:number)=>{
+    if (event.which === 13) {
+      event.preventDefault();
+  }
+    if(field && (field.replace(/&nbsp;/g, ' ').length >= length)){
+      event.preventDefault();
+    }
+  }
   return (
     <div className="profile-section">
       <div className="top-bar">
@@ -97,6 +102,7 @@ const Profile: React.FC = () => {
               <div 
                 contentEditable={editHandleOne}
                 ref={nameInputElem}
+                onKeyPress={(e)=>checkInputLength(e,name,25)}
                 onInput={()=>{
                   if(nameInputElem.current)
                     setName(nameInputElem.current?.innerHTML)
@@ -119,7 +125,7 @@ const Profile: React.FC = () => {
                 ) : (
                   <React.Fragment>
                     <small>
-                      {`${25 - name.length}`}
+                      {`${25 - name.replace(/&nbsp;/g, ' ').length}`}
                     </small>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -148,6 +154,7 @@ const Profile: React.FC = () => {
               <div 
                 contentEditable={editHandleTwo}
                 ref={aboutInputElem}
+                onKeyPress={(e)=>checkInputLength(e,about,139)}
                 onInput={()=>{
                   if(aboutInputElem.current)
                     setAbout(aboutInputElem.current?.innerHTML)
@@ -170,7 +177,7 @@ const Profile: React.FC = () => {
                 ) : (
                   <React.Fragment>
                     <small>
-                      {`${139 - about.length}`}
+                      {`${139 - about.replace(/&nbsp;/g, ' ').length}`}
                     </small>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
