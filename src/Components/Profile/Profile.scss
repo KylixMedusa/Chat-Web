@@ -100,7 +100,7 @@
             }
             p{
                 display: flex;
-                align-items: end;
+                align-items: flex-start;
                 position: relative;
                 div{
                     height: 100%;
@@ -120,7 +120,7 @@
                     vertical-align: middle;
                     cursor: pointer;
                     display: flex;
-                    gap: 10px;
+                    gap: 5px;
                     align-items: center;
                     svg{
                         min-width: 24px;
