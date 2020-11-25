@@ -108,9 +108,12 @@
                 padding: 10% 5%;
                 border-radius: 10px;
                 width: calc(100% - 4%);
-                transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-in-out;
+                transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 &:hover,&.active{
                     background-color: #e6ebf5;
+                    & .icon.menu{
+                        display: flex !important;
+                    }
                 }
                 .card-image{
                     height: 40px;
@@ -175,6 +178,9 @@
                                     min-width: 25px;
                                     padding: 0 5px;
                                     border-radius: 15px;
+                                }
+                                &.menu{
+                                    display: none;
                                 }
                             }
                         }
