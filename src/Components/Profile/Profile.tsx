@@ -176,9 +176,12 @@ const Profile: React.FC = () => {
                   </svg>
                 ) : (
                   <React.Fragment>
-                    <small>
-                      {`${139 - about.replace(/&nbsp;/g, ' ').length}`}
-                    </small>
+                    { (139 - about.replace(/&nbsp;/g, ' ').length < 50)?
+                      <small>
+                        {`${139 - about.replace(/&nbsp;/g, ' ').length}`}
+                      </small>:
+                      null
+                    }
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
