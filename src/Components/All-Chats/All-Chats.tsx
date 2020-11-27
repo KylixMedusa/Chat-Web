@@ -4,14 +4,14 @@ import "./All-Chats.scss";
 
 const AllChats: React.FC = () => {
   const [menuClass,setMenuClass] = useState("");
-    const menuToggleHandler = ()=>{
-        if(menuClass === `open-top-left`){
-          setMenuClass(`close-top-left`);
-        }
-        else{
-          setMenuClass(`open-top-left`);
-        }
-    }
+  const menuToggleHandler = ()=>{
+      if(menuClass === `open-top-left`){
+        setMenuClass(`close-top-left`);
+      }
+      else{
+        setMenuClass(`open-top-left`);
+      }
+  }
 
   return (
     <div className="all-chats-container">
