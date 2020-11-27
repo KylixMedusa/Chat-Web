@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import "./All-Chats.scss";
 
 const AllChats: React.FC = () => {
+  const [menuClass,setMenuClass] = useState("");
+    const menuToggleHandler = ()=>{
+        if(menuClass === `open-top-left`){
+          setMenuClass(`close-top-left`);
+        }
+        else{
+          setMenuClass(`open-top-left`);
+        }
+    }
+
   return (
     <div className="all-chats-container">
         <div className="container">
@@ -88,7 +99,7 @@ const AllChats: React.FC = () => {
                     </svg>
                   </div>
                   <div className="icon badge">3</div>
-                  <div className="icon menu">
+                  <div className="icon menu" onClick={menuToggleHandler}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 19 20"
@@ -169,6 +180,17 @@ const AllChats: React.FC = () => {
           </div>
         </div>
       </div>
+      <ListMenu
+          class={menuClass}
+          style={{top:'120%',left:'50%'}}
+          toggle={menuToggleHandler}
+      >
+          <li>Archive Chat</li>
+          <li>Mute Notifications</li>
+          <li>Delete Chat</li>
+          <li>Pin Chat</li>
+          <li>Mark as Unread</li>
+      </ListMenu>
     </div>
   );
 };
