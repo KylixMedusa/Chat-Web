@@ -72,13 +72,15 @@ const Navbar: React.FC = () => {
           <span className="tooltip">Settings</span>
         </li>
       </nav>
-      <div className="avatar" onClick={()=>{channelSectionHandler.set('Profile')}}>
+      <div className={`avatar ${channelSectionHandler.get() === 'Profile'?"active":''}`} onClick={()=>{channelSectionHandler.set('Profile')}}>
         <li>
-          <img
-            className="avatar-image"
-            src="https://cliko.in/assets/team/aayush.jpg"
-            alt=""
-          />
+          <div>
+            <img
+              className="avatar-image"
+              src="https://cliko.in/assets/team/aayush.jpg"
+              alt=""
+            />
+          </div>
         </li>
       </div>
     </div>
