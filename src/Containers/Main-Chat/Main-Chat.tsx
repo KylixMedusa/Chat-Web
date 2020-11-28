@@ -4,6 +4,10 @@ import "./Main-Chat.scss";
 import Picker from "emoji-picker-react";
 import ContentEditable from "../../Components/ContentEditable";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
+import { observable } from "mobx";
+import {observer} from "mobx-react-lite";
+
+export const sideSectionClass = observable.box('close')
 
 var emojis = require('../../emojis.json').emojis;
 var emojiRegex = require('emoji-regex');
@@ -187,7 +191,7 @@ const MainChat: React.FC = () => {
             alt=""
           />
         </div>
-        <div className="content">
+        <div className="content" onClick={()=>{sideSectionClass.set('open')}}>
           <h3>Aayush Agarwal</h3>
           <small>Online</small>
         </div>
@@ -345,4 +349,4 @@ const MainChat: React.FC = () => {
   );
 };
 
-export default MainChat;
+export default observer(MainChat);
