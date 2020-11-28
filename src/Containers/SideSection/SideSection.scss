@@ -1,8 +1,22 @@
 .side-section{
     border-left: 4px solid #f0eff5;
+    background-color: white;
     height: 100vh;
     width: 350px;
     min-width: 350px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    &.close{
+        min-width: 0;
+        width: 0;
+    }
+    &.open{
+        min-width: 350px;        
+    }
+    .side-section-wrapper{
+        width: 350px;
+        height: 100%;
+    }
     .top-bar{
         width: 100%;
         padding: 20px 5%;
