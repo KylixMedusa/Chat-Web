@@ -10,12 +10,12 @@ type Props = {
 
 const Modal:React.FC<Props> = (props)=>{
     return (
-        <React.Fragment>
-            <div className={`modal ${props.class}`}>
+        <div className={`modal ${props.class}`}>
+            <div className="modal-wrapper">
                 {props.children}
             </div>
-            <div className="overlay" onClick={props.toggle}></div>
-        </React.Fragment>
+            <div className="modal-overlay" onClick={props.toggle}></div>
+        </div>
     );
 }
 
