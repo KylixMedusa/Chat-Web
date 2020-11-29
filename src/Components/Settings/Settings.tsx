@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Settings.scss";
 import {observer} from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
+import Modal from "../../Sub-Components/Modal/Modal";
 
 const Settings: React.FC = () => {
+  const [modalClass, setModalClass] = useState("");
+  const modalToggleHandler = () => {
+    if (modalClass === `open`) {
+      setModalClass(`close`);
+    } else {
+      setModalClass(`open`);
+    }
+  };
   return (
     <div className="settings-container">
       <h2 className="channel-title">Settings</h2>
@@ -37,7 +46,7 @@ const Settings: React.FC = () => {
           </span>
           <span>Notifications</span>
         </li>
-        <li>
+        <li onClick={modalToggleHandler}>
           <span>
             <svg
               width="24"
@@ -102,6 +111,10 @@ const Settings: React.FC = () => {
           <span>Help</span>
         </li>
       </ul>
+      <Modal
+        class={modalClass}
+        toggle={modalToggleHandler}
+      ></Modal>
     </div>
   );
 };
