@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
     }
   };
   const setPosHandler = (event: any) => {
-    setPos({ left: `${event.pageX - 76}px`, top: `${event.pageY}px` });
+    setPos({ left: `${event.pageX}px`, top: `${event.pageY}px` });
   };
   const checkInputLength = (event:any, field:string, length:number)=>{
     if (event.which === 13) {
