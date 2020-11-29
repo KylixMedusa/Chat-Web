@@ -3,18 +3,23 @@ import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import "./All-Chats.scss";
 
 const AllChats: React.FC = () => {
-  const [menuClass,setMenuClass] = useState("");
-  const menuToggleHandler = ()=>{
-      if(menuClass === `open-top-left`){
-        setMenuClass(`close-top-left`);
-      }
-      else{
-        setMenuClass(`open-top-left`);
-      }
+  const [menuClass, setMenuClass] = useState("");
+  const [pos, setPos] = useState({ top: "0", left: "90%" });
+  const menuToggleHandler = () => {
+    if (menuClass === `open-top-left`) {
+      setMenuClass(`close-top-left`);
+    } else {
+      setMenuClass(`open-top-left`);
+    }
+  };
+
+  const posHandler = (event:any)=>{
+    setPos({top:event.currentTarget.getBoundingClientRect().top + 18, left:event.currentTarget.getBoundingClientRect().left + 13});
   }
 
   return (
-    <div className="all-chats-container">
+    <React.Fragment>
+      <div className="all-chats-container">
         <div className="container">
           <h2>Chats</h2>
           <div className="search--container" id="search-container">
@@ -50,129 +55,124 @@ const AllChats: React.FC = () => {
               <div className="loader"></div>
             </div>
           </div>
-      </div>
+        </div>
 
-      <div className="main">
-        <div className="wrapper">
-          <div className="card active">
-            <div className="card-image">
-              <img
-                src="https://cliko.in/assets/team/aayush.jpg"
-                alt=""
-              />
-            </div>
-            <div className="card-contents">
-              <div className="top">
-                <h3>Aayush Agarwal</h3>
-                <span className="date-time">13:00</span>
+        <div className="main">
+          <div className="wrapper">
+            <div className="card active">
+              <div className="card-image">
+                <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
               </div>
-              <div className="bottom">
-                <p>
-                  Hello, Welcome to the first test. This is a first version of
-                  Chat Application
-                </p>
-                <div className="card-icons">
-                  <div className="icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 16 18"
-                      width="16"
-                      height="18"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div className="icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 19 19"
-                      width="19"
-                      height="19"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M9.5 18.419C4.574 18.419.581 14.426.581 9.5S4.574.581 9.5.581s8.919 3.993 8.919 8.919-3.993 8.919-8.919 8.919zm2.121-5.708l-.082-2.99 1.647-1.963a1.583 1.583 0 0 0-.188-2.232l-.32-.269a1.58 1.58 0 0 0-2.231.203L8.803 7.42l-2.964.439a.282.282 0 0 0-.14.496l5.458 4.58c.186.157.47.019.464-.224zM5.62 13.994a.504.504 0 0 0 .688-.038l2.204-2.307-1.085-.91-1.889 2.571a.504.504 0 0 0 .082.684z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div className="icon badge">3</div>
-                  <div className="icon menu" onClick={menuToggleHandler}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 19 20"
-                      width="19"
-                      height="20"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M3.8 6.7l5.7 5.7 5.7-5.7 1.6 1.6-7.3 7.2-7.3-7.2 1.6-1.6z"
-                      ></path>
-                    </svg>
+              <div className="card-contents">
+                <div className="top">
+                  <h3>Aayush Agarwal</h3>
+                  <span className="date-time">13:00</span>
+                </div>
+                <div className="bottom">
+                  <p>
+                    Hello, Welcome to the first test. This is a first version of
+                    Chat Application
+                  </p>
+                  <div className="card-icons">
+                    <div className="icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 18"
+                        width="16"
+                        height="18"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div className="icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 19 19"
+                        width="19"
+                        height="19"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M9.5 18.419C4.574 18.419.581 14.426.581 9.5S4.574.581 9.5.581s8.919 3.993 8.919 8.919-3.993 8.919-8.919 8.919zm2.121-5.708l-.082-2.99 1.647-1.963a1.583 1.583 0 0 0-.188-2.232l-.32-.269a1.58 1.58 0 0 0-2.231.203L8.803 7.42l-2.964.439a.282.282 0 0 0-.14.496l5.458 4.58c.186.157.47.019.464-.224zM5.62 13.994a.504.504 0 0 0 .688-.038l2.204-2.307-1.085-.91-1.889 2.571a.504.504 0 0 0 .082.684z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div className="icon badge">3</div>
+                    <div className="icon menu" onClick={(e)=>{posHandler(e);menuToggleHandler()}}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 19 20"
+                        width="19"
+                        height="20"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M3.8 6.7l5.7 5.7 5.7-5.7 1.6 1.6-7.3 7.2-7.3-7.2 1.6-1.6z"
+                        ></path>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="card">
-            <div className="card-image">
-              <img
-                src="https://cliko.in/assets/team/aayush.jpg"
-                alt=""
-              />
-            </div>
-            <div className="card-contents">
-              <div className="top">
-                <h3>Aayush Agarwal</h3>
-                <span className="date-time">13:00</span>
+            <div className="card">
+              <div className="card-image">
+                <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
               </div>
-              <div className="bottom">
-                <p>
-                  Hello, Welcome to the first test. This is a first version of
-                  Chat Application
-                </p>
-                <div className="card-icons">
-                  <div className="icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 16 18"
-                      width="16"
-                      height="18"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div className="icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 19 19"
-                      width="19"
-                      height="19"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M9.5 18.419C4.574 18.419.581 14.426.581 9.5S4.574.581 9.5.581s8.919 3.993 8.919 8.919-3.993 8.919-8.919 8.919zm2.121-5.708l-.082-2.99 1.647-1.963a1.583 1.583 0 0 0-.188-2.232l-.32-.269a1.58 1.58 0 0 0-2.231.203L8.803 7.42l-2.964.439a.282.282 0 0 0-.14.496l5.458 4.58c.186.157.47.019.464-.224zM5.62 13.994a.504.504 0 0 0 .688-.038l2.204-2.307-1.085-.91-1.889 2.571a.504.504 0 0 0 .082.684z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div className="icon badge">3</div>
-                  <div className="icon menu">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 19 20"
-                      width="19"
-                      height="20"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M3.8 6.7l5.7 5.7 5.7-5.7 1.6 1.6-7.3 7.2-7.3-7.2 1.6-1.6z"
-                      ></path>
-                    </svg>
+              <div className="card-contents">
+                <div className="top">
+                  <h3>Aayush Agarwal</h3>
+                  <span className="date-time">13:00</span>
+                </div>
+                <div className="bottom">
+                  <p>
+                    Hello, Welcome to the first test. This is a first version of
+                    Chat Application
+                  </p>
+                  <div className="card-icons">
+                    <div className="icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 18"
+                        width="16"
+                        height="18"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M11.52 9.206c0-1.4-.778-2.567-1.944-3.111v1.711L11.52 9.75v-.544zm1.945 0c0 .7-.156 1.4-.389 2.022l1.167 1.167c.544-.933.778-2.1.778-3.267 0-3.344-2.333-6.144-5.444-6.844v1.633c2.255.778 3.888 2.8 3.888 5.289zm-11.433-7L1.02 3.217l3.656 3.656H1.02v4.667h3.111l3.889 3.889v-5.211l3.344 3.344c-.544.389-1.089.7-1.789.933v1.633a6.64 6.64 0 0 0 2.878-1.4l1.556 1.556 1.011-1.011-7-7-5.988-6.067zm5.988.778L6.387 4.617 8.02 6.25V2.984z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div className="icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 19 19"
+                        width="19"
+                        height="19"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M9.5 18.419C4.574 18.419.581 14.426.581 9.5S4.574.581 9.5.581s8.919 3.993 8.919 8.919-3.993 8.919-8.919 8.919zm2.121-5.708l-.082-2.99 1.647-1.963a1.583 1.583 0 0 0-.188-2.232l-.32-.269a1.58 1.58 0 0 0-2.231.203L8.803 7.42l-2.964.439a.282.282 0 0 0-.14.496l5.458 4.58c.186.157.47.019.464-.224zM5.62 13.994a.504.504 0 0 0 .688-.038l2.204-2.307-1.085-.91-1.889 2.571a.504.504 0 0 0 .082.684z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div className="icon badge">3</div>
+                    <div className="icon menu" onClick={(e)=>{posHandler(e);menuToggleHandler()}}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 19 20"
+                        width="19"
+                        height="20"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M3.8 6.7l5.7 5.7 5.7-5.7 1.6 1.6-7.3 7.2-7.3-7.2 1.6-1.6z"
+                        ></path>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -181,17 +181,17 @@ const AllChats: React.FC = () => {
         </div>
       </div>
       <ListMenu
-          class={menuClass}
-          style={{top:'120%',left:'50%'}}
-          toggle={menuToggleHandler}
+        class={menuClass}
+        style={{ top: pos.top, left: pos.left }}
+        toggle={menuToggleHandler}
       >
-          <li>Archive Chat</li>
-          <li>Mute Notifications</li>
-          <li>Delete Chat</li>
-          <li>Pin Chat</li>
-          <li>Mark as Unread</li>
+        <li>Archive Chat</li>
+        <li>Mute Notifications</li>
+        <li>Delete Chat</li>
+        <li>Pin Chat</li>
+        <li>Mark as Unread</li>
       </ListMenu>
-    </div>
+    </React.Fragment>
   );
 };
 
