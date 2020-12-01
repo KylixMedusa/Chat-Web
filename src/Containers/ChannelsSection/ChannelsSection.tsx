@@ -7,6 +7,7 @@ import Profile from '../../Components/Profile/Profile';
 import {observer} from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
+import Wallpaper from '../../Components/Wallpaper/Wallpaper';
 
 const ChannelsSection:React.FC = ()=>{
 
@@ -22,6 +23,8 @@ const ChannelsSection:React.FC = ()=>{
                 return <Settings></Settings>
             case 'Profile':
                 return <Profile></Profile>
+            case 'Wallpaper':
+                return <Wallpaper></Wallpaper>
         }
     }
 
