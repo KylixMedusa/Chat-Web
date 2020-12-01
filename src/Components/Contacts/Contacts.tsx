@@ -4,17 +4,17 @@ import "./Contacts.scss";
 
 const Contacts: React.FC = () => {
   const [menuClass,setMenuClass] = useState("");
-  const [pos,setPos] = useState({top:'0', right:'0'});
+  const [pos,setPos] = useState({top:'0', left:'0'});
   const menuToggleHandler = ()=>{
-    if(menuClass === 'open-top-right'){
-      setMenuClass('close-top-right');
+    if(menuClass === 'open-top-left'){
+      setMenuClass('close-top-left');
     }
     else{
-      setMenuClass('open-top-right');
+      setMenuClass('open-top-left');
     }
   }
   function setPosition(event:any){
-    setPos({top:`${event.target.getBoundingClientRect().top + 24}px`,right: `${event.target.getBoundingClientRect().right - 390}px`});
+    setPos({top:`${event.target.getBoundingClientRect().top + 24}px`,left: `${event.target.getBoundingClientRect().left + 10}px`});
   }
   return (
     <div className="all-chats-container">
@@ -109,7 +109,7 @@ const Contacts: React.FC = () => {
       </div>
       <ListMenu
                 class={menuClass}
-                style={{top:pos.top,right:pos.right}}
+                style={{top:pos.top,left:pos.left}}
                 toggle={menuToggleHandler}
               >
                 <li>Share</li>
