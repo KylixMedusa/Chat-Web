@@ -63,7 +63,7 @@ const Settings: React.FC = () => {
             </span>
             <span>Theme</span>
           </li>
-          <li>
+          <li onClick={()=>{channelSectionHandler.set('Wallpaper')}} >
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
