@@ -1,0 +1,72 @@
+.chat-wallpaper-section{
+    // border-left: 4px solid #f0eff5;
+    height: 100%;
+    display:flex; 
+    flex-direction:column;
+    // width: 350px;
+    // min-width: 350px;
+    .top-bar{
+        width: 100%;
+        height: 64px;
+        display: flex;
+        align-items: center;
+    }
+    .icon{
+        height:35px;
+        width:35px;
+        border-radius: 50%;
+        // transition: background-color 0.2s ease-in-out;
+        &:hover, &:focus{
+            background-color: #f7f7ff;
+            path{
+                fill:#7269ef;
+            }
+        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:not(:last-child){
+            margin-right: 10px;
+        }
+        i{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            path{
+                fill:#878a92;
+            }
+        }
+    }
+    .colors-holder{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        padding: 30px 15px;
+        .color-card{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            width: 82px;
+            height: 82px;
+            margin-left: 15px;
+            margin-top: 15px;
+            // transform: scale(0.85);
+            // animation: enlarge 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+            cursor: pointer;
+            &:hover{
+                border: 4px solid #ffffff;
+            }
+            &.selected, &.selected:hover{
+                border: 4px solid #7269ef;
+            }
+            &.default{
+                background-color: #e5ddd5;
+            }
+            .color-text{
+                font-size: small;
+            }
+        }
+    }
+}
