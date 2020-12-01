@@ -7,7 +7,10 @@ import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import { observable } from "mobx";
 import {observer} from "mobx-react-lite";
 
-export const sideSectionClass = observable.box('close')
+export const sideSectionClass = observable.box('close');
+export const chatBackground = observable.box('white');
+export const selectedChatBackground = observable.box('white');
+
 
 var emojis = require('../../emojis.json').emojis;
 var emojiRegex = require('emoji-regex');
@@ -241,7 +244,7 @@ const MainChat: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="chat-holder">
+      <div className="chat-holder" style={{backgroundColor:chatBackground.get()}}>
         <div className="chat-wrapper" dir="btt">
           {messages
             .filter((message) => message.id && message.id !== 0)
