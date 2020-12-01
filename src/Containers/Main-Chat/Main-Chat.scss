@@ -90,6 +90,9 @@
         height: 100%;
         padding-top: 20px;
         overflow-y: auto;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        transition: background-color 0.5s ease-in-out;
     }
     .input-section{
         border-top: 1px solid #dee2e6!important;
