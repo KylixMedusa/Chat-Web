@@ -8,6 +8,20 @@ import { channelSectionHandler } from "../../App";
 
 const Navbar: React.FC = () => {
 
+  function checkSection(val:string){
+    switch(val){
+      case "Chats":
+        return 0;
+      case "Groups":
+        return 1;
+      case "Contacts":
+        return 2;
+      case "Settings":
+        return 3;
+      }
+    return -1;
+  }
+
   return (
     <div className="navbar-container">
       <div className="logo">
@@ -70,6 +84,9 @@ const Navbar: React.FC = () => {
             </g>
           </svg>
           <span className="tooltip">Settings</span>
+        </li>
+        <li className="activeBackground" style={{top:`${checkSection(channelSectionHandler.get()) * 70}px`, visibility:checkSection(channelSectionHandler.get()) === -1?"hidden":"visible"}}>
+
         </li>
       </nav>
       <div className={`avatar ${channelSectionHandler.get() === 'Profile'?"active":''}`} onClick={()=>{channelSectionHandler.set('Profile')}}>
