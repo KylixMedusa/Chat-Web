@@ -7,31 +7,25 @@ var parse = require('html-react-parser')
 type Props = {
     text:string,
     author:number,
-    time:string
+    time:string,
+    dir:string,
+    menuClass:string,
+    toggle:()=>void,
+    setPos:any
 }
 
 const Chat: React.FC<Props> = (props) => {
-    const [menuClass,setMenuClass] = useState("");
-    const [dir,setDir] = useState('right');
-    const menuToggleHandler = ()=>{
-        if(menuClass === `open-top-${dir === 'left'?'left':'right'}`){
-          setMenuClass(`close-top-${dir === 'left'?'left':'right'}`);
-        }
-        else{
-          setMenuClass(`open-top-${dir === 'left'?'left':'right'}`);
-        }
-    }
 
     return (
         <React.Fragment>
         {
-            dir === 'left'?
+            props.dir === 'left'?
             <div className="message-left">
                 <span className="message-text">{parse(props.text)}
                     <span className="message-time">{props.time}</span>
                 </span>
                 <span className="icon-menu">
-                    <span role="button" className={`icon ${menuClass === 'open-top-right'?'active':''}`} onClick={menuToggleHandler}>
+                    <span role="button" className={`icon ${props.menuClass === 'open-top-right'?'active':''}`} onClick={props.toggle}>
                         <i>
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -46,22 +40,11 @@ const Chat: React.FC<Props> = (props) => {
                             </svg>
                         </i>
                     </span>
-                    <ListMenu
-                        class={menuClass}
-                        style={{top:'120%',left:'50%'}}
-                        toggle={menuToggleHandler}
-                    >
-                        <li>Copy</li>
-                        <li>Reply</li>
-                        <li>Forward Message</li>
-                        <li>Star Message</li>
-                        <li>Delete Message</li>
-                    </ListMenu>
                 </span>
             </div>:
             <div className="message-right">
                 <span className="icon-menu">
-                    <span role="button" className={`icon ${menuClass === 'open-top-right'?'active':''}`} onClick={menuToggleHandler}>
+                    <span role="button" className={`icon ${props.menuClass === 'open-top-right'?'active':''}`} onClick={props.toggle}>
                         <i>
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -76,17 +59,6 @@ const Chat: React.FC<Props> = (props) => {
                             </svg>
                         </i>
                     </span>
-                    <ListMenu
-                        class={menuClass}
-                        style={{top:'120%',right:'50%'}}
-                        toggle={menuToggleHandler}
-                    >
-                        <li>Copy</li>
-                        <li>Reply</li>
-                        <li>Forward Message</li>
-                        <li>Star Message</li>
-                        <li>Delete Message</li>
-                    </ListMenu>
                 </span>
                 <span className="message-text">{parse(props.text)}
                     <span className="message-time">{props.time}</span>
