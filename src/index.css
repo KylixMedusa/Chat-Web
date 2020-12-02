@@ -39,3 +39,7 @@ code {
 img{
   image-rendering: -webkit-optimize-contrast !important;
 }
+
+*{
+  user-select: none;
+}
