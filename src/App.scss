@@ -5,6 +5,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     .wrapper-side{
+        position: relative;
         display: flex;
         align-items: center;
         height: 100%;
@@ -14,7 +15,6 @@
 @media screen and (max-width:1100px){
     .flex-container{
         .wrapper-side{
-            position: relative;
             width: 100%;
             min-width: 350px;
             .main-chat-container{
