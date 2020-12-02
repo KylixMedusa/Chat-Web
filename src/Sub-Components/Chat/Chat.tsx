@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ListMenu from '../ListMenu/ListMenu';
 import './Chat.scss';
 
@@ -16,6 +16,9 @@ type Props = {
 
 const Chat: React.FC<Props> = (props) => {
 
+    const buttonLeft = useRef<HTMLDivElement>(null);
+    const buttonRight = useRef<HTMLDivElement>(null);
+
     return (
         <React.Fragment>
         {
@@ -25,7 +28,7 @@ const Chat: React.FC<Props> = (props) => {
                     <span className="message-time">{props.time}</span>
                 </span>
                 <span className="icon-menu">
-                    <span role="button" className={`icon ${props.menuClass === 'open-top-right'?'active':''}`} onClick={props.toggle}>
+                    <span role="button" className={`icon ${props.menuClass === 'open-top-right'?'active':''}`} onClick={()=>{props.setPos({top:buttonLeft.current?.getBoundingClientRect().top, left: buttonLeft.current?.getBoundingClientRect().left});props.toggle()}} ref={buttonLeft}>
                         <i>
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +47,7 @@ const Chat: React.FC<Props> = (props) => {
             </div>:
             <div className="message-right">
                 <span className="icon-menu">
-                    <span role="button" className={`icon ${props.menuClass === 'open-top-right'?'active':''}`} onClick={props.toggle}>
+                    <span role="button" className={`icon ${props.menuClass === 'open-top-right'?'active':''}`} onClick={()=>{props.setPos({top:buttonRight.current?.getBoundingClientRect().top, right:buttonRight.current?.getBoundingClientRect().right});props.toggle()}} ref={buttonRight}>
                         <i>
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
