@@ -14,9 +14,9 @@
 @media screen and (max-width:1100px){
     .flex-container{
         .wrapper-side{
-            display: block;
             position: relative;
             width: 100%;
+            min-width: 350px;
             .main-chat-container{
                 position: absolute;
                 height: 100%;
@@ -24,11 +24,60 @@
             }
             .side-section{
                 position: absolute;
+                top:0;
                 right: 0;
-                z-index: 1;
-                // height: 100%;
-                // width:100%;
+                min-width: 0;
+                max-width: 0;
+                background-color: transparent;
+                z-index: 0;
+                transition: all 0.2s ease-in-out;
+                overflow: hidden;
+                border: none;
+                .side-section-wrapper{
+                    position: absolute;
+                    background-color: white;
+                    top:0;
+                    left:0;
+                    z-index: 1;
+                    width: 100%;
+                    min-width: 350px;
+                }
+                &.close{
+                    .side-section-wrapper{
+                        animation: fade-out 1s ease-out forwards;
+                    }
+                }
+                &.open{
+                    width: 100%;
+                    min-width: 100%;
+                    .side-section-wrapper{
+                        transform: translateX(100%);
+                        animation: fade-in 0.3s ease-in forwards;  
+                        animation-delay: 0.1s; 
+                    }  
+                }
             }
         }
+    }
+}
+
+@keyframes fade-in{
+    0%{
+        // opacity: 0;
+        transform: translateX(100%);
+    }
+    100%{
+        // opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes fade-out{
+    0%{
+        // opacity: 1;
+        transform: translateX(0);
+    }
+    100%{
+        // opacity: 0;
+        transform: translateX(100%);
     }
 }
