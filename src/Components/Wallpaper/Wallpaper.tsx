@@ -7,6 +7,7 @@ import {chatBackground,selectedChatBackground} from '../../Containers/Main-Chat/
 import { observer } from "mobx-react-lite";
 
 const colors = [
+  "default",
   "rgb(204, 235, 220)",
   "rgb(174, 216, 199)",
   "rgb(122, 203, 165)",
@@ -51,14 +52,54 @@ const Wallpaper: React.FC = () => {
   function generateColors() {
     let colorElems = [];
     for(let color of colors){
-      colorElems.push(
-        <span 
-          className="color-card" 
-          onMouseEnter = {()=>{chatBackground.set(color)}}
-          onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
-          style={{backgroundColor:color}}
-        ></span>
-      )
+      if(color === "default"){
+        if(selectedChatBackground.get() === "white"){
+          colorElems.push(
+            <span className="color-card default selected" title="Default"
+            onMouseEnter = {()=>{chatBackground.set('white')}}
+            onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
+            onClick = {()=>{selectedChatBackground.set('white')}}
+          >
+            <span className="color-text">Default</span>
+          </span>
+          )
+        }
+        else{
+          colorElems.push(
+            <span className="color-card default" title="Default"
+            onMouseEnter = {()=>{chatBackground.set('white')}}
+            onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
+            onClick = {()=>{selectedChatBackground.set('white')}}
+          >
+            <span className="color-text">Default</span>
+          </span>
+          )
+        }
+      }
+      else{
+        if(color === selectedChatBackground.get()){
+          colorElems.push(
+            <span 
+              className="color-card selected" 
+              onMouseEnter = {()=>{chatBackground.set(color)}}
+              onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
+              onClick = {()=>{selectedChatBackground.set(color)}}
+              style={{backgroundColor:color}}
+            ></span>
+          )
+        }
+        else{
+          colorElems.push(
+            <span 
+              className="color-card" 
+              onMouseEnter = {()=>{chatBackground.set(color)}}
+              onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
+              onClick = {()=>{selectedChatBackground.set(color)}}
+              style={{backgroundColor:color}}
+            ></span>
+          )
+        }
+      }
     }
     return colorElems;
   }
@@ -96,12 +137,6 @@ const Wallpaper: React.FC = () => {
       </div>
       <div style={{ overflowY: "auto", height: "100%" }}>
         <div className="colors-holder">
-          <span className="color-card default selected" title="Default"
-            onMouseEnter = {()=>{chatBackground.set('white')}}
-            onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
-          >
-            <span className="color-text">Default</span>
-          </span>
           {
             generateColors()
           }
