@@ -35,21 +35,29 @@ const SideSection: React.FC = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            height: "calc(100% - 64px)",
+            height: "calc(100% - 64px)"
           }}
         >
           <div
             style={{
-              textAlign: "center",
-              borderBottom: "1px solid #dee2e6",
-              padding: "5% 0",
+              display:'flex',
+              justifyContent:'center'
             }}
           >
-            <div className="main-image">
-              <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
+            <div
+              style={{
+                textAlign: "center",
+                borderBottom: "1px solid #dee2e6",
+                padding: "30px 0",
+                width:"350px"
+              }}
+            >
+              <div className="main-image">
+                <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
+              </div>
+              <h2 style={{ marginBottom: "5px" }}>Aayush Agarwal</h2>
+              <p style={{ margin: 0 }}>Online</p>
             </div>
-            <h2 style={{ marginBottom: "5px" }}>Aayush Agarwal</h2>
-            <p style={{ margin: 0 }}>Online</p>
           </div>
           <div className="temp">
             <div className="card">
