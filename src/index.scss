@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*{
+  box-sizing: border-box;
+  color: #495057;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(185, 185, 185);
+}
+
+/* Handle on hover */
+:hover::-webkit-scrollbar-thumb {
+  background: rgb(156, 156, 156);
+}
+
+img{
+  image-rendering: -webkit-optimize-contrast !important;
+}
+
+*{
+  user-select: none;
+}
+
+#main{
+  &[data-theme="1"] {
+    --reach-text-color: #000000;
+    --reach-text-color-2: rgba(0, 0, 0, 0.87);
+    --meta-data-text-color: rgba(0, 0, 0, 0.45);
+    --details-content-text-color: #2D2D2D;
+    --list-content-text-color: #545454;
+    --time-added-text-color: rgba(0, 0, 0, 0.56);
+    --tag-text-color: rgba(67, 67, 67, 0.87);
+
+    --bg-color-1: #ffffff;
+    --bg-color-2: #eee;
+    --bg-color-3: #e5f2f1;
+    --bg-color-4: #F2F2F2;
+    --bg-transparent-1: rgba(255, 255, 255, 0.9);
+    --bg-transparent-2: rgba(247, 247, 247, 0.8);
+    --quote-bg-color: #DDFFE7;
+    --bg-transparent-not:rgba(255,255,255,0.95);
+
+    --box-shadow-1: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    --box-shadow-2: 0 1px 4px 2px rgba(187, 187, 187, 0.555);
+    --box-shadow-3: 0px 11px 15px rgba(0, 0, 0, 0.2), 0px 9px 46px rgba(0, 0, 0, 0.12),
+      0px 24px 100px rgba(0, 0, 0, 0.2);
+  }
+}
