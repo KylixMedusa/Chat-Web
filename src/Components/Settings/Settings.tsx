@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Settings.scss";
-import {observer} from "mobx-react-lite";
+import "../../Sub-Components/Modal/Modal.scss";
+import { observer } from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
 import Modal from "../../Sub-Components/Modal/Modal";
@@ -17,13 +18,15 @@ const Settings: React.FC = () => {
   return (
     <div className="settings-container">
       <h2 className="channel-title">Settings</h2>
-      <div style={{height:'calc(100% - 72px)',overflowY:'auto'}}>
-        <div className="top-section" onClick={()=>{channelSectionHandler.set('Profile')}}>
+      <div style={{ height: "calc(100% - 72px)", overflowY: "auto" }}>
+        <div
+          className="top-section"
+          onClick={() => {
+            channelSectionHandler.set("Profile");
+          }}
+        >
           <div className="image">
-            <img
-              src="https://cliko.in/assets/team/aayush.jpg"
-              alt=""
-            />
+            <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
           </div>
           <div className="content">
             <h3>Aayush Agarwal</h3>
@@ -63,7 +66,11 @@ const Settings: React.FC = () => {
             </span>
             <span>Theme</span>
           </li>
-          <li onClick={()=>{channelSectionHandler.set('Wallpaper')}} >
+          <li
+            onClick={() => {
+              channelSectionHandler.set("Wallpaper");
+            }}
+          >
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -113,10 +120,42 @@ const Settings: React.FC = () => {
           </li>
         </ul>
       </div>
-      <Modal
-        class={modalClass}
-        toggle={modalToggleHandler}
-      ></Modal>
+      <Modal class={modalClass} toggle={modalToggleHandler}>
+        <div>
+          <div className="modal-title">
+            <h2>Theme</h2>
+          </div>
+          <div className="theme-selector">
+            <div className="task">
+              <input type="radio" id="task-1" name="theme" />
+              <label htmlFor="task-1">
+                <span className="custom-radio"></span>
+                Light
+              </label>
+            </div>
+
+            <div className="task">
+              <input type="radio" id="task-2" name="theme" />
+              <label htmlFor="task-2">
+                <span className="custom-radio"></span>
+                Dark
+              </label>
+            </div>
+
+            <div className="task">
+              <input type="radio" id="task-3" name="theme" />
+              <label htmlFor="task-3">
+                <span className="custom-radio"></span>
+                System Default
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="modal-buttons">
+          <button className="cancel" onClick={modalToggleHandler}>Cancel</button>
+          <button className="submit" onClick={modalToggleHandler}>OK</button>
+        </div>
+      </Modal>
     </div>
   );
 };
