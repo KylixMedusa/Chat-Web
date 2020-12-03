@@ -8,6 +8,7 @@ import Modal from "../../Sub-Components/Modal/Modal";
 
 const Settings: React.FC = () => {
   const [modalClass, setModalClass] = useState("");
+  const [theme,setTheme] = useState("light");
   const modalToggleHandler = () => {
     if (modalClass === `open`) {
       setModalClass(`close`);
@@ -15,6 +16,9 @@ const Settings: React.FC = () => {
       setModalClass(`open`);
     }
   };
+  function updateTheme(val:string){
+    setTheme(val);
+  }
   return (
     <div className="settings-container">
       <h2 className="channel-title">Settings</h2>
@@ -127,7 +131,7 @@ const Settings: React.FC = () => {
           </div>
           <div className="theme-selector">
             <div className="task">
-              <input type="radio" id="task-1" name="theme" />
+              <input type="radio" id="task-1" name="theme" onChange={()=>updateTheme("light")} checked={theme === 'light'}/>
               <label htmlFor="task-1">
                 <span className="custom-radio"></span>
                 Light
@@ -135,7 +139,7 @@ const Settings: React.FC = () => {
             </div>
 
             <div className="task">
-              <input type="radio" id="task-2" name="theme" />
+              <input type="radio" id="task-2" name="theme" onChange={()=>updateTheme("dark")} checked={theme === 'dark'}/>
               <label htmlFor="task-2">
                 <span className="custom-radio"></span>
                 Dark
@@ -143,7 +147,7 @@ const Settings: React.FC = () => {
             </div>
 
             <div className="task">
-              <input type="radio" id="task-3" name="theme" />
+              <input type="radio" id="task-3" name="theme" onChange={()=>updateTheme("system default")} checked={theme === 'system default'} />
               <label htmlFor="task-3">
                 <span className="custom-radio"></span>
                 System Default
