@@ -8,8 +8,8 @@ import { observable } from "mobx";
 import {observer} from "mobx-react-lite";
 
 export const sideSectionClass = observable.box('close');
-export const chatBackground = observable.box('white');
-export const selectedChatBackground = observable.box('white');
+export const chatBackground = observable.box('var(--bg-color-1)');
+export const selectedChatBackground = observable.box('var(--bg-color-1)');
 
 
 var emojis = require('../../emojis.json').emojis;
@@ -185,16 +185,26 @@ const MainChat: React.FC = () => {
     }
   }
 
-  const [chatMenuClass,setChatMenuClass] = useState("");
+  const [chatMenuClass,setChatMenuClass] = useState('');
+  const chatListMenu = useRef<HTMLDivElement>(null);
   const [dir,setDir] = useState('right');
-  const [chatPos,setChatPos] = useState({top:'0px',left:'0px',right:'0px'});
+  const [chatPos,setChatPos] = useState({top:0,left:0});
   const chatMenuToggleHandler = ()=>{
-      if(chatMenuClass === `open-top-${dir === 'left'?'left':'right'}`){
-        setChatMenuClass(`close-top-${dir === 'left'?'left':'right'}`);
-      }
-      else{
-        setChatMenuClass(`open-top-${dir === 'left'?'left':'right'}`);
-      }
+    if(chatMenuClass === `open-top-right`){
+      setChatMenuClass(`close-top-right`);
+    }
+    else if(chatMenuClass === `open-bottom-right`){
+      setChatMenuClass(`close-bottom-right`);
+    }
+  }
+
+  const chatMenuOpen = (direction:'bottom'|'top') => {
+    if(direction === `top`){
+      setChatMenuClass(`open-top-right`);
+    }
+    else if(direction === `bottom`){
+      setChatMenuClass(`open-bottom-right`);
+    }
   }
 
   return (
@@ -269,7 +279,7 @@ const MainChat: React.FC = () => {
                   key={message.id}
                   dir={dir}
                   menuClass={chatMenuClass}
-                  toggle={chatMenuToggleHandler}
+                  toggle={chatMenuOpen}
                   setPos={setChatPos}
                   ></Chat>
               ))}
@@ -357,7 +367,7 @@ const MainChat: React.FC = () => {
                   height="24"
                 >
                   <path
-                    fill="currentColor"
+                    fill="var(--bg-color-1)"
                     d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"
                   ></path>
                 </svg>
@@ -366,32 +376,17 @@ const MainChat: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {
-        dir === 'left'?
-          <ListMenu
-              class={chatMenuClass}
-              style={{top:chatPos.top,left:chatPos.left}}
-              toggle={chatMenuToggleHandler}
-          >
-              <li>Copy</li>
-              <li>Reply</li>
-              <li>Forward Message</li>
-              <li>Star Message</li>
-              <li>Delete Message</li>
-          </ListMenu>:
-          <ListMenu
-              class={chatMenuClass}
-              style={{top:chatPos.top,right:chatPos.right}}
-              toggle={chatMenuToggleHandler}
-          >
-              <li>Copy</li>
-              <li>Reply</li>
-              <li>Forward Message</li>
-              <li>Star Message</li>
-              <li>Delete Message</li>
-          </ListMenu>
-      }
+      <ListMenu
+          class={chatMenuClass}
+          style={{top:chatPos.top,left:chatPos.left}}
+          toggle={chatMenuToggleHandler}
+      >
+          <li>Copy</li>
+          <li>Reply</li>
+          <li>Forward Message</li>
+          <li>Star Message</li>
+          <li>Delete Message</li>
+      </ListMenu>
     </React.Fragment>
   );
 };
