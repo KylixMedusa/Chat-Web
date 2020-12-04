@@ -9,6 +9,10 @@
       height: max-content;
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
+      margin-right: 10px;
+      &.active{
+        opacity: 1;
+      }
     }
     &:hover{
       .icon-menu{
@@ -19,16 +23,20 @@
   .message-right .message-text {
     line-height: 1.8;
     display: inline-block;
-    background: #7269ef;
+    background: var(--accent-color);
     padding: 5px 10px;
     position: relative;
-    color: #fff;
+    color: var(--text-color-secondary) !important;
     border-radius: 10px 0 10px 10px;
     text-align: left;
     max-width: 70%;
     font-weight: 400;
     font-size: 13px;
     word-break: break-word;
+    *{
+      color:var(--text-color-secondary) !important;
+      background-color: none !important;
+    }
   }
   .message-right .message-text:before {
     content: "";
@@ -37,10 +45,10 @@
     top: 0px;
     width: 0; 
     height: 0; 
-    border-left: 8px solid #7269ef;
+    border-left: 8px solid var(--accent-color);
     border-right: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-top: 8px solid #7269ef;
+    border-top: 8px solid var(--accent-color);
   }
   .message-right .message-time {
     color: #e4e8f0;
@@ -64,6 +72,9 @@
       height: max-content;
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
+      &.active{
+        opacity: 1;
+      }
     }
     &:hover{
       .icon-menu{
@@ -74,15 +85,19 @@
   .message-left .message-text {
     max-width: 70%;
     display: inline-block;
-    background: #f4f6fc;
+    background: var(--bg-color-2);
     padding: 5px 10px;
     position: relative;
-    color: #2e384d;
+    color: var(--text-color-primary) !important;
     border-radius: 0px 10px 10px 10px;
     line-height: 1.8;
     font-weight: 400;
     font-size: 13px;
     word-break: break-word;
+    *{
+      color: var(--text-color-primary) !important;
+      background-color: none !important;
+    }
   }
   .message-left .message-text:before {
     content: "";
@@ -91,13 +106,13 @@
     top: 0px;
     width: 0; 
     height: 0; 
-    border-right: 8px solid #f4f6fc;
+    border-right: 8px solid var(--bg-color-2);
     border-left: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    border-top: 8px solid #f4f6fc;
+    border-top: 8px solid var(--bg-color-2);
   }
   .message-left .message-time {
-    color: #8097b1;
+    color: var(--text-color-tertiary);
     position: relative;
     bottom: -5px;
     float: right;
