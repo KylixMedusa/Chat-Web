@@ -41,13 +41,13 @@ const SideSection: React.FC = () => {
           <div
             style={{
               display:'flex',
-              justifyContent:'center'
+              justifyContent:'center',
+              borderBottom: "1px solid var(--border-color-2)"
             }}
           >
             <div
               style={{
                 textAlign: "center",
-                borderBottom: "1px solid #dee2e6",
                 padding: "30px 0",
                 width:"350px"
               }}
@@ -69,7 +69,6 @@ const SideSection: React.FC = () => {
             <div className="card">
               <p
                 style={{
-                  color: "black",
                   margin: "10px",
                   alignItems: "center",
                   display: "flex",
@@ -83,7 +82,7 @@ const SideSection: React.FC = () => {
                   style={{ marginRight: "10px", verticalAlign: "middle" }}
                 >
                   <path
-                    fill="currentColor"
+                    fill="var(--text-color-primary)"
                     d="M12 2.8c-5.3 0-9.7 4.3-9.7 9.7s4.3 9.7 9.7 9.7 9.7-4.3 9.7-9.7-4.4-9.7-9.7-9.7zm-7.3 9.7c0-4 3.3-7.3 7.3-7.3 1.6 0 3.1.5 4.3 1.4L6.1 16.8c-.9-1.2-1.4-2.7-1.4-4.3zm7.3 7.3c-1.6 0-3-.5-4.2-1.4L17.9 8.3c.9 1.2 1.4 2.6 1.4 4.2 0 4-3.3 7.3-7.3 7.3z"
                   ></path>
                 </svg>{" "}
@@ -93,7 +92,7 @@ const SideSection: React.FC = () => {
             <div className="card">
               <p
                 style={{
-                  color: "red",
+                  color: "var(--text-color-warning)",
                   margin: "10px",
                   alignItems: "center",
                   display: "flex",
@@ -107,7 +106,7 @@ const SideSection: React.FC = () => {
                   style={{ marginRight: "10px", verticalAlign: "middle" }}
                 >
                   <path
-                    fill="red"
+                    fill="var(--text-color-warning)"
                     d="M14.091 4.2H6.318c-.691 0-1.295.432-1.555 1.036l-2.591 6.132c-.086.173-.172.346-.172.605V13.7c0 .95.777 1.727 1.727 1.727h5.441L8.305 19.4v.259c0 .345.173.691.345.95l.95.864 5.7-5.7c.345-.345.518-.777.518-1.209V5.927c0-.95-.777-1.727-1.727-1.727zm3.454 0v10.364H21V4.2h-3.455z"
                     id="thumb-down"
                   ></path>
@@ -118,7 +117,7 @@ const SideSection: React.FC = () => {
             <div className="card">
               <p
                 style={{
-                  color: "red",
+                  color: "var(--text-color-warning)",
                   margin: "10px",
                   alignItems: "center",
                   display: "flex",
@@ -132,7 +131,7 @@ const SideSection: React.FC = () => {
                   style={{ marginRight: "10px", verticalAlign: "middle" }}
                 >
                   <path
-                    fill="red"
+                    fill="var(--text-color-warning)"
                     d="M6 18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6H6v12zM19 3h-3.5l-1-1h-5l-1 1H5v2h14V3z"
                   ></path>
                 </svg>
