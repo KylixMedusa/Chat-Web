@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="#878a92"
+            fill="var(--icon-color-1)"
             stroke="none"
           >
             <g>
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="#878a92"
+            fill="var(--icon-color-1)"
             stroke="none"
           >
             <g>
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="#878a92"
+            fill="var(--icon-color-1)"
             stroke="none"
           >
             <g>
@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="#878a92"
+            fill="var(--icon-color-1)"
             stroke="none"
           >
             <g>
