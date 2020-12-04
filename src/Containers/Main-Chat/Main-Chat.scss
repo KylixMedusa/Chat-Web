@@ -10,9 +10,9 @@
         border-radius: 50%;
         // transition: background-color 0.2s ease-in-out;
         &:hover, &.active{
-            background-color: #f7f7ff;
+            background-color: var(--icon-background-active);
             path{
-                fill:#7269ef;
+                fill:var(--accent-color);
             }
         }
         display: flex;
@@ -27,7 +27,7 @@
             align-items: center;
             cursor: pointer;
             path{
-                fill:#878a92;
+                fill:var(--icon-color-1);
             }
         }
     }
@@ -38,7 +38,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid #dee2e6!important;
+        border-bottom: 1px solid var(--border-color-2)!important;
         &{
             display: flex;
             align-items: center;
@@ -95,7 +95,7 @@
         transition: background-color 0.5s ease-in-out;
     }
     .input-section{
-        border-top: 1px solid #dee2e6!important;
+        border-top: 1px solid var(--border-color-2)!important;
         height:max-content;
         width: 100%;
         display: flex;
@@ -113,8 +113,8 @@
             will-change: width;
             margin: 5px 10px;
             padding: 9px 12px;
-            background-color: #e6ebf5;
-            border: 1px solid #e6ebf5;
+            background-color: var(--bg-color-3);
+            border: 1px solid var(--bg-color-3);
             border-radius: 10px;
             user-select: text;
             .input-wrapper{
@@ -125,7 +125,7 @@
                 outline: 0;
                 .placeholder{
                     position: absolute;
-                    color:gray;
+                    color:var(--text-color-tertiary);
                 }
                 .input{
                     position: relative;
@@ -135,7 +135,6 @@
                     max-height: 100px;
                     overflow-x: hidden;
                     overflow-y: auto;
-                    color: var(--compose-primary);
                     font-weight: 400;
                     font-size: 15px;
                     white-space: normal;
@@ -172,8 +171,8 @@
             background-color: transparent;
             border: none;
             outline: 0;
-            background-color: #7269ef;
-            border-color: #7269ef;
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
             padding: 0;
             margin-bottom: -5px;
             i{
@@ -184,13 +183,13 @@
                 justify-content: center;
             }
             path{
-                fill:white;
+                fill:var(bg-color-1);
             }
         }
     }
     aside.emoji-picker-react{
         width: 100%;
-        border: 1px solid #dee2e6 !important;
+        border: 1px solid var(--border-color-2) !important;
         border-bottom: 0;
         box-shadow: none;
         border-radius: 0;
@@ -200,8 +199,8 @@
             border-radius: 50%;
             opacity: 0.8;
             &:hover{
-                background-color: #f7f7ff;
-                border-color: #7269ef;
+                background-color: var(--icon-background-active);
+                border-color: var(--accent-color);
             }
         }
         .content-wrapper:before{
