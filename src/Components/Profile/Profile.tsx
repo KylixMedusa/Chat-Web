@@ -144,7 +144,7 @@ const Profile: React.FC = () => {
               </i>
             </p>
           </div>
-          <p style={{ padding: "0 5%", color: "gray", fontSize: "small" }}>
+          <p style={{ padding: "0 5%", color: "var(--text-color-tertiary)", fontSize: "small" }}>
             This is not your Username or Pin. This name will be visible to your
             contacts.
           </p>
