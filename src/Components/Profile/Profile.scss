@@ -17,9 +17,9 @@
         border-radius: 50%;
         // transition: background-color 0.2s ease-in-out;
         &:hover, &:focus{
-            background-color: #f7f7ff;
+            background-color: var(--icon-background-active);
             path{
-                fill:#7269ef;
+                fill:var(--accent-color);
             }
         }
         display: flex;
@@ -34,7 +34,7 @@
             align-items: center;
             cursor: pointer;
             path{
-                fill:#878a92;
+                fill:var(--icon-color-1);
             }
         }
     }
@@ -65,7 +65,7 @@
             border-radius: 50%;
             top:0;
             left: 20%;
-            background-color: #878a92b9;
+            background-color:#878a92b9;
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
             cursor: pointer;
@@ -92,10 +92,10 @@
         .card{
             margin: 10px 0;
             padding: 2% 5%;
-            background-color: #fcfdff;
-            box-shadow: 0 0px 4px rgba(15, 34, 58, 0.12);
+            background-color: var(--bg-color-4);
+            box-shadow: var(--box-shadow-1);
             .card-title{
-                color:#7269ef;
+                color:var(--accent-color);
 
             }
             p{
@@ -133,7 +133,7 @@
                     position: absolute;
                     bottom: -8px;
                     left:0px;
-                    background-color: #7269ef;
+                    background-color: var(--accent-color);
                     transition: width 400ms ease-in-out;
                 }
                 &.active::after{
@@ -144,7 +144,7 @@
         .break{
             height: 1px;
             width: 100%;
-            background-color: #dee2e6;
+            background-color: var(--border-color-2);
         }
     }
 }
