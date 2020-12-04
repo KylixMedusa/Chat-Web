@@ -53,12 +53,12 @@ const Wallpaper: React.FC = () => {
     let colorElems = [];
     for(let color of colors){
       if(color === "default"){
-        if(selectedChatBackground.get() === "white"){
+        if(selectedChatBackground.get() === "var(--bg-color-1)"){
           colorElems.push(
             <span className="color-card default selected" title="Default"
-            onMouseEnter = {()=>{chatBackground.set('white')}}
+            onMouseEnter = {()=>{chatBackground.set('var(--bg-color-1)')}}
             onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
-            onClick = {()=>{selectedChatBackground.set('white')}}
+            onClick = {()=>{selectedChatBackground.set('var(--bg-color-1)')}}
           >
             <span className="color-text">Default</span>
           </span>
@@ -67,9 +67,9 @@ const Wallpaper: React.FC = () => {
         else{
           colorElems.push(
             <span className="color-card default" title="Default"
-            onMouseEnter = {()=>{chatBackground.set('white')}}
+            onMouseEnter = {()=>{chatBackground.set('var(--bg-color-1)')}}
             onMouseLeave = {()=>{chatBackground.set(selectedChatBackground.get())}}
-            onClick = {()=>{selectedChatBackground.set('white')}}
+            onClick = {()=>{selectedChatBackground.set('var(--bg-color-1)')}}
           >
             <span className="color-text">Default</span>
           </span>
