@@ -12,25 +12,12 @@
     }
     .search--container{
         width:100%;
-        background-color: #e6ebf5;
+        background-color: var(--bg-color-3);
         border-radius: 10px;
         display: flex;
         padding: 0.5rem 1rem;
         align-items: center;
         justify-content: space-between;
-    }
-    .container.search::after{
-        content:'';
-        position: absolute;
-        bottom:0;
-        left:0;
-        height:1px;
-        width:100%;
-        display: block;
-        background-color: rgba(126, 126, 126, 0.2);
-    }
-    .container.search:focus-within{
-        box-shadow: 0 2px 3px rgba(139, 139, 139, 0.1);
     }
     .search--container div{
         height:24px;
@@ -44,14 +31,7 @@
         background-color: inherit;
     }
     .search--container input::placeholder{
-        color:gray;
-    }
-    .container.search{
-        background-color: rgb(246,246,246);
-        transition: all 0.25s ease-in-out;
-    }
-    .container.search:focus-within{
-        background-color: white;
+        color:var(--text-color-tertiary);
     }
     .search--container .search-icon{
         opacity: 1;
@@ -62,23 +42,23 @@
         opacity: 0;
         transition: all 0.25s ease-in-out;
     }
-    .search--container:focus-within  .search-icon{
-        animation: rotate 0.3s forwards;
-    }
-    @keyframes rotate{
-        0%{
-            opacity: 1;
-            transform: rotate(0deg);
-        }
-        100%{
-            opacity: 0;
-            transform: rotate(90deg);
-        }
-    }
-    .search--container:focus-within  .back-icon{
-        animation: rotate2 0.3s forwards;
-        display: block;
-    }
+    // .search--container:focus-within  .search-icon{
+    //     animation: rotate 0.3s forwards;
+    // }
+    // @keyframes rotate{
+    //     0%{
+    //         opacity: 1;
+    //         transform: rotate(0deg);
+    //     }
+    //     100%{
+    //         opacity: 0;
+    //         transform: rotate(90deg);
+    //     }
+    // }
+    // .search--container:focus-within  .back-icon{
+    //     animation: rotate2 0.3s forwards;
+    //     display: block;
+    // }
     @keyframes rotate2{
         0%{
             opacity: 0;
@@ -110,7 +90,7 @@
                 width: calc(100% - 4%);
                 transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 &:hover,&.active{
-                    background-color: #e6ebf5;
+                    background-color: var(--bg-color-3);
                     & .icon.menu{
                         display: flex !important;
                     }
@@ -161,18 +141,18 @@
                                 cursor: pointer;
                                 // transition: background-color 0.2s ease-in-out;
                                 path{
-                                    fill:rgb(185, 185, 185);
+                                    fill:var(--icon-color-2);
                                 }
                                 &:hover, &:focus{
                                     path{
-                                        fill:gray;
+                                        fill:var(--icon-color-3);
                                     }
                                 }
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
                                 &.badge{
-                                    background-color: #7269ef;
+                                    background-color: var(--accent-color);
                                     color: white;
                                     width: auto;
                                     min-width: 25px;
@@ -189,7 +169,7 @@
                             overflow: hidden;
                             text-overflow: ellipsis;
                             margin: 0;
-                            color: #7a7f9a;
+                            color: var(--text-color-tertiary);
                         }
                     }
 
