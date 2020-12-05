@@ -193,6 +193,7 @@
         border-bottom: 0;
         box-shadow: none;
         border-radius: 0;
+        background-color: var(--bg-color-1);
         .emoji-categories button{
             width: 40px;
             margin: 5px 0;
@@ -218,6 +219,17 @@
             img{
                 image-rendering: -webkit-optimize-contrast;
             }
+        }
+        input.emoji-search{
+            border-color: var(--bg-color-3) !important;
+            background-color: var(--bg-color-3) !important;
+        }
+        .emoji-group:before{
+            color:var(--text-color-primary);
+            background-color: var(--bg-color-1);
+        }
+        .emoji.has-skin-variation:before{
+            background-color: var(--text-color-primary);
         }
     }
     .picker{
