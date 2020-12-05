@@ -3,7 +3,7 @@ import "./Settings.scss";
 import "../../Sub-Components/Modal/Modal.scss";
 import { observer } from "mobx-react-lite";
 
-import { channelSectionHandler } from "../../App";
+import { channelSectionHandler, checkSystemTheme, dataTheme } from "../../App";
 import Modal from "../../Sub-Components/Modal/Modal";
 
 const Settings: React.FC = () => {
@@ -19,6 +19,13 @@ const Settings: React.FC = () => {
   function updateTheme(val:string){
     setTheme(val);
   }
+  function saveTheme(){
+    if(theme === 'light' || theme === 'dark')
+      dataTheme.set(theme);
+    else
+      checkSystemTheme();
+  }
+
   return (
     <div className="settings-container">
       <h2 className="channel-title">Settings</h2>
@@ -157,7 +164,7 @@ const Settings: React.FC = () => {
         </div>
         <div className="modal-buttons">
           <button className="cancel" onClick={modalToggleHandler}>Cancel</button>
-          <button className="submit" onClick={modalToggleHandler}>OK</button>
+          <button className="submit" onClick={()=>{saveTheme();modalToggleHandler();}}>OK</button>
         </div>
       </Modal>
     </div>
