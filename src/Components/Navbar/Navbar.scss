@@ -17,6 +17,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        z-index: 1;
         cursor: pointer;
         img{
             height: 30px;
@@ -74,7 +75,7 @@
             position: absolute;
             top:0px;
             left:0;
-            z-index: -1;
+            z-index: 0;
             background-color: var(--icon-background-active);
             transition: top 0.3s ease;
         }
