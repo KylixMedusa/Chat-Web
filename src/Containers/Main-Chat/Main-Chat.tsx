@@ -187,7 +187,7 @@ const MainChat: React.FC = () => {
 
   const [chatMenuClass,setChatMenuClass] = useState('');
   const chatListMenu = useRef<HTMLDivElement>(null);
-  const [dir,setDir] = useState('right');
+  const [dir,setDir] = useState('left');
   const [chatPos,setChatPos] = useState({top:0,left:0});
   const chatMenuToggleHandler = ()=>{
     if(chatMenuClass === `open-top-right`){
