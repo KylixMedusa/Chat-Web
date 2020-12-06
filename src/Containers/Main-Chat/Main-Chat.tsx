@@ -268,6 +268,7 @@ const MainChat: React.FC = () => {
           </div>
         </div>
         <div className="chat-holder" style={{backgroundColor:chatBackground.get()}}>
+          <div className="pattern"></div>
           <div className="chat-wrapper" dir="btt">
             {messages
               .filter((message) => message.id && message.id !== 0)
