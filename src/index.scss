@@ -102,7 +102,7 @@ img{
 body,html{
   background-color: var(--bg-color-1);
 }
-*{
+*,*::before,*::after{
   box-sizing: border-box;
   color: var(--text-color-primary);
 }
