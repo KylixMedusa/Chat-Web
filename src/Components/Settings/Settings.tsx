@@ -3,12 +3,12 @@ import "./Settings.scss";
 import "../../Sub-Components/Modal/Modal.scss";
 import { observer } from "mobx-react-lite";
 
-import { channelSectionHandler, checkSystemTheme, dataTheme } from "../../App";
+import { channelSectionHandler, checkSystemTheme, dataTheme,selectedTheme } from "../../App";
 import Modal from "../../Sub-Components/Modal/Modal";
 
 const Settings: React.FC = () => {
   const [modalClass, setModalClass] = useState("");
-  const [theme,setTheme] = useState("light");
+  const [theme,setTheme] = useState(selectedTheme.get());
   const modalToggleHandler = () => {
     if (modalClass === `open`) {
       setModalClass(`close`);
@@ -20,10 +20,15 @@ const Settings: React.FC = () => {
     setTheme(val);
   }
   function saveTheme(){
-    if(theme === 'light' || theme === 'dark')
+    if(theme === 'light' || theme === 'dark'){
       dataTheme.set(theme);
-    else
+      selectedTheme.set(theme);
+    }
+    else{
       checkSystemTheme();
+      selectedTheme.set("system default");
+    }
+    localStorage.setItem('theme',selectedTheme.get());
   }
 
   return (
