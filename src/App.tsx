@@ -8,7 +8,6 @@ import { observable } from "mobx";
 import { observer } from "mobx-react-lite";
 
 export const channelSectionHandler = observable.box("Chats");
-export const dataTheme = observable.box("light");
 
 export const checkSystemTheme = ()=>{
   const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -21,6 +20,24 @@ export const checkSystemTheme = ()=>{
   }
   
 }
+
+function checkTheme(){
+  let theme = localStorage.getItem('theme');
+  if(theme){
+    selectedTheme.set(theme);
+    dataTheme.set(theme);
+    if(theme === "system default")
+      checkSystemTheme();
+  }
+  else{
+    dataTheme.set('light');
+    selectedTheme.set("light");
+    localStorage.setItem('theme','light');
+  }
+}
+export const dataTheme = observable.box("light");
+export const selectedTheme = observable.box("light");
+checkTheme();
 
 const App: React.FC = () => {
   return (
