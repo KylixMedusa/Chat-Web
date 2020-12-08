@@ -38,16 +38,20 @@ const Notifications: React.FC = () => {
         </h2>
       </div>
       <div style={{ overflowY: "auto", height: "100%" }}>
-        <label className="checkbox">
-          <span className="checkbox__input">
-            <input type="checkbox" name="checkbox"/>
-            <span className="checkbox__control">
-              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
-                <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg>
-            </span>
-          </span>
-          <span className="radio__label">Checkbox</span>
-        </label>
+        <div className="ZQyg_">
+          <div className="_3Kt9n">
+            <input className="_12tnw" type="checkbox" id="msg-previews"/>
+            <div className="_2K7JO">
+              <div className="_2KoSK">
+                <div className="_1hDF">
+                </div>
+              </div>
+            </div>
+          </div>
+          <label className="_3jrgD" htmlFor="msg-previews">Show Previews
+            <div className="_2Phw8">Display message text in desktop alerts</div>
+          </label>
+        </div>
       </div>
     </div>
   );
