@@ -215,4 +215,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default observer(Profile);
