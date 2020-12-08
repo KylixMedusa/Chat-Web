@@ -50,7 +50,11 @@ const Settings: React.FC = () => {
           </div>
         </div>
         <ul>
-          <li>
+          <li
+            onClick={() => {
+              channelSectionHandler.set("Notifications");
+            }}
+          >
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
