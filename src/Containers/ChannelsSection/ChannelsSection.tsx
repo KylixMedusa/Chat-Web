@@ -6,6 +6,7 @@ import Contacts from '../../Components/Contacts/Contacts';
 import Profile from '../../Components/Profile/Profile';
 import Wallpaper from '../../Components/Wallpaper/Wallpaper';
 import Notifications from '../../Components/Notifications/Notifications';
+import Blocked from '../../Components/Blocked/Blocked';
 import {observer} from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
@@ -28,6 +29,8 @@ const ChannelsSection:React.FC = ()=>{
                 return <Wallpaper></Wallpaper>
             case 'Notifications':
                 return <Notifications></Notifications> 
+            case 'Blocked':
+                return <Blocked></Blocked>
         }
     }
 
