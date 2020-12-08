@@ -26,7 +26,7 @@
         align-items: center;
         justify-content: center;
         &:not(:last-child){
-            margin-right: 10px;
+            margin:0 10px;
         }
         i{
             display: flex;
