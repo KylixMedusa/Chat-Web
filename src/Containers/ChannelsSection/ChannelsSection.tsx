@@ -4,10 +4,11 @@ import AllChats from '../../Components/All-Chats/All-Chats';
 import Settings from '../../Components/Settings/Settings';
 import Contacts from '../../Components/Contacts/Contacts';
 import Profile from '../../Components/Profile/Profile';
+import Wallpaper from '../../Components/Wallpaper/Wallpaper';
+import Notifications from '../../Components/Notifications/Notifications';
 import {observer} from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
-import Wallpaper from '../../Components/Wallpaper/Wallpaper';
 
 const ChannelsSection:React.FC = ()=>{
 
@@ -25,6 +26,8 @@ const ChannelsSection:React.FC = ()=>{
                 return <Profile></Profile>
             case 'Wallpaper':
                 return <Wallpaper></Wallpaper>
+            case 'Notifications':
+                return <Notifications></Notifications> 
         }
     }
 
