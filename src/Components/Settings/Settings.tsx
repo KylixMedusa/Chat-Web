@@ -106,7 +106,11 @@ const Settings: React.FC = () => {
             </span>
             <span>Chat Wallpaper</span>
           </li>
-          <li>
+          <li
+            onClick={() => {
+              channelSectionHandler.set("Blocked");
+            }}
+          >
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
