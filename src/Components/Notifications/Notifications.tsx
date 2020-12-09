@@ -38,21 +38,24 @@ const Notifications: React.FC = () => {
         </h2>
       </div>
       <div style={{ overflowY: "auto", height: "100%" }}>
-        <div className="ZQyg_">
-          <div className="_3Kt9n">
-            <input className="_12tnw" type="checkbox" id="msg-previews"/>
-            <div className="_2K7JO">
-              <div className="_2KoSK">
-                <div className="_1hDF">
+        <div className="notifications-wrapper">
+          <div className="checkbox-card">
+            <div className="checkbox-wrapper">
+              <input className="input-checkbox" type="checkbox" id="msg-previews"/>
+              <div className="custom-checkbox-wrapper">
+                <div className="custom-checkbox">
+                  <div className="tick-mark">
+                  </div>
                 </div>
               </div>
             </div>
+            <label className="checkbox-label" htmlFor="msg-previews">Show Previews
+              <div className="checkbox-label-secondary">Display message text in desktop alerts</div>
+            </label>
           </div>
-          <label className="_3jrgD" htmlFor="msg-previews">Show Previews
-            <div className="_2Phw8">Display message text in desktop alerts</div>
-          </label>
         </div>
       </div>
+      
     </div>
   );
 };
