@@ -57,7 +57,7 @@ const Notifications: React.FC = () => {
                 onChange={()=>updateState(0)}
                 checked={checkedState[0]}
               />
-              <div className="custom-checkbox-wrapper">
+              <div className="custom-checkbox-wrapper" onClick={()=>updateState(0)}>
                 <div className="custom-checkbox">
                   <div className="tick-mark"></div>
                 </div>
@@ -76,7 +76,7 @@ const Notifications: React.FC = () => {
                 onChange={()=>updateState(1)}
                 checked={checkedState[1]}
               />
-              <div className="custom-checkbox-wrapper">
+              <div className="custom-checkbox-wrapper" onClick={()=>updateState(1)}>
                 <div className="custom-checkbox">
                   <div className="tick-mark"></div>
                 </div>
@@ -95,7 +95,7 @@ const Notifications: React.FC = () => {
                 onChange={()=>updateState(2)}
                 checked={checkedState[2]}
               />
-              <div className="custom-checkbox-wrapper">
+              <div className="custom-checkbox-wrapper" onClick={()=>updateState(2)}>
                 <div className="custom-checkbox">
                   <div className="tick-mark"></div>
                 </div>
@@ -117,7 +117,7 @@ const Notifications: React.FC = () => {
                 onChange={()=>updateState(3)}
                 checked={checkedState[3]}
               />
-              <div className="custom-checkbox-wrapper">
+              <div className="custom-checkbox-wrapper" onClick={()=>updateState(3)}>
                 <div className="custom-checkbox">
                   <div className="tick-mark"></div>
                 </div>
