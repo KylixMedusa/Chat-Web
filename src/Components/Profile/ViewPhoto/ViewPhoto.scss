@@ -1,0 +1,95 @@
+.view-photo-container{
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(var(--bg-color-1_),0.65);
+    z-index: 100;
+    transform: scale(0);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transition-delay: 0.3s;
+    &.close{
+        animation: fade 0.3s ease;
+        transition: transform 0.3s ease;
+        transition-delay: 0.3s;
+        opacity: 0;
+        transform: scale(0);
+    }
+    &.open{
+        opacity: 1;
+        transform: scale(1);
+    }
+    header{
+        display: flex;
+        padding: 10px 5vw;
+        height: 64px;
+        background-color: var(--bg-color-1);
+        justify-content: space-between;
+        div{
+            display: flex;
+            align-items: center;
+            .image{
+                height: 50px;
+                width: 50px;
+                border-radius:50%;
+                overflow: hidden;
+                margin-right: 20px;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+        .icon{
+            height:35px;
+            width:35px;
+            border-radius: 50%;
+            // transition: background-color 0.2s ease-in-out;
+            &:hover, &:focus{
+                background-color: var(--icon-background-active);
+                path{
+                    fill:var(--accent-color);
+                }
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:not(:last-child){
+                margin-right: 10px;
+            }
+            i{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                path{
+                    fill:var(--icon-color-1);
+                }
+            }
+        }
+    }
+    .image-holder{
+        height: 100%;
+        padding: 2%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            height: 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+@keyframes fade{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
