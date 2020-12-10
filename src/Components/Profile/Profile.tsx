@@ -5,7 +5,7 @@ import { observer } from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
-import { readConfigFile } from "typescript";
+import ViewPhoto from "./ViewPhoto/ViewPhoto";
 
 const Profile: React.FC = () => {
   const [menuClass, setMenuClass] = useState("");
@@ -21,6 +21,14 @@ const Profile: React.FC = () => {
       setMenuClass(`close-top-left`);
     } else {
       setMenuClass(`open-top-left`);
+    }
+  };
+  const [viewPhotoClass, setViewPhotoClass] = useState("");
+  const viewPhotoToggleHandler = () => {
+    if (viewPhotoClass === `open`) {
+      setViewPhotoClass(`close`);
+    } else {
+      setViewPhotoClass(`open`);
     }
   };
   const setPosHandler = (event: any) => {
@@ -206,11 +214,15 @@ const Profile: React.FC = () => {
         style={{ top: pos.top, left: pos.left }}
         toggle={menuToggleHandler}
       >
-        <li>View Photo</li>
+        <li onClick={()=>{viewPhotoToggleHandler();menuToggleHandler();}}>View Photo</li>
         <li>Take Photo</li>
         <li>Upload Photo</li>
         <li>Remove Photo</li>
       </ListMenu>
+      <ViewPhoto
+        class = {viewPhotoClass}
+        toggle = {viewPhotoToggleHandler}
+      ></ViewPhoto>
     </div>
   );
 };
