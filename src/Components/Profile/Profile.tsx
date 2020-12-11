@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import { channelSectionHandler } from "../../App";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import ViewPhoto from "./ViewPhoto/ViewPhoto";
+import TakePhoto from "./TakePhoto/TakePhoto";
 
 const Profile: React.FC = () => {
   const [menuClass, setMenuClass] = useState("");
@@ -29,6 +30,14 @@ const Profile: React.FC = () => {
       setViewPhotoClass(`close`);
     } else {
       setViewPhotoClass(`open`);
+    }
+  };
+  const [takePhotoClass, setTakePhotoClass] = useState("");
+  const takePhotoToggleHandler = () => {
+    if (takePhotoClass === `open`) {
+      setTakePhotoClass(`close`);
+    } else {
+      setTakePhotoClass(`open`);
     }
   };
   const setPosHandler = (event: any) => {
@@ -106,7 +115,7 @@ const Profile: React.FC = () => {
         <div className="temp">
           <div className="card">
             <small className="card-title">Name</small>
-            <p className={editHandleOne ? "active" : ""}>
+            <div className={`input ${editHandleOne ? "active" : ""}`}>
               <div 
                 contentEditable={editHandleOne}
                 ref={nameInputElem}
@@ -150,7 +159,7 @@ const Profile: React.FC = () => {
                   </React.Fragment>
                 )}
               </i>
-            </p>
+            </div>
           </div>
           <p style={{ padding: "0 5%", color: "var(--text-color-tertiary)", fontSize: "small" }}>
             This is not your Username or Pin. This name will be visible to your
@@ -158,7 +167,7 @@ const Profile: React.FC = () => {
           </p>
           <div className="card">
             <small className="card-title">Status</small>
-            <p className={editHandleTwo ? "active" : ""}>
+            <div className={`input ${editHandleTwo ? "active" : ""}`}>
               <div 
                 contentEditable={editHandleTwo}
                 ref={aboutInputElem}
@@ -205,7 +214,7 @@ const Profile: React.FC = () => {
                   </React.Fragment>
                 )}
               </i>
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -215,7 +224,7 @@ const Profile: React.FC = () => {
         toggle={menuToggleHandler}
       >
         <li onClick={()=>{viewPhotoToggleHandler();menuToggleHandler();}}>View Photo</li>
-        <li>Take Photo</li>
+        <li onClick={()=>{takePhotoToggleHandler();menuToggleHandler();}}>Take Photo</li>
         <li>Upload Photo</li>
         <li>Remove Photo</li>
       </ListMenu>
@@ -223,6 +232,10 @@ const Profile: React.FC = () => {
         class = {viewPhotoClass}
         toggle = {viewPhotoToggleHandler}
       ></ViewPhoto>
+      <TakePhoto
+        class = {takePhotoClass}
+        toggle = {takePhotoToggleHandler}
+      ></TakePhoto>
     </div>
   );
 };
