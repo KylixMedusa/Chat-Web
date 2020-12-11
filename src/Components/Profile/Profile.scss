@@ -98,10 +98,11 @@
                 color:var(--accent-color);
 
             }
-            p{
+            .input{
                 display: flex;
                 align-items: flex-start;
                 position: relative;
+                margin: 16px 0;
                 div{
                     height: 100%;
                     width: 100%;
