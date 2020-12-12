@@ -4,3 +4,30 @@ canvas{
     left: 0;
     z-index: 2;
 }
+.zoom-buttons-container{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: var(--bg-color-1);
+    width: 28px;
+    z-index: 4;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(var(--box-shadow-color-1_),.16);
+    .zoom-button{
+        height: 28px;
+        width: 28px;
+        &:hover{
+            background-color: var(--bg-color-2);
+        }
+        span{
+            height: 100%;
+            width: 100%;
+            svg{
+                path{
+                    fill:var(--icon-color-1);
+                }
+            }
+        }
+    }
+}
