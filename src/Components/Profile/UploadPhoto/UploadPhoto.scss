@@ -1,0 +1,153 @@
+.upload-photo-container{
+    .upload-photo-wrapper{
+        position: absolute;
+        top: calc(50% - 250px);
+        left: calc(50% - 250px);
+        height:500px;
+        width:500px;
+        border-radius: 3px;
+        overflow: hidden;
+        background-color: var(--bg-color-1);
+        // padding: 22px 24px 20px;
+        box-shadow: var(--box-shadow-modal);
+        z-index: 111;
+        transform-origin: center center;
+        transform: scale(0);
+        transition: all 0.3s cubic-bezier(0.61, 0.18, 0.88, 0.85);
+        header{
+            display: flex;
+            padding: 10px 20px;
+            height: 64px;
+            background-color: var(--accent-color);
+            justify-content: space-between;
+            align-items: center;
+            div{
+                display: flex;
+                align-items: center;
+                h2{
+                    font-size: 22px;
+                    font-weight: 500;
+                    margin: 0;
+                    color:var(--text-color-secondary)
+                }
+            }
+            .icon{
+                height:35px;
+                width:35px;
+                border-radius: 50%;
+                // transition: background-color 0.2s ease-in-out;
+                &:hover, &:focus{
+                    background-color: var(--icon-background-active);
+                    path{
+                        fill:var(--accent-color);
+                    }
+                }
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:not(:last-child){
+                    margin-right: 10px;
+                }
+                i{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    path{
+                        fill:white;
+                    }
+                }
+            }
+        }
+        .image-adjust-holder{
+            position: relative;
+            height: 375px;
+            img{
+                max-height: 100%;
+                max-width: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+            .zoom-buttons-container{
+                position: absolute;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                background-color: var(--bg-color-1);
+                width: 28px;
+                z-index: 4;
+                border-radius: 2px;
+                box-shadow: 0 1px 3px rgba(var(--box-shadow-color-1_),.16);
+                .zoom-button{
+                    height: 28px;
+                    width: 28px;
+                    &:hover{
+                        background-color: var(--bg-color-2);
+                    }
+                    span{
+                        height: 100%;
+                        width: 100%;
+                        svg{
+                            path{
+                                fill:var(--icon-color-1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .submit{
+            height:60px;
+            width:60px;
+            background-color: var(--accent-color);
+            box-shadow: var(--box-shadow-button);
+            border-radius: 50%;
+            border:none;
+            outline:0;
+            position: relative;
+            z-index: 10;
+            left:80%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            svg{
+                path{
+                    fill:var(--bg-color-1);
+                }
+            }
+        }
+    }
+    &.open{
+        .upload-photo-wrapper{
+            transform-origin: center center;
+            transform: scale(1);
+        }
+        .upload-photo-overlay{
+            display: block;
+        }
+    }
+    &.close{
+        .upload-photo-wrapper{
+            transform-origin: center center;
+            transform: scale(0);
+        }
+        .upload-photo-overlay{
+            display: none;
+        }
+    }
+    .upload-photo-overlay{
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 110;
+        top:0;
+        left:0;
+        display: none;
+        background-color: var(--bg-color-1);
+        opacity: 0.85;
+    }
+}
