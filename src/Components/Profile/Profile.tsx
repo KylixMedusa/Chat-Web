@@ -7,6 +7,7 @@ import { channelSectionHandler } from "../../App";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import ViewPhoto from "./ViewPhoto/ViewPhoto";
 import TakePhoto from "./TakePhoto/TakePhoto";
+import UploadPhoto from "./UploadPhoto/UploadPhoto";
 
 const Profile: React.FC = () => {
   const [menuClass, setMenuClass] = useState("");
@@ -51,6 +52,33 @@ const Profile: React.FC = () => {
       event.preventDefault();
     }
   }
+  const [uploadPhotoClass, setUploadPhotoClass] = useState("");
+  const [uploadImage, setUploadImage] = useState("");
+  const uploadPhotoToggleHandler = () => {
+    if (uploadPhotoClass === `open`) {
+      setUploadPhotoClass(`close`);
+    } else {
+      setUploadPhotoClass(`open`);
+    }
+  };
+  const uploadPhotoHandler = () => {
+    let image = document.createElement('input');
+    image.setAttribute("type", "file");
+    image.setAttribute("accept",".jpg, .jpeg, .png, .svg, .gif, .bmp");
+    image.click();
+    image.addEventListener('change',(e:any)=>{
+      var oFReader = new FileReader();
+        oFReader.readAsDataURL(e.target.files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            if(oFREvent.target?.result){
+                let result:any = oFREvent.target.result;
+                setUploadImage(result);
+                uploadPhotoToggleHandler();
+            }
+        };
+    })
+  };
   return (
     <div className="profile-section">
       <div className="top-bar">
@@ -225,7 +253,7 @@ const Profile: React.FC = () => {
       >
         <li onClick={()=>{viewPhotoToggleHandler();menuToggleHandler();}}>View Photo</li>
         <li onClick={()=>{takePhotoToggleHandler();menuToggleHandler();}}>Take Photo</li>
-        <li>Upload Photo</li>
+        <li onClick={()=>{uploadPhotoHandler();menuToggleHandler();}}>Upload Photo</li>
         <li>Remove Photo</li>
       </ListMenu>
       <ViewPhoto
@@ -236,6 +264,11 @@ const Profile: React.FC = () => {
         class = {takePhotoClass}
         toggle = {takePhotoToggleHandler}
       ></TakePhoto>
+      <UploadPhoto
+        class = {uploadPhotoClass}
+        toggle = {uploadPhotoToggleHandler}
+        image = {uploadImage}
+      ></UploadPhoto>
     </div>
   );
 };
