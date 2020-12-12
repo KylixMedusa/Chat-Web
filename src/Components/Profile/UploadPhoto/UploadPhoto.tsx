@@ -5,18 +5,18 @@ import "./UploadPhoto.scss";
 type Props = {
   class: string;
   toggle: () => void;
-  image:string;
+  image: string;
 };
 
 const UploadPhoto: React.FC<Props> = (props) => {
-    const [image,setImage] = useState(props.image);
+  const [image, setImage] = useState(props.image);
 
   const uploadPhotoHandler = () => {
-    let image = document.createElement("input");
-    image.setAttribute("type", "file");
-    image.setAttribute("accept", ".jpg, .jpeg, .png, .svg, .gif, .bmp");
-    image.click();
-    image.addEventListener("change", (e: any) => {
+    let input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", ".jpg, .jpeg, .png, .svg, .gif, .bmp");
+    input.click();
+    input.addEventListener("change", (e: any) => {
       var oFReader = new FileReader();
       oFReader.readAsDataURL(e.target.files[0]);
 
@@ -29,9 +29,9 @@ const UploadPhoto: React.FC<Props> = (props) => {
     });
   };
 
-  useEffect(()=>{
-      setImage(props.image);
-  },[props.image])
+  useEffect(() => {
+    setImage(props.image);
+  }, [props.image]);
   return (
     <div className={`upload-photo-container ${props.class}`}>
       <div className="upload-photo-wrapper">
@@ -74,40 +74,8 @@ const UploadPhoto: React.FC<Props> = (props) => {
           </div>
         </header>
         <div className="image-adjust-holder">
-            <img src={image} alt=""/>
+          <img src={image} alt="" />
           <EditPhoto></EditPhoto>
-          <div className="zoom-buttons-container">
-            <div className="zoom-button">
-              <span className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 28 28"
-                  width="28"
-                  height="28"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M19.619 14.803h-4.816v4.816h-1.605v-4.816H8.381v-1.605h4.816V8.381h1.605v4.816h4.816l.001 1.606z"
-                  ></path>
-                </svg>
-              </span>
-            </div>
-            <div className="zoom-button">
-              <span className="">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 28 28"
-                  width="28"
-                  height="28"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M8.381 14.803v-1.605h11.237v1.605H8.381z"
-                  ></path>
-                </svg>
-              </span>
-            </div>
-          </div>
         </div>
         <button className="submit">
           <svg

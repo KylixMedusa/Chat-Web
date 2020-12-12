@@ -162,38 +162,6 @@ const TakePhoto: React.FC<Props> = (props) => {
             <div className = "image-adjust-holder">
               <div className="snapshot" ref={snapshot}></div>
               <EditPhoto></EditPhoto>
-              <div className="zoom-buttons-container">
-                <div className="zoom-button">
-                  <span className="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 28 28"
-                      width="28"
-                      height="28"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M19.619 14.803h-4.816v4.816h-1.605v-4.816H8.381v-1.605h4.816V8.381h1.605v4.816h4.816l.001 1.606z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-                <div className="zoom-button">
-                  <span className="">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 28 28"
-                      width="28"
-                      height="28"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M8.381 14.803v-1.605h11.237v1.605H8.381z"
-                      ></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
             </div>
             <button className="submit">
               <svg
