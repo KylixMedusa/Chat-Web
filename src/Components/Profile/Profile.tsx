@@ -53,7 +53,7 @@ const Profile: React.FC = () => {
     }
   }
   const [uploadPhotoClass, setUploadPhotoClass] = useState("");
-  const [uploadImage, setUploadImage] = useState("");
+  const [uploadImage, setUploadImage] = useState(document.createElement("img"));
   const uploadPhotoToggleHandler = () => {
     if (uploadPhotoClass === `open`) {
       setUploadPhotoClass(`close`);
@@ -73,8 +73,19 @@ const Profile: React.FC = () => {
         oFReader.onload = function (oFREvent) {
             if(oFREvent.target?.result){
                 let result:any = oFREvent.target.result;
-                setUploadImage(result);
-                uploadPhotoToggleHandler();
+                let img = new Image();
+                img.src = result;
+                img.onload = function (e:any) {
+                  var height = e.target.height;
+                  var width = e.target.width;
+                  if (height < 324 || width < 324) {
+                    alert("Height and Width must not be less than 324px.");
+                  }
+                  else{
+                    setUploadImage(e.target);
+                    uploadPhotoToggleHandler();
+                  }
+                };
             }
         };
     })
