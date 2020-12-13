@@ -12,11 +12,11 @@ const TakePhoto: React.FC<Props> = (props) => {
   const canvas = document.createElement("canvas");
   const [image,setImage] = useState(document.createElement('img'));
   const [sectionClass, setSectionClass] = useState("");
+
   canvas.height = 750;
   canvas.width = 1000;
   function captureSnapshot() {
     if (videoElem.current) {
-      setSectionClass("edit");
       var ctx = canvas.getContext("2d");
       var img = new Image();
       if (ctx) {
@@ -26,8 +26,11 @@ const TakePhoto: React.FC<Props> = (props) => {
         ctx.drawImage(videoElem.current, 0, 0, canvas.width, canvas.height);
         ctx.restore();
         img.src = canvas.toDataURL("image/png");
-        setImage(img);
-        turnOffCamera();
+        img.onload = function(){
+          setImage(img);
+          turnOffCamera();
+          setSectionClass("edit");
+        }
       }
     }
   }
