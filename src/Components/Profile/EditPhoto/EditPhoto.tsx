@@ -205,7 +205,8 @@ const EditPhoto: React.FC<Props> = (props) => {
     drawImageScaled(props.image);
   }, [props.image]);
 
-  function saveProfilePic(){
+  function saveProfilePic(e:any){
+    e.stopPropagation();
     if (canvas.current){
       let ctx = canvas.current.getContext("2d");
       if(ctx){
@@ -231,6 +232,7 @@ const EditPhoto: React.FC<Props> = (props) => {
         onMouseDown={(e)=>handleMouseDown(e)}
         onMouseUp={(e)=>handleMouseUp(e)}
         onMouseMove={(e)=>handleMouseMove(e)}
+        className="image-adjust-holder"
       >
         <canvas ref={canvas}
           onMouseLeave={e=>handleMouseUp(e)}
@@ -269,6 +271,19 @@ const EditPhoto: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
+      <button className="submit" onClick={(e)=>saveProfilePic(e)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 30 30"
+            width="30"
+            height="30"
+          >
+            <path
+              fill="currentColor"
+              d="M9.9 21.25l-6.7-6.7-2.2 2.2 8.9 8.9L29 6.55l-2.2-2.2-16.9 16.9z"
+            ></path>
+          </svg>
+        </button>
     </React.Fragment>
   );
 };
