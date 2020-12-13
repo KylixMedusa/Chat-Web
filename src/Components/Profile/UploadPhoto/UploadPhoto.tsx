@@ -85,24 +85,9 @@ const UploadPhoto: React.FC<Props> = (props) => {
             </div>
           </div>
         </header>
-        <div className="image-adjust-holder">
-          <EditPhoto
-            image = {image}
-          ></EditPhoto>
-        </div>
-        <button className="submit">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 30 30"
-            width="30"
-            height="30"
-          >
-            <path
-              fill="currentColor"
-              d="M9.9 21.25l-6.7-6.7-2.2 2.2 8.9 8.9L29 6.55l-2.2-2.2-16.9 16.9z"
-            ></path>
-          </svg>
-        </button>
+        <EditPhoto
+          image = {image}
+        ></EditPhoto>
       </div>
       <div className="upload-photo-overlay"></div>
     </div>
