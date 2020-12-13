@@ -62,14 +62,6 @@
         .image-adjust-holder{
             position: relative;
             height: 375px;
-            img{
-                max-height: 100%;
-                max-width: 100%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-            }
         }
         .submit{
             height:60px;
