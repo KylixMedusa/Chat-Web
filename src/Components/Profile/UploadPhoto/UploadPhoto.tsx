@@ -5,11 +5,12 @@ import "./UploadPhoto.scss";
 type Props = {
   class: string;
   toggle: () => void;
-  image: string;
+  image: HTMLImageElement;
 };
 
 const UploadPhoto: React.FC<Props> = (props) => {
-  const [image, setImage] = useState(props.image);
+
+  const [image,setImage] = useState(document.createElement('img'));
 
   const uploadPhotoHandler = () => {
     let input = document.createElement("input");
@@ -23,7 +24,18 @@ const UploadPhoto: React.FC<Props> = (props) => {
       oFReader.onload = function (oFREvent) {
         if (oFREvent.target?.result) {
           let result: any = oFREvent.target.result;
-          setImage(result);
+          var img = new Image();
+          img.src = result;
+          img.onload = function (e:any) {
+            var height = e.target.height;
+            var width = e.target.width;
+            if (height < 324 || width < 324) {
+              alert("Height and Width must not be less than 324px.");
+            }
+            else{
+              setImage(e.target);
+            }
+          };
         }
       };
     });
@@ -74,8 +86,9 @@ const UploadPhoto: React.FC<Props> = (props) => {
           </div>
         </header>
         <div className="image-adjust-holder">
-          <img src={image} alt="" />
-          <EditPhoto></EditPhoto>
+          <EditPhoto
+            image = {image}
+          ></EditPhoto>
         </div>
         <button className="submit">
           <svg
@@ -91,7 +104,7 @@ const UploadPhoto: React.FC<Props> = (props) => {
           </svg>
         </button>
       </div>
-      <div className="upload-photo-overlay" onClick={props.toggle}></div>
+      <div className="upload-photo-overlay"></div>
     </div>
   );
 };
