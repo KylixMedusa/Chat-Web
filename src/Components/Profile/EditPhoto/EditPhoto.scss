@@ -31,3 +31,26 @@ canvas{
         }
     }
 }
+
+.submit{
+    height:60px;
+    width:60px;
+    background-color: var(--accent-color);
+    box-shadow: var(--box-shadow-button);
+    border-radius: 50%;
+    border:none;
+    outline:0;
+    position: relative;
+    z-index: 10;
+    left:80%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    svg{
+        path{
+            fill:var(--bg-color-1);
+        }
+    }
+}
