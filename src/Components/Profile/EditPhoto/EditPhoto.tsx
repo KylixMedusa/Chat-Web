@@ -69,7 +69,7 @@ const EditPhoto: React.FC<Props> = (props) => {
     if (canvas.current) {
       let ctx = canvas.current.getContext("2d");
       if (ctx && img) {
-        ratio--;
+        ratio -= 0.1;
         if (ratio * img.width < 325 || ratio * img.height < 325) {
           ratio = 325 / Math.min(img.width, img.height) ;
         }
@@ -102,7 +102,7 @@ const EditPhoto: React.FC<Props> = (props) => {
     if (canvas.current) {
       let ctx = canvas.current.getContext("2d");
       if (ctx && img) {
-        ratio++;
+        ratio += 0.1;
         var centerShift_x = (canvas.current.width - img.width * ratio) / 2;
         var centerShift_y = (canvas.current.height - img.height * ratio) / 2;
         // console.log(centerShift_x,centerShift_y);
@@ -122,7 +122,7 @@ const EditPhoto: React.FC<Props> = (props) => {
     }
   }
 
-  function handleMouseUp(e: any) {
+  function handleMouseUp(e: any){
     // return if we're not dragging
     if (!isDragging) {
       return;
@@ -162,8 +162,8 @@ const EditPhoto: React.FC<Props> = (props) => {
       mouseX = e.clientX - canvas.current.getBoundingClientRect().left;
       mouseY = e.clientY - canvas.current.getBoundingClientRect().top;
       // how far has the mouse dragged from its previous mousemove position?
-      var dx = (mouseX - startX)*0.01;
-      var dy = (mouseY - startY)*0.01;
+      var dx = (mouseX - startX)*0.1;
+      var dy = (mouseY - startY)*0.1;
       let img = props.image;
       if (canvas.current) {
         let ctx = canvas.current.getContext("2d");
@@ -204,6 +204,27 @@ const EditPhoto: React.FC<Props> = (props) => {
   useEffect(() => {
     drawImageScaled(props.image);
   }, [props.image]);
+
+  function saveProfilePic(){
+    if (canvas.current){
+      let ctx = canvas.current.getContext("2d");
+      if(ctx){
+        let imageData = ctx.getImageData(87.5,25,411.5,350);
+        var tempCanvas = document.createElement("canvas"),
+        tCtx = tempCanvas.getContext("2d");
+        tempCanvas.width = 324;
+        tempCanvas.height = 324;
+        if(tCtx){
+          tCtx.putImageData(imageData, 0, 0);
+          let img = new Image();
+          img.src = tempCanvas.toDataURL();
+          console.log(img);
+        }
+
+      }
+    }
+  }
+
   return (
     <React.Fragment>
       <div
@@ -211,7 +232,9 @@ const EditPhoto: React.FC<Props> = (props) => {
         onMouseUp={(e)=>handleMouseUp(e)}
         onMouseMove={(e)=>handleMouseMove(e)}
       >
-        <canvas ref={canvas}></canvas>
+        <canvas ref={canvas}
+          onMouseLeave={e=>handleMouseUp(e)}
+        ></canvas>
         <canvas ref={overlay}></canvas>
         <div className="zoom-buttons-container">
           <div className="zoom-button" onClick={zoomIn}>
