@@ -9,8 +9,8 @@ type Props = {
 
 const TakePhoto: React.FC<Props> = (props) => {
   const videoElem = useRef<HTMLVideoElement>(null);
-  const snapshot = useRef<HTMLDivElement>(null);
   const canvas = document.createElement("canvas");
+  const [image,setImage] = useState(document.createElement('img'));
   const [sectionClass, setSectionClass] = useState("");
   canvas.height = 750;
   canvas.width = 1000;
@@ -26,11 +26,7 @@ const TakePhoto: React.FC<Props> = (props) => {
         ctx.drawImage(videoElem.current, 0, 0, canvas.width, canvas.height);
         ctx.restore();
         img.src = canvas.toDataURL("image/png");
-        img.width = 500;
-        if (snapshot.current) {
-          snapshot.current.innerHTML = "";
-          snapshot.current.appendChild(img);
-        }
+        setImage(img);
         turnOffCamera();
       }
     }
@@ -160,8 +156,9 @@ const TakePhoto: React.FC<Props> = (props) => {
               </div>
             </header>
             <div className = "image-adjust-holder">
-              <div className="snapshot" ref={snapshot}></div>
-              <EditPhoto></EditPhoto>
+              <EditPhoto
+                image = {image}
+              ></EditPhoto>
             </div>
             <button className="submit">
               <svg
@@ -179,7 +176,7 @@ const TakePhoto: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      <div className="take-photo-overlay" onClick={props.toggle}></div>
+      <div className="take-photo-overlay"></div>
     </div>
   );
 };
