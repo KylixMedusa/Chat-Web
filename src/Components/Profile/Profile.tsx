@@ -3,7 +3,7 @@ import "./Profile.scss";
 
 import { observer } from "mobx-react-lite";
 
-import { channelSectionHandler } from "../../App";
+import { channelSectionHandler, profileData } from "../../App";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import ViewPhoto from "./ViewPhoto/ViewPhoto";
 import TakePhoto from "./TakePhoto/TakePhoto";
@@ -16,8 +16,9 @@ const Profile: React.FC = () => {
   const [editHandleTwo, setEditHandlerTwo] = useState(false);
   const nameInputElem = useRef<HTMLDivElement>(null);
   const aboutInputElem = useRef<HTMLDivElement>(null);
-  const [name, setName] = useState("Aayush Agarwal");
-  const [about, setAbout] = useState("Can't talk chat only");
+  const [name, setName] = useState(profileData.get().name);
+  const [about, setAbout] = useState(profileData.get().status);
+
   const menuToggleHandler = () => {
     if (menuClass === `open-top-left`) {
       setMenuClass(`close-top-left`);
@@ -90,6 +91,12 @@ const Profile: React.FC = () => {
         };
     })
   };
+  function saveProfileName(){
+    profileData.set({...profileData.get(),name:name});
+  }
+  function saveProfileStatus(){
+    profileData.set({...profileData.get(),status:about});
+  }
   return (
     <div className="profile-section">
       <div className="top-bar">
@@ -123,7 +130,7 @@ const Profile: React.FC = () => {
       </div>
       <div style={{ overflowY: "auto", height: "100%" }}>
         <div className="main-image">
-          <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
+          <img src={profileData.get().avatar} alt="" />
           <div
             className={`hover-overlay ${
               menuClass === "open-top-left" ? "active" : ""
@@ -163,7 +170,7 @@ const Profile: React.FC = () => {
                   if(nameInputElem.current)
                     setName(nameInputElem.current?.innerHTML)
                 }}
-              >Aayush Agarwal</div>
+              >{profileData.get().name}</div>
               <i>
                 {!editHandleOne ? (
                   <svg
@@ -188,7 +195,7 @@ const Profile: React.FC = () => {
                       viewBox="0 0 24 24"
                       width="24"
                       height="24"
-                      onClick={()=>setEditHandlerOne(!editHandleOne)}
+                      onClick={()=>{setEditHandlerOne(!editHandleOne); saveProfileName()}}
                     >
                       <path
                         fill="currentColor"
@@ -215,7 +222,7 @@ const Profile: React.FC = () => {
                   if(aboutInputElem.current)
                     setAbout(aboutInputElem.current?.innerHTML)
                 }}
-              >Can't talk chat only</div>
+              >{profileData.get().status}</div>
               <i>
                 {!editHandleTwo ? (
                   <svg
@@ -243,7 +250,7 @@ const Profile: React.FC = () => {
                       viewBox="0 0 24 24"
                       width="24"
                       height="24"
-                      onClick={()=>setEditHandlerTwo(!editHandleTwo)}
+                      onClick={()=>{setEditHandlerTwo(!editHandleTwo); saveProfileStatus()}}
                     >
                       <path
                         fill="currentColor"
