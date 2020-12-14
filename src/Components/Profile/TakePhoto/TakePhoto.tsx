@@ -160,6 +160,7 @@ const TakePhoto: React.FC<Props> = (props) => {
             </header>
             <EditPhoto
               image = {image}
+              toggle={props.toggle}
             ></EditPhoto>
           </div>
         </div>
