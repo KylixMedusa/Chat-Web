@@ -1,4 +1,6 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
+import { profileData } from "../../../App";
 import './ViewPhoto.scss';
 
 type Props = {
@@ -12,9 +14,9 @@ const ViewPhoto: React.FC<Props> = (props) => {
       <header>
         <div>
           <div className="image">
-            <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
+            <img src={profileData.get().avatar} alt="" />
           </div>
-          <p>+91 9679883985</p>
+          <p>{profileData.get().phone}</p>
         </div>
         <div role="button" className="icon" onClick={props.toggle}>
           <i>
@@ -33,10 +35,10 @@ const ViewPhoto: React.FC<Props> = (props) => {
         </div>
       </header>
       <div className="image-holder">
-        <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
+        <img src={profileData.get().avatar} alt="" />
       </div>
     </div>
   );
 };
 
-export default ViewPhoto;
+export default observer(ViewPhoto);
