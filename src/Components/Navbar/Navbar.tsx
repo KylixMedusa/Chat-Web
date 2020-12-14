@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.scss";
 import {observer} from "mobx-react-lite";
 
-import { channelSectionHandler } from "../../App";
+import { channelSectionHandler, profileData } from "../../App";
 
 
 
@@ -94,7 +94,7 @@ const Navbar: React.FC = () => {
           <div>
             <img
               className="avatar-image"
-              src="https://cliko.in/assets/team/aayush.jpg"
+              src={profileData.get().avatar}
               alt=""
             />
           </div>
