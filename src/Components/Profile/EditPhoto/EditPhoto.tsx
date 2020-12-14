@@ -1,8 +1,12 @@
+import { observer } from "mobx-react-lite";
 import React, { useEffect, useRef } from "react";
+import { start } from "repl";
+import { profileData } from "../../../App";
 import "./EditPhoto.scss";
 
 type Props = {
   image: HTMLImageElement;
+  toggle:()=>void;
 };
 
 const EditPhoto: React.FC<Props> = (props) => {
@@ -103,8 +107,17 @@ const EditPhoto: React.FC<Props> = (props) => {
       let ctx = canvas.current.getContext("2d");
       if (ctx && img) {
         ratio += 0.1;
+        if (ratio * img.width < 325 || ratio * img.height < 325) {
+          ratio = 325 / Math.min(img.width, img.height) ;
+        }
         var centerShift_x = (canvas.current.width - img.width * ratio) / 2;
         var centerShift_y = (canvas.current.height - img.height * ratio) / 2;
+        if((centerShift_x + (shiftX/2) >= 87.5)||(centerShift_x + (shiftX/2) +(img.width * ratio) <= 411.5)){
+          shiftX = 0;
+        }
+        if((centerShift_y + (shiftY/2) >= 25)||(centerShift_y + (shiftY/2)+(img.height * ratio) <= 350)){
+          shiftY = 0;
+        }
         // console.log(centerShift_x,centerShift_y);
         ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
         ctx.drawImage(
@@ -146,8 +159,6 @@ const EditPhoto: React.FC<Props> = (props) => {
 
     isDragging = true;
   }
-
-  window.addEventListener("mousedown",handleMouseUp);
   function handleMouseMove(e: any) {
     // return if we're not dragging
     if (!isDragging) {
@@ -162,8 +173,10 @@ const EditPhoto: React.FC<Props> = (props) => {
       mouseX = e.clientX - canvas.current.getBoundingClientRect().left;
       mouseY = e.clientY - canvas.current.getBoundingClientRect().top;
       // how far has the mouse dragged from its previous mousemove position?
-      var dx = (mouseX - startX)*0.1;
-      var dy = (mouseY - startY)*0.1;
+      var dx = (mouseX - startX);
+      var dy = (mouseY - startY);
+      startX = mouseX;
+      startY = mouseY;
       let img = props.image;
       if (canvas.current) {
         let ctx = canvas.current.getContext("2d");
@@ -208,23 +221,37 @@ const EditPhoto: React.FC<Props> = (props) => {
   function saveProfilePic(e:any){
     e.stopPropagation();
     if (canvas.current){
-      let ctx = canvas.current.getContext("2d");
-      if(ctx){
-        let imageData = ctx.getImageData(87.5,25,411.5,350);
-        var tempCanvas = document.createElement("canvas"),
-        tCtx = tempCanvas.getContext("2d");
-        tempCanvas.width = 324;
-        tempCanvas.height = 324;
-        if(tCtx){
-          tCtx.putImageData(imageData, 0, 0);
-          let img = new Image();
-          img.src = tempCanvas.toDataURL();
-          console.log(img);
+      let canvas2 = document.createElement("canvas");
+      canvas2.width = 648;
+      canvas2.height = 648;
+      let ctx2 = canvas2.getContext("2d");
+      let img = props.image;
+      if(ctx2){
+        var centerShift_x = (canvas2.width - img.width * ratio * 2) / 2;
+        var centerShift_y = (canvas2.height - img.height * ratio * 2) / 2;
+        ctx2.drawImage(
+          img,
+          0,
+          0,
+          img.width,
+          img.height,
+          centerShift_x + (shiftX),
+          centerShift_y + (shiftY),
+          img.width * ratio * 2,
+          img.height * ratio * 2
+        );
+        let src = canvas2.toDataURL();
+        if(src){
+          profileData.set({...profileData.get(),avatar:src});
         }
+        props.toggle();
 
       }
     }
   }
+  
+  window.addEventListener("mouseup",handleMouseUp);
+  // window.addEventListener("mousemove",handleMouseUp);
 
   return (
     <React.Fragment>
@@ -236,6 +263,7 @@ const EditPhoto: React.FC<Props> = (props) => {
       >
         <canvas ref={canvas}
           onMouseLeave={e=>handleMouseUp(e)}
+          onMouseOut={e=>handleMouseUp(e)}
         ></canvas>
         <canvas ref={overlay}></canvas>
         <div className="zoom-buttons-container">
@@ -271,7 +299,7 @@ const EditPhoto: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      <button className="submit" onClick={(e)=>saveProfilePic(e)}>
+      <button className="upload-photo-button" onClick={(e)=>saveProfilePic(e)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 30 30"
@@ -288,4 +316,4 @@ const EditPhoto: React.FC<Props> = (props) => {
   );
 };
 
-export default EditPhoto;
+export default observer(EditPhoto);
