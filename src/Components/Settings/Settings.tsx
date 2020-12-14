@@ -3,7 +3,7 @@ import "./Settings.scss";
 import "../../Sub-Components/Modal/Modal.scss";
 import { observer } from "mobx-react-lite";
 
-import { channelSectionHandler, checkSystemTheme, dataTheme,selectedTheme } from "../../App";
+import { channelSectionHandler, checkSystemTheme, dataTheme,profileData,selectedTheme } from "../../App";
 import Modal from "../../Sub-Components/Modal/Modal";
 
 const Settings: React.FC = () => {
@@ -42,11 +42,11 @@ const Settings: React.FC = () => {
           }}
         >
           <div className="image">
-            <img src="https://cliko.in/assets/team/aayush.jpg" alt="" />
+            <img src={profileData.get().avatar} alt="" />
           </div>
           <div className="content">
-            <h3>Aayush Agarwal</h3>
-            <p>Can't talk chat only</p>
+            <h3>{profileData.get().name}</h3>
+            <p>{profileData.get().status}</p>
           </div>
         </div>
         <ul>
