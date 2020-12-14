@@ -1,3 +1,4 @@
+import { observer } from "mobx-react-lite";
 import React, { useEffect, useRef, useState } from "react";
 import EditPhoto from "../EditPhoto/EditPhoto";
 import "./UploadPhoto.scss";
@@ -87,6 +88,7 @@ const UploadPhoto: React.FC<Props> = (props) => {
         </header>
         <EditPhoto
           image = {image}
+          toggle={props.toggle}
         ></EditPhoto>
       </div>
       <div className="upload-photo-overlay"></div>
@@ -94,4 +96,4 @@ const UploadPhoto: React.FC<Props> = (props) => {
   );
 };
 
-export default UploadPhoto;
+export default observer(UploadPhoto);
