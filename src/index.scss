@@ -43,6 +43,7 @@ img{
 :root{
   [data-theme = "light"]{
     --accent-color:#7269ef;
+    --accent-color-dark:#5951bb;
 
     --bg-color-1: #ffffff;
     --bg-color-1_:255,255,255;
@@ -73,6 +74,7 @@ img{
   }
   [data-theme = "dark"]{
     --accent-color:#7269ef;
+    --accent-color-dark:#5951bb;
 
     --bg-color-1:#262e35;
     --bg-color-1_:38,46,53;
