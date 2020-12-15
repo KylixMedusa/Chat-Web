@@ -13,8 +13,8 @@ const TakePhoto: React.FC<Props> = (props) => {
   const [image,setImage] = useState(document.createElement('img'));
   const [sectionClass, setSectionClass] = useState("");
 
-  canvas.height = 750;
-  canvas.width = 1000;
+  canvas.height = 1500;
+  canvas.width = 2000;
   function captureSnapshot() {
     if (videoElem.current) {
       var ctx = canvas.getContext("2d");
