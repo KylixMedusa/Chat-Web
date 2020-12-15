@@ -53,6 +53,13 @@
             top:0;
             left: 20%;
         }
+        & > svg{
+            position: absolute;
+            height: 100%;
+            width: 60%;
+            top:0;
+            left: 20%;
+        }
         .hover-overlay{
             position: absolute;
             height: 100%;
@@ -65,7 +72,7 @@
             border-radius: 50%;
             top:0;
             left: 20%;
-            background-color:#878a92b9;
+            background-color:var(--overlay-profile);
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
             cursor: pointer;
