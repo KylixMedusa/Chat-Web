@@ -6,6 +6,7 @@ import ContentEditable from "../../Components/ContentEditable";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import { observable } from "mobx";
 import {observer} from "mobx-react-lite";
+import { patternView } from "../../Components/Wallpaper/Wallpaper";
 
 export const sideSectionClass = observable.box('close');
 export const chatBackground = observable.box({color:'var(--bg-color-4)', opacity:"0.06", pattern:"dark"});
@@ -267,7 +268,11 @@ const MainChat: React.FC = () => {
           </div>
         </div>
         <div className="chat-holder" style={{backgroundColor:chatBackground.get().color}}>
-          <div className="pattern" style={{opacity: chatBackground.get().opacity}} data-pattern = {chatBackground.get().pattern}></div>
+          {
+            patternView.get()?
+            <div className="pattern" style={{opacity: chatBackground.get().opacity}} data-pattern = {chatBackground.get().pattern}></div>
+            :null
+          }
           <div className="chat-wrapper" dir="btt">
             {messages
               .filter((message) => message.id && message.id !== 0)
