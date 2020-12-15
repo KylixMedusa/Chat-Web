@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./App.scss";
 import Navbar from "./Components/Navbar/Navbar";
 import ChannelsSection from "./Containers/ChannelsSection/ChannelsSection";
-import MainChat from "./Containers/Main-Chat/Main-Chat";
+import MainChat, { chatBackground } from "./Containers/Main-Chat/Main-Chat";
 import SideSection from "./Containers/SideSection/SideSection";
 import { observable } from "mobx";
 import { observer } from "mobx-react-lite";
+import { handleWallpaper, setInitWallpaper } from "./Components/Wallpaper/Wallpaper";
 
 export const channelSectionHandler = observable.box("Chats");
 export const profileData = observable.box({
@@ -37,6 +38,13 @@ function checkTheme() {
     dataTheme.set("light");
     selectedTheme.set("light");
     localStorage.setItem("theme", "light");
+  }
+  let color = localStorage.getItem("color");
+  if(color){
+    setInitWallpaper(dataTheme.get(),color);
+  }
+  else{
+    handleWallpaper(dataTheme.get());
   }
 }
 export const dataTheme = observable.box("light");
