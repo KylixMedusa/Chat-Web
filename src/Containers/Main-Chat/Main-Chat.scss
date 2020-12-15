@@ -94,16 +94,24 @@
         background-repeat: no-repeat;
         transition: background-color 0.5s ease-in-out;
         position: relative;
+        background-color: var(--bg-color-4);
         .pattern{
             position: absolute;
             height: 100%;
             width: 100%;
             top:0;
             left:0;
-            // background-image: url("../../pattern.png");
+            background-image: var(--pattern-chat);
             background-position: center center;
             background-repeat: repeat;
             opacity: 0.15;
+            transition: all 0.5s ease-in-out;
+            &[data-pattern = "light"]{
+                background: url(../../patternDark.png);
+            }
+            &[data-pattern = "dark"]{
+                background: url(../../patternLight.png);
+            }
         }
     }
     .input-section{
