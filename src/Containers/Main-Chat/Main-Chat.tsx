@@ -8,8 +8,8 @@ import { observable } from "mobx";
 import {observer} from "mobx-react-lite";
 
 export const sideSectionClass = observable.box('close');
-export const chatBackground = observable.box('var(--bg-color-1)');
-export const selectedChatBackground = observable.box('var(--bg-color-1)');
+export const chatBackground = observable.box({color:'var(--bg-color-4)', opacity:"0.06", pattern:"dark"});
+export const selectedChatBackground = observable.box({color:'var(--bg-color-4)', opacity:"0.06", pattern:"dark"});
 
 
 var emojis = require('../../emojis.json').emojis;
@@ -266,8 +266,8 @@ const MainChat: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="chat-holder" style={{backgroundColor:chatBackground.get()}}>
-          <div className="pattern"></div>
+        <div className="chat-holder" style={{backgroundColor:chatBackground.get().color}}>
+          <div className="pattern" style={{opacity: chatBackground.get().opacity}} data-pattern = {chatBackground.get().pattern}></div>
           <div className="chat-wrapper" dir="btt">
             {messages
               .filter((message) => message.id && message.id !== 0)
