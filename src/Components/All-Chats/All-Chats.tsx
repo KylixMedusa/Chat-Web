@@ -4,34 +4,47 @@ import "./All-Chats.scss";
 
 const AllChats: React.FC = () => {
   const [menuClass, setMenuClass] = useState("");
-  const [pos, setPos] = useState({ top: 0 , left: 0 });
+  const [pos, setPos] = useState({ top: 0, left: 0 });
   const menuToggleHandler = () => {
-    if(menuClass === `open-top-left`){
+    if (menuClass === `open-top-left`) {
       setMenuClass(`close-top-left`);
-    }
-    else if(menuClass === `open-bottom-left`){
+    } else if (menuClass === `open-bottom-left`) {
       setMenuClass(`close-bottom-left`);
     }
   };
-  const menuOpen = (direction:'bottom'|'top') => {
-    if(direction === `top`){
+  const menuOpen = (direction: "bottom" | "top") => {
+    if (direction === `top`) {
       setMenuClass(`open-top-left`);
-    }
-    else if(direction === `bottom`){
+    } else if (direction === `bottom`) {
       setMenuClass(`open-bottom-left`);
     }
-  }
+  };
 
-  const posHandler = (event:any)=>{
+  const posHandler = (event: any) => {
     let height = event.target.getBoundingClientRect().top + 18 + 227;
     let windowHeight = window.innerHeight;
-    if(height >= windowHeight){
-        setPos({top:event.target.getBoundingClientRect().top - 227,left: event.target.getBoundingClientRect().left + 10});
-        menuOpen('bottom');
+    if (height >= windowHeight) {
+      setPos({
+        top: event.target.getBoundingClientRect().top - 227,
+        left: event.target.getBoundingClientRect().left + 10,
+      });
+      menuOpen("bottom");
+    } else {
+      setPos({
+        top: event.target.getBoundingClientRect().top + 18,
+        left: event.target.getBoundingClientRect().left + 10,
+      });
+      menuOpen("top");
+    }
+  };
+
+  const [topMenuClass, setTopMenuClass] = useState("");
+  const topMenuToggleHandler = ()=>{
+    if(topMenuClass === 'open-top-right'){
+      setTopMenuClass('close-top-right');
     }
     else{
-        setPos({top:event.target.getBoundingClientRect().top + 18 ,left: event.target.getBoundingClientRect().left + 10});
-        menuOpen('top');
+      setTopMenuClass('open-top-right');
     }
   }
 
@@ -39,7 +52,38 @@ const AllChats: React.FC = () => {
     <React.Fragment>
       <div className="all-chats-container">
         <div className="container">
-          <h2>Chats</h2>
+          <div className="title">
+            <h2>Chats</h2>
+            <div className="icon-menu">
+              <div className="icon" role="button">
+                <i
+                  onClick={(e) => {
+                    topMenuToggleHandler();
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      fill="var(--icon-color-1)"
+                      d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
+                    ></path>
+                  </svg>
+                </i>
+              </div>
+              <ListMenu
+                class={topMenuClass}
+                style={{ top: "110%", right: "50%" }}
+                toggle={topMenuToggleHandler}
+              >
+                <li>Archived</li>
+                <li>Starred</li>
+              </ListMenu>
+            </div>
+          </div>
           <div className="search--container" id="search-container">
             <div className="search-icon">
               <svg
@@ -119,7 +163,13 @@ const AllChats: React.FC = () => {
                       </svg>
                     </div>
                     <div className="icon badge">3</div>
-                    <div className="icon menu" onClick={(e)=>{posHandler(e);menuToggleHandler()}}>
+                    <div
+                      className="icon menu"
+                      onClick={(e) => {
+                        posHandler(e);
+                        menuToggleHandler();
+                      }}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 19 20"
@@ -178,7 +228,13 @@ const AllChats: React.FC = () => {
                       </svg>
                     </div>
                     <div className="icon badge">3</div>
-                    <div className="icon menu" onClick={(e)=>{posHandler(e);menuToggleHandler()}}>
+                    <div
+                      className="icon menu"
+                      onClick={(e) => {
+                        posHandler(e);
+                        menuToggleHandler();
+                      }}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 19 20"
