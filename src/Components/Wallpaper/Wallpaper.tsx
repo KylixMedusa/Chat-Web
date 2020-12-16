@@ -9,6 +9,8 @@ import {
 } from "../../Containers/Main-Chat/Main-Chat";
 import { observer } from "mobx-react-lite";
 import { observable } from "mobx";
+import { useStore } from "../../store";
+import * as store from '../../store';
 
 const colorsLight = [
   { color: "var(--bg-color-4)", opacity: "0.06", pattern: "dark" },
@@ -163,11 +165,19 @@ function setColorLight() {
 export const patternView = observable.box(true);
 
 const Wallpaper: React.FC = () => {
+  const snackbarStore = useStore(store.SnackbarContext);
+
   useEffect(() => {
     generateColors();
   }, [colors]);
 
   function updatePatternState() {
+    if(patternView){
+      snackbarStore.addSnackbar("Removed chat doodles");
+    }
+    else{
+      snackbarStore.addSnackbar("Added chat doodles");
+    }
     localStorage.setItem("pattern", String(!patternView.get()));
     patternView.set(!patternView.get());
   }
@@ -189,6 +199,7 @@ const Wallpaper: React.FC = () => {
                 chatBackground.set(selectedChatBackground.get());
               }}
               onClick={() => {
+                snackbarStore.addSnackbar("Wallpaper updated");
                 localStorage.setItem("color", color);
                 selectedChatBackground.set({...colors[0]});
               }}
@@ -209,6 +220,7 @@ const Wallpaper: React.FC = () => {
                 chatBackground.set(selectedChatBackground.get());
               }}
               onClick={() => {
+                snackbarStore.addSnackbar("Wallpaper updated");
                 localStorage.setItem("color", color);
                 selectedChatBackground.set({...colors[0]});
               }}
@@ -230,6 +242,7 @@ const Wallpaper: React.FC = () => {
                 chatBackground.set(selectedChatBackground.get());
               }}
               onClick={() => {
+                snackbarStore.addSnackbar("Wallpaper updated");
                 localStorage.setItem("color", color);
                 selectedChatBackground.set({...colors[index]});
               }}
@@ -248,7 +261,7 @@ const Wallpaper: React.FC = () => {
                 chatBackground.set(selectedChatBackground.get());
               }}
               onClick={() => {
-                console.log(color);
+                snackbarStore.addSnackbar("Wallpaper updated");
                 localStorage.setItem("color", color);
                 selectedChatBackground.set({...colors[index]});
               }}
