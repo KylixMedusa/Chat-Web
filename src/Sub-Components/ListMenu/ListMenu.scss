@@ -41,6 +41,17 @@
         transform-origin: bottom right;
         transform: scale(0);
     }
+    &.open-bottom-left{
+        transform-origin: bottom left;
+        transform: scale(1);
+        & ~ .overlay{
+            display: block;
+        }
+    }
+    &.close-bottom-left{
+        transform-origin: bottom left;
+        transform: scale(0);
+    }
     li{
         list-style: none;
         padding: 10px 0;
