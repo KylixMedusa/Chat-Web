@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.scss";
 import Navbar from "./Components/Navbar/Navbar";
 import ChannelsSection from "./Containers/ChannelsSection/ChannelsSection";
-import MainChat, { chatBackground } from "./Containers/Main-Chat/Main-Chat";
+import MainChat from "./Containers/Main-Chat/Main-Chat";
 import SideSection from "./Containers/SideSection/SideSection";
 import { observable } from "mobx";
 import { observer } from "mobx-react-lite";
-import { handleWallpaper, patternView, setInitWallpaper } from "./Components/Wallpaper/Wallpaper";
+import {
+  handleWallpaper,
+  patternView,
+  setInitWallpaper,
+} from "./Components/Wallpaper/Wallpaper";
+import ContextProvider from "./ContextProvider";
+import Snackbar from "./Components/Snackbars/Snackbar";
 
 export const channelSectionHandler = observable.box("Chats");
 export const profileData = observable.box({
@@ -40,22 +46,19 @@ function checkTheme() {
     localStorage.setItem("theme", "light");
   }
   let color = localStorage.getItem("color");
-  if(color){
-    setInitWallpaper(dataTheme.get(),color);
-  }
-  else{
+  if (color) {
+    setInitWallpaper(dataTheme.get(), color);
+  } else {
     handleWallpaper(dataTheme.get());
   }
   let pattern = localStorage.getItem("pattern");
-  if(pattern){
-    if(pattern === "false"){
+  if (pattern) {
+    if (pattern === "false") {
       patternView.set(false);
-    }
-    else{
+    } else {
       patternView.set(true);
     }
-  }
-  else{
+  } else {
     localStorage.setItem("pattern", "true");
   }
 }
@@ -65,17 +68,20 @@ checkTheme();
 
 const App: React.FC = () => {
   return (
-    <div className="flex-container" data-theme={dataTheme.get()}>
-      <div className="top-flex-bar"></div>
-      <div className="flex-wrapper">
-        <Navbar></Navbar>
-        <ChannelsSection></ChannelsSection>
-        <div className="wrapper-side">
-          <MainChat></MainChat>
-          <SideSection></SideSection>
+    <ContextProvider>
+      <div className="flex-container" data-theme={dataTheme.get()}>
+        <div className="top-flex-bar"></div>
+        <div className="flex-wrapper">
+          <Snackbar></Snackbar>
+          <Navbar></Navbar>
+          <ChannelsSection></ChannelsSection>
+          <div className="wrapper-side">
+            <MainChat></MainChat>
+            <SideSection></SideSection>
+          </div>
         </div>
       </div>
-    </div>
+    </ContextProvider>
   );
 };
 
