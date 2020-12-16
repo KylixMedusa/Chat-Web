@@ -4,10 +4,35 @@
     .container{
         padding:10px 16px;
         padding-bottom: 25px;
-        position: relative;
-        h2{
-            margin-top: 0;
-            font-weight: 600;
+        .title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            h2{
+                margin: 0;
+                font-weight: 600;
+            }
+            .icon-menu{
+                position: relative;
+                cursor: pointer;
+                transform: translateY(3px);
+                .icon{
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    i{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                        path{
+                            fill:var(--icon-color-1);
+                        }
+                    }
+                }
+            }
         }
     }
     .search--container{
