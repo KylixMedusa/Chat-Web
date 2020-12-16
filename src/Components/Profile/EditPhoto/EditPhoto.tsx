@@ -1,6 +1,5 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useRef } from "react";
-import { start } from "repl";
 import { profileData } from "../../../App";
 import "./EditPhoto.scss";
 

@@ -95,7 +95,7 @@ export function setInitWallpaper(theme: string, color: string) {
 }
 
 function setColorDarkColor(color: string) {
-  if (color != "var(--bg-color-4)") {
+  if (color !== "var(--bg-color-4)") {
     let index = colorsDark.findIndex((set) => {
       return set.color === color;
     });
@@ -110,7 +110,7 @@ function setColorDarkColor(color: string) {
   }
 }
 function setColorLightColor(color: string) {
-  if (color != "var(--bg-color-4)") {
+  if (color !== "var(--bg-color-4)") {
     let index = colorsLight.findIndex((set) => {
       return set.color === color;
     });
@@ -126,7 +126,7 @@ function setColorLightColor(color: string) {
 }
 
 function setColorDark() {
-  if (selectedChatBackground.get().color != "var(--bg-color-4)") {
+  if (selectedChatBackground.get().color !== "var(--bg-color-4)") {
     let index = colorsLight.findIndex((set) => {
       return set.color === selectedChatBackground.get().color;
     });
@@ -143,7 +143,7 @@ function setColorDark() {
   }
 }
 function setColorLight() {
-  if (selectedChatBackground.get().color != "var(--bg-color-4)") {
+  if (selectedChatBackground.get().color !== "var(--bg-color-4)") {
     let index = colorsDark.findIndex((set) => {
       return set.color === selectedChatBackground.get().color;
     });
@@ -183,14 +183,14 @@ const Wallpaper: React.FC = () => {
               className="color-card default selected"
               title="Default"
               onMouseEnter={() => {
-                chatBackground.set(colors[0]);
+                chatBackground.set({...colors[0]});
               }}
               onMouseLeave={() => {
                 chatBackground.set(selectedChatBackground.get());
               }}
               onClick={() => {
                 localStorage.setItem("color", color);
-                selectedChatBackground.set(colors[0]);
+                selectedChatBackground.set({...colors[0]});
               }}
               key="default"
             >
@@ -203,14 +203,14 @@ const Wallpaper: React.FC = () => {
               className="color-card default"
               title="Default"
               onMouseEnter={() => {
-                chatBackground.set(colors[0]);
+                chatBackground.set({...colors[0]});
               }}
               onMouseLeave={() => {
                 chatBackground.set(selectedChatBackground.get());
               }}
               onClick={() => {
                 localStorage.setItem("color", color);
-                selectedChatBackground.set(colors[0]);
+                selectedChatBackground.set({...colors[0]});
               }}
               key="default"
             >
@@ -224,14 +224,14 @@ const Wallpaper: React.FC = () => {
             <span
               className="color-card selected"
               onMouseEnter={() => {
-                chatBackground.set(colors[index]);
+                chatBackground.set({...colors[index]});
               }}
               onMouseLeave={() => {
                 chatBackground.set(selectedChatBackground.get());
               }}
               onClick={() => {
                 localStorage.setItem("color", color);
-                selectedChatBackground.set(colors[index]);
+                selectedChatBackground.set({...colors[index]});
               }}
               style={{ backgroundColor: color }}
               key={color}
@@ -242,7 +242,7 @@ const Wallpaper: React.FC = () => {
             <span
               className="color-card"
               onMouseEnter={() => {
-                chatBackground.set(colors[index]);
+                chatBackground.set({...colors[index]});
               }}
               onMouseLeave={() => {
                 chatBackground.set(selectedChatBackground.get());
@@ -250,7 +250,7 @@ const Wallpaper: React.FC = () => {
               onClick={() => {
                 console.log(color);
                 localStorage.setItem("color", color);
-                selectedChatBackground.set(colors[index]);
+                selectedChatBackground.set({...colors[index]});
               }}
               style={{ backgroundColor: color }}
               key={color}

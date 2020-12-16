@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
 import Picker from "emoji-picker-react";
-import ContentEditable from "../../Components/ContentEditable";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import { observable } from "mobx";
 import {observer} from "mobx-react-lite";

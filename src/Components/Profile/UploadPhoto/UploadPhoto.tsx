@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditPhoto from "../EditPhoto/EditPhoto";
 import "./UploadPhoto.scss";
 

@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import ListMenu from '../ListMenu/ListMenu';
+import React, { useRef } from 'react';
 import './Chat.scss';
 
 var parse = require('html-react-parser')

@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "./Notifications.scss";
 
 import { observer } from "mobx-react-lite";
 
 import { channelSectionHandler } from "../../App";
-import { updateStatement } from "typescript";
 
 const Notifications: React.FC = () => {
   const [checkedState,setCheckedState] = useState([false,false,false,false]);

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Profile.scss";
 
 import { observer } from "mobx-react-lite";
@@ -161,7 +161,7 @@ const Profile: React.FC = () => {
             className={`hover-overlay ${
               menuClass === "open-top-left" ||
               !profileData.get().avatar ||
-              profileData.get().avatar == ""
+              profileData.get().avatar === ""
                 ? "active"
                 : ""
             }`}
