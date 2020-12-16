@@ -1,130 +1,176 @@
 .message-right {
-    text-align: right;
-    position: relative;
-    padding-bottom: 15px;
-    padding-right: 15px;
-    display: flex;
-    justify-content: flex-end;
-    .icon-menu{
-      height: max-content;
-      opacity: 0;
-      transition: opacity 0.2s ease-in-out;
-      margin-right: 10px;
-      &.active{
-        opacity: 1;
-      }
+  text-align: right;
+  position: relative;
+  padding-bottom: 15px;
+  padding-right: 15px;
+  display: flex;
+  justify-content: flex-end;
+
+  .icon-menu {
+    height: max-content;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    margin-right: 10px;
+
+    &.active {
+      opacity: 1;
     }
-    &:hover{
-      .icon-menu{
-        opacity: 1;
-      }
-    }
-  }
-  .message-right .message-text {
-    line-height: 1.8;
-    display: inline-block;
-    background: var(--accent-color);
-    padding: 5px 10px;
-    position: relative;
-    color: var(--text-color-secondary) !important;
-    border-radius: 10px 0 10px 10px;
-    text-align: left;
-    max-width: 70%;
-    font-weight: 400;
-    font-size: 13px;
-    word-break: break-word;
-    *{
-      color:var(--text-color-secondary) !important;
-      background-color: none !important;
-    }
-  }
-  .message-right .message-text:before {
-    content: "";
-    position: absolute;
-    right: -10px;
-    top: 0px;
-    width: 0; 
-    height: 0; 
-    border-left: 8px solid var(--accent-color);
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-top: 8px solid var(--accent-color);
-  }
-  .message-right .message-time {
-    color: #e4e8f0;
-    position: relative;
-    bottom: -5px;
-    margin-left: 5px;
-    float: right;
-    font-size: 11px;
-    font-weight: 400;
-  }
-  .message-left {
-    text-align: left;
-    position: relative;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    display: flex;
-    .icon{
-      margin-left: 10px;
-    }
-    .icon-menu{
-      height: max-content;
-      opacity: 0;
-      transition: opacity 0.2s ease-in-out;
-      &.active{
-        opacity: 1;
-      }
-    }
-    &:hover{
-      .icon-menu{
-        opacity: 1;
-      }
-    }
-  }
-  .message-left .message-text {
-    max-width: 70%;
-    display: inline-block;
-    background: var(--bg-color-2);
-    padding: 5px 10px;
-    position: relative;
-    color: var(--text-color-primary) !important;
-    border-radius: 0px 10px 10px 10px;
-    line-height: 1.8;
-    font-weight: 400;
-    font-size: 13px;
-    word-break: break-word;
-    *{
-      color: var(--text-color-primary) !important;
-      background-color: none !important;
-    }
-  }
-  .message-left .message-text:before {
-    content: "";
-    position: absolute;
-    left: -5px;
-    top: 0px;
-    width: 0; 
-    height: 0; 
-    border-right: 8px solid var(--bg-color-2);
-    border-left: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-top: 8px solid var(--bg-color-2);
-  }
-  .message-left .message-time {
-    color: var(--text-color-tertiary);
-    position: relative;
-    bottom: -5px;
-    float: right;
-    margin-left: 5px;
-    font-size: 11px;
-    font-weight: 400;
   }
 
-  .message-text{
-    img{
-      height: 20px;
-      vertical-align: top;
-      image-rendering: -webkit-optimize-contrast;
+  &:hover {
+    .icon-menu {
+      opacity: 1;
     }
   }
+}
+
+.message-right .message-text {
+  line-height: 1.8;
+  display: inline-block;
+  background: var(--accent-color);
+  padding: 5px 10px;
+  position: relative;
+  color: var(--text-color-secondary) !important;
+  border-radius: 10px 0 10px 10px;
+  text-align: left;
+  max-width: 70%;
+  font-weight: 400;
+  font-size: 13px;
+  word-break: break-word;
+
+  * {
+    color: var(--text-color-secondary) !important;
+    background-color: none !important;
+  }
+}
+
+.message-right.focus .message-text:before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 0px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid var(--accent-color);
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-top: 8px solid var(--accent-color);
+}
+
+.message-right .message-time {
+  color: #e4e8f0;
+  position: relative;
+  bottom: -5px;
+  margin-left: 5px;
+  float: right;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.message-left {
+  text-align: left;
+  position: relative;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  display: flex;
+
+  .icon {
+    margin-left: 10px;
+  }
+
+  .icon-menu {
+    height: max-content;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    .icon-menu {
+      opacity: 1;
+    }
+  }
+}
+
+.message-left .message-text {
+  max-width: 70%;
+  display: inline-block;
+  background: var(--bg-color-2);
+  padding: 5px 10px;
+  position: relative;
+  color: var(--text-color-primary) !important;
+  border-radius: 0px 10px 10px 10px;
+  line-height: 1.8;
+  font-weight: 400;
+  font-size: 13px;
+  word-break: break-word;
+
+  * {
+    color: var(--text-color-primary) !important;
+    background-color: none !important;
+  }
+}
+
+.message-left.focus .message-text:before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 0px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid var(--bg-color-2);
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-top: 8px solid var(--bg-color-2);
+}
+
+.message-left .message-time {
+  color: var(--text-color-tertiary);
+  position: relative;
+  bottom: -5px;
+  float: right;
+  margin-left: 5px;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.message-text {
+  img {
+    height: 20px;
+    vertical-align: top;
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+.date-header{
+  position: relative;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  &::before{
+    content: '';
+    position: absolute;
+    top:50%;
+    height: 1px;
+    width: 100%;
+    border-radius: 50%;
+    background-color: var(--bg-color-3);
+  }
+  span{
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-color-3);
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 13px;
+    letter-spacing: .5px;
+    margin: 10px;
+    color: var(--text-color-primary);
+  }
+}
