@@ -19,7 +19,7 @@ const MainChat: React.FC = () => {
   const [cursor, setCursor] = useState(0);
   const [visiblity, setVisiblity] = useState("visible");
   const [messages, setMessages] = useState([
-    { id: 0, text: "", author: 0, time: "" },
+    { header:"",focus:true, id: 0, text: "", author: 0, time: "" },
   ]);
   const inputElem = useRef<HTMLDivElement>(null);
   const [pickerClass, setPickerClass] = useState("");
@@ -116,9 +116,14 @@ const MainChat: React.FC = () => {
       let curr_hour = d.getHours();
       let curr_min = d.getMinutes();
       let time = formatTime(curr_hour) + ":" + formatTime(curr_min);
+      let focus = true;
+      let author = 1;
+      if(messages.length >= 1)
+        if(messages[messages.length - 1].author === author)
+          focus = false;
       setMessages([
         ...messages,
-        { id: messages.length, text: text.trim(), author: 1, time: time },
+        { header:"",focus:focus,id: messages.length, text: text.trim(), author: 1, time: time },
       ]);
       inputElem.current.innerHTML = "";
       setVisiblityHandler();
@@ -277,6 +282,8 @@ const MainChat: React.FC = () => {
               .filter((message) => message.id && message.id !== 0)
               .map((message) => (
                 <Chat
+                  header={message.header === ""? null: message.header}
+                  focus={message.focus}
                   text={message.text}
                   author={message.author}
                   time={message.time}
