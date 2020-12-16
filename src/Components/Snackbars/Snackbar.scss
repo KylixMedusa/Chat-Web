@@ -1,0 +1,16 @@
+.snackbar-wrapper{
+    position: fixed;
+    bottom: 40px;
+    left: 60px;
+    z-index: 10;
+    .snackbar{
+        background-color: var(--bg-color-3);
+        border: 1px solid var(--border-color-2);
+        padding: 12px 25px;
+        border-radius: 5px;
+        font-size: 16px;
+        letter-spacing: .5px;
+        margin-top: 10px;
+        color: var(--text-color-primary);
+    }
+}
