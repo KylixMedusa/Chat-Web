@@ -1,5 +1,6 @@
 .flex-container{
     height: 100vh;
+    min-width: 650px;
     overflow-x: auto;
     overflow-y: hidden;
     background-color: var(--bg-color-3);
@@ -46,7 +47,7 @@
     }
 }
 
-@media screen and (max-width:1100px){
+@media screen and (max-width:1160px){
     .flex-container{
         .wrapper-side{
             width: 100%;
@@ -95,6 +96,30 @@
     }
 }
 
+@media screen and (max-width:900px){
+    .flex-container{
+        .wrapper-side{
+            min-width:calc(60% - 75px);
+            .side-section{
+                .side-section-wrapper{
+                    min-width:calc(60vw - 75px);
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:650px){
+    .flex-container{
+        .wrapper-side{
+            min-width:calc(60% - 75px);
+            .side-section{
+                .side-section-wrapper{
+                    min-width:315px;
+                }
+            }
+        }
+    }
+}
 @keyframes fade-in{
     0%{
         // opacity: 0;
