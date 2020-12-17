@@ -1,42 +1,40 @@
-.all-chats-container{
+.all-chats-container {
     height: 100%;
     width: 100%;
-    .container{
-        padding:10px 16px;
+
+    .container {
+        padding: 10px 16px;
         padding-bottom: 25px;
-        .title{
+
+        .title {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            h2{
+
+            h2 {
                 margin: 0;
                 font-weight: 600;
             }
-            .icon-menu{
-                position: relative;
-                cursor: pointer;
+
+            .icon {
                 transform: translateY(3px);
-                .icon{
-                    border-radius: 50%;
+                i {
                     display: flex;
-                    align-items: center;
                     justify-content: center;
-                    i{
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        cursor: pointer;
-                        path{
-                            fill:var(--icon-color-1);
-                        }
+                    align-items: center;
+                    cursor: pointer;
+
+                    path {
+                        fill: var(--icon-color-1);
                     }
                 }
             }
         }
     }
-    .search--container{
-        width:100%;
+
+    .search--container {
+        width: 100%;
         background-color: var(--bg-color-3);
         border-radius: 10px;
         display: flex;
@@ -44,29 +42,35 @@
         align-items: center;
         justify-content: space-between;
     }
-    .search--container div{
-        height:24px;
+
+    .search--container div {
+        height: 24px;
     }
-    .search--container input{
-        width:100%;
-        border:none;
+
+    .search--container input {
+        width: 100%;
+        border: none;
         outline: 0;
-        margin: 0 20px  0 20px;
+        margin: 0 20px 0 20px;
         font-size: 1rem;
         background-color: inherit;
     }
-    .search--container input::placeholder{
-        color:var(--text-color-tertiary);
+
+    .search--container input::placeholder {
+        color: var(--text-color-tertiary);
     }
-    .search--container .search-icon{
+
+    .search--container .search-icon {
         opacity: 1;
         transition: all 0.25s ease-in-out;
     }
-    .search--container .back-icon{
+
+    .search--container .back-icon {
         position: absolute;
         opacity: 0;
         transition: all 0.25s ease-in-out;
     }
+
     // .search--container:focus-within  .search-icon{
     //     animation: rotate 0.3s forwards;
     // }
@@ -84,27 +88,30 @@
     //     animation: rotate2 0.3s forwards;
     //     display: block;
     // }
-    @keyframes rotate2{
-        0%{
+    @keyframes rotate2 {
+        0% {
             opacity: 0;
             transform: rotate(-90deg);
         }
-        100%{
+
+        100% {
             opacity: 1;
             transform: rotate(0deg);
         }
     }
 
-    .main{
-        width:100%;
+    .main {
+        width: 100%;
         overflow: hidden;
         height: 100%;
-        .wrapper{
-            width:100%;
-            height:100%;
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
             overflow: auto;
+
             // box-shadow: inset 0 2px 4px rgba(15,34,58,.12);
-            .card{
+            .card {
                 height: 72px;
                 // background-color: white;
                 display: flex;
@@ -114,69 +121,86 @@
                 border-radius: 10px;
                 width: calc(100% - 4%);
                 transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                &:hover,&.active{
+
+                &:hover,
+                &.active {
                     background-color: var(--bg-color-3);
-                    & .icon.menu{
+
+                    & .icon.menu {
                         display: flex !important;
                     }
                 }
-                .card-image{
+
+                .card-image {
                     height: 40px;
                     width: 40px;
                     border-radius: 50%;
-                    img{
+
+                    img {
                         height: 100%;
                         width: 40px;
                         border-radius: 50%;
                     }
                 }
-                .card-contents{
+
+                .card-contents {
                     padding-left: 10px;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     overflow: hidden;
                     width: 100%;
-                    .top,.bottom{
+
+                    .top,
+                    .bottom {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                        width:100%
+                        width: 100%
                     }
-                    .top{
-                        h3{
+
+                    .top {
+                        h3 {
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             margin: 0;
                             font-weight: 600;
                         }
-                        .date-time{
+
+                        .date-time {
                             font-size: small;
                         }
                     }
-                    .bottom{
-                        .card-icons{
+
+                    .bottom {
+                        .card-icons {
                             display: flex;
                             align-items: center;
-                            .icon{
-                                height:25px;
-                                width:25px;
+
+                            .icon {
+                                height: 25px;
+                                width: 25px;
                                 border-radius: 50%;
                                 cursor: pointer;
+
                                 // transition: background-color 0.2s ease-in-out;
-                                path{
-                                    fill:var(--icon-color-2);
+                                path {
+                                    fill: var(--icon-color-2);
                                 }
-                                &:hover, &:focus{
-                                    path{
-                                        fill:var(--icon-color-3);
+
+                                &:hover,
+                                &:focus {
+                                    path {
+                                        fill: var(--icon-color-3);
                                     }
                                 }
+
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                &.badge{
+
+                                &.badge {
                                     background-color: var(--accent-color);
                                     color: white;
                                     width: auto;
@@ -184,12 +208,14 @@
                                     padding: 0 5px;
                                     border-radius: 15px;
                                 }
+
                                 // &.menu{
                                 //     display: none;
                                 // }
                             }
                         }
-                        p{
+
+                        p {
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
@@ -202,7 +228,8 @@
             }
         }
     }
-    #menu{
-        top:40%;
+
+    #menu {
+        top: 40%;
     }
 }
