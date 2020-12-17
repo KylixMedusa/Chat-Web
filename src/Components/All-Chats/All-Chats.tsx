@@ -39,14 +39,20 @@ const AllChats: React.FC = () => {
   };
 
   const [topMenuClass, setTopMenuClass] = useState("");
-  const topMenuToggleHandler = ()=>{
-    if(topMenuClass === 'open-top-right'){
-      setTopMenuClass('close-top-right');
+  const [posTop, setPosTop] = useState({ top: 0, left: 0 });
+  const topMenuToggleHandler = () => {
+    if (topMenuClass === "open-top-right") {
+      setTopMenuClass("close-top-right");
+    } else {
+      setTopMenuClass("open-top-right");
     }
-    else{
-      setTopMenuClass('open-top-right');
-    }
-  }
+  };
+  const topPosHandler = (event: any) => {
+    setPosTop({
+      top: event.target.getBoundingClientRect().top + 18,
+      left: event.target.getBoundingClientRect().left + 10 - 143,
+    });
+  };
 
   return (
     <React.Fragment>
@@ -54,34 +60,25 @@ const AllChats: React.FC = () => {
         <div className="container">
           <div className="title">
             <h2>Chats</h2>
-            <div className="icon-menu">
-              <div className="icon" role="button">
-                <i
-                  onClick={(e) => {
-                    topMenuToggleHandler();
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                  >
-                    <path
-                      fill="var(--icon-color-1)"
-                      d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
-                    ></path>
-                  </svg>
-                </i>
-              </div>
-              <ListMenu
-                class={topMenuClass}
-                style={{ top: "110%", right: "50%" }}
-                toggle={topMenuToggleHandler}
+            <div className="icon" role="button">
+              <i
+                onClick={(e) => {
+                  topPosHandler(e);
+                  topMenuToggleHandler();
+                }}
               >
-                <li>Archived</li>
-                <li>Starred</li>
-              </ListMenu>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path
+                    fill="var(--icon-color-1)"
+                    d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
+                  ></path>
+                </svg>
+              </i>
             </div>
           </div>
           <div className="search--container" id="search-container">
@@ -265,6 +262,14 @@ const AllChats: React.FC = () => {
         <li>Pin Chat</li>
         <li>Mark as Unread</li>
       </ListMenu>
+      {/* <ListMenu
+        class={topMenuClass}
+        style={{ top: posTop.top, left: posTop.left }}
+        toggle={topMenuToggleHandler}
+      >
+        <li>Archived</li>
+        <li>Starred</li>
+      </ListMenu> */}
     </React.Fragment>
   );
 };
