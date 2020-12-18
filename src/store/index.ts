@@ -1,13 +1,8 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
+import ProfileStore from "./ProfileStore";
 import SnackbarStore from "./SnackbarStore";
+import ThemeStore from "./ThemeStore";
 
 export const SnackbarContext = createContext<SnackbarStore | undefined>(undefined);
-
-
-export const useStore = <T>(Context: React.Context<T | undefined>) => {
-    const context = useContext(Context);
-    if (context === undefined) {
-        throw new Error('useStore must be used within that StoreProvider');
-    }
-    return context;
-};
+export const ProfileContext = createContext<ProfileStore | undefined>(undefined);
+export const ThemeContext = createContext<ThemeStore | undefined>(undefined);
