@@ -1,19 +1,19 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
-import * as store from '../../store';
-import { useStore } from '../../store';
+import { SnackbarContext } from '../../store';
+import { useStore } from '../../store/hooks';
 import "./Snackbar.scss";
 
 const Snackbar:React.FC = ()=>{
-    const snackbarStore = useStore(store.SnackbarContext);
+    const snackbarStore = useStore(SnackbarContext);
 
     function generateSnackbars(){
         let snackbars:any = [];
-        console.log(snackbarStore.snackbars)
-        for(var snackbar of snackbars){
+        for(let index in snackbarStore.snackbars){
+            let snackbar = snackbarStore.snackbars[index];
             snackbars.push(
-                <div className="snackbar">
-                    {snackbar}
+                <div className={`snackbar ${snackbar.class}`} key={index}>
+                    {snackbar.message}
                 </div>
             )
         }
@@ -22,7 +22,6 @@ const Snackbar:React.FC = ()=>{
     }
 
     useEffect(()=>{
-        console.log(snackbarStore.snackbars)
         generateSnackbars()
     },[snackbarStore.snackbars])
 
