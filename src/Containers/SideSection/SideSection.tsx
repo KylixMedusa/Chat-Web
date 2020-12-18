@@ -1,18 +1,21 @@
 import React from "react";
 import "./SideSection.scss";
 import { observer } from "mobx-react-lite";
-import { sideSectionClass } from "../Main-Chat/Main-Chat";
+import { useStore } from "../../store/hooks";
+import { ThemeContext } from "../../store";
 
 const SideSection: React.FC = () => {
+  const themeStore = useStore(ThemeContext);
+
   return (
-    <div className={`side-section ${sideSectionClass}`}>
+    <div className={`side-section ${themeStore.sideSectionClass}`}>
       <div className="side-section-wrapper">
         <div className="top-bar">
           <div
             role="button"
             className="icon"
             onClick={() => {
-              sideSectionClass.set("close");
+              themeStore.setSectionClass("close");
             }}
           >
             <i>
