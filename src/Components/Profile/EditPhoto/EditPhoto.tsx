@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useRef } from "react";
-import { profileData } from "../../../App";
+import { ProfileContext, SnackbarContext } from "../../../store";
+import { useStore } from "../../../store/hooks";
 import "./EditPhoto.scss";
 
 type Props = {
@@ -11,6 +12,9 @@ type Props = {
 const EditPhoto: React.FC<Props> = (props) => {
   const overlay = useRef<HTMLCanvasElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
+  const profileStore = useStore(ProfileContext);
+  const snackbarStore = useStore(SnackbarContext);
+  
   var ratio = 0;
   var isDragging = false,
     shiftX: any = 0,
@@ -241,7 +245,11 @@ const EditPhoto: React.FC<Props> = (props) => {
         );
         let src = canvas2.toDataURL();
         if(src){
-          profileData.set({...profileData.get(),avatar:src});
+          if(profileStore.avatar === "")
+            snackbarStore.addSnackbar("Profile Picture Added");
+          else  
+            snackbarStore.addSnackbar("Profile Picture Updated");
+          profileStore.updateAvatar(src);
         }
         props.toggle();
 
