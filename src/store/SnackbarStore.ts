@@ -1,22 +1,30 @@
 import { observable, action } from "mobx";
 
 export default class SnackbarStore {
-  @observable snackbars: string[] = [];
+  @observable snackbars: {message:string, class:string}[] = [];
 
-  @action.bound
+  @action
   async addSnackbar(message: string) {
-    let temp = [...this.snackbars];
-    temp.push(message);
+    let temp = [...this.snackbars,{message:message, class:""}];
     this.snackbars = [...temp];
     if (this.snackbars.length > 3) {
-      this.pop();
+      this.disappear();
     }
-    // await new Promise(r=>{setTimeout(r,3000)});
-    // this.pop();
+    await new Promise(r=>{setTimeout(r,3000)});
+    this.pop();
   }
 
-  @action.bound
-  pop() {
+  @action
+  async disappear() {
+    let temp = [...this.snackbars];
+    temp[0].class = "remove";
+    this.snackbars = [...temp];
+    await new Promise(r=>{setTimeout(r,500)});
+    this.pop();
+  }
+
+  @action 
+  pop(){
     let temp = [...this.snackbars];
     if(this.snackbars.length > 1)
         this.snackbars = [...temp.slice(1)];
