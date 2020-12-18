@@ -3,19 +3,17 @@ import Chat from "../../Sub-Components/Chat/Chat";
 import "./Main-Chat.scss";
 import Picker from "emoji-picker-react";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
-import { observable } from "mobx";
 import {observer} from "mobx-react-lite";
-import { patternView } from "../../Components/Wallpaper/Wallpaper";
-
-export const sideSectionClass = observable.box('close');
-export const chatBackground = observable.box({color:'var(--bg-color-4)', opacity:"0.06", pattern:"dark"});
-export const selectedChatBackground = observable.box({color:'var(--bg-color-4)', opacity:"0.06", pattern:"dark"});
+import { ThemeContext } from "../../store";
+import { useStore } from "../../store/hooks";
 
 
 var emojis = require('../../emojis.json').emojis;
 var emojiRegex = require('emoji-regex');
 
+
 const MainChat: React.FC = () => {
+  const themeStore = useStore(ThemeContext)
   const [cursor, setCursor] = useState(0);
   const [visiblity, setVisiblity] = useState("visible");
   const [messages, setMessages] = useState([
@@ -132,7 +130,7 @@ const MainChat: React.FC = () => {
 
   function formatTime(time:number){
     let temp = String(time)
-    if(temp.length == 1){
+    if(temp.length === 1){
       return(`0${temp}`);
     }
     else{
@@ -221,7 +219,7 @@ const MainChat: React.FC = () => {
               alt=""
             />
           </div>
-          <div className="content" onClick={()=>{sideSectionClass.set('open')}}>
+          <div className="content" onClick={()=>themeStore.setSectionClass('open')}>
             <h3>Aayush Agarwal</h3>
             <small>Online</small>
           </div>
@@ -271,10 +269,10 @@ const MainChat: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="chat-holder" style={{backgroundColor:chatBackground.get().color}}>
+        <div className="chat-holder" style={{backgroundColor:themeStore.chatBackground.color}}>
           {
-            patternView.get()?
-            <div className="pattern" style={{opacity: chatBackground.get().opacity}} data-pattern = {chatBackground.get().pattern}></div>
+            themeStore.patternView?
+            <div className="pattern" style={{opacity: themeStore.chatBackground.opacity}} data-pattern = {themeStore.chatBackground.pattern}></div>
             :null
           }
           <div className="chat-wrapper" dir="btt">
