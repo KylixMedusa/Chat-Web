@@ -78,6 +78,7 @@ export default class ThemeStore {
   } = { color: "var(--bg-color-4)", opacity: "0.06", pattern: "dark" };
   @observable colors: any[] = [...colorsLight];
   @observable patternView: boolean = true;
+  darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
   constructor() {
     this.dataTheme = "light";
@@ -108,6 +109,36 @@ export default class ThemeStore {
       this.dataTheme = "dark";
     } else {
       this.dataTheme = "light";
+    }
+
+    try {
+      // Chrome & Firefox
+      this.darkMediaQuery.addEventListener("change", () => {
+        if (this.selectedTheme === "system default") {
+          if (this.dataTheme === "light") {
+            this.dataTheme = "dark";
+          } else {
+            this.dataTheme = "light";
+          }
+          this.handleWallpaper(this.dataTheme);
+        }
+      });
+    } catch (e1) {
+      try {
+        // Safari
+        this.darkMediaQuery.addListener(() => {
+          if (this.selectedTheme === "system default") {
+            if (this.dataTheme === "light") {
+              this.dataTheme = "dark";
+            } else {
+              this.dataTheme = "light";
+            }
+            this.handleWallpaper(this.dataTheme);
+          }
+        });
+      } catch (e2) {
+        console.error(e2);
+      }
     }
   }
 
