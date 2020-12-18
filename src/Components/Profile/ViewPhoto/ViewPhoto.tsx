@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { profileData } from "../../../App";
+import { ProfileContext } from "../../../store";
+import { useStore } from "../../../store/hooks";
 import './ViewPhoto.scss';
 
 type Props = {
@@ -9,14 +10,16 @@ type Props = {
 }
 
 const ViewPhoto: React.FC<Props> = (props) => {
+  const profileStore = useStore(ProfileContext);
+
   return (
     <div className={`view-photo-container ${props.class}`}>
       <header>
         <div>
           <div className="image">
-            <img src={profileData.get().avatar} alt="" />
+            <img src={profileStore.avatar} alt="" />
           </div>
-          <p>{profileData.get().phone}</p>
+          <p>{profileStore.phone}</p>
         </div>
         <div role="button" className="icon" onClick={props.toggle}>
           <i>
@@ -35,7 +38,7 @@ const ViewPhoto: React.FC<Props> = (props) => {
         </div>
       </header>
       <div className="image-holder">
-        <img src={profileData.get().avatar} alt="" />
+        <img src={profileStore.avatar} alt="" />
       </div>
     </div>
   );
