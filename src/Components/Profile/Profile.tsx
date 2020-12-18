@@ -3,22 +3,26 @@ import "./Profile.scss";
 
 import { observer } from "mobx-react-lite";
 
-import { channelSectionHandler, profileData } from "../../App";
+import { channelSectionHandler } from "../../App";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
 import ViewPhoto from "./ViewPhoto/ViewPhoto";
 import TakePhoto from "./TakePhoto/TakePhoto";
 import UploadPhoto from "./UploadPhoto/UploadPhoto";
 import Modal from "../../Sub-Components/Modal/Modal";
+import { ProfileContext, SnackbarContext } from "../../store";
+import { useStore } from "../../store/hooks";
 
 const Profile: React.FC = () => {
+  const profileStore = useStore(ProfileContext);
   const [menuClass, setMenuClass] = useState("");
   const [pos, setPos] = useState({ left: "50%", top: "50%" });
   const [editHandleOne, setEditHandlerOne] = useState(false);
   const [editHandleTwo, setEditHandlerTwo] = useState(false);
   const nameInputElem = useRef<HTMLDivElement>(null);
   const aboutInputElem = useRef<HTMLDivElement>(null);
-  const [name, setName] = useState(profileData.get().name);
-  const [about, setAbout] = useState(profileData.get().status);
+  const [name, setName] = useState(profileStore.name);
+  const [about, setAbout] = useState(profileStore.status);
+  const snackbarStore = useStore(SnackbarContext);
 
   const menuToggleHandler = () => {
     if (menuClass === `open-top-left`) {
@@ -92,10 +96,12 @@ const Profile: React.FC = () => {
     });
   };
   function saveProfileName() {
-    profileData.set({ ...profileData.get(), name: name });
+    snackbarStore.addSnackbar("Name Updated");
+    profileStore.updateName(name);
   }
   function saveProfileStatus() {
-    profileData.set({ ...profileData.get(), status: about });
+    snackbarStore.addSnackbar("Status Updated");
+    profileStore.updateStatus(about);
   }
   const [removePhotoClass, setRemovePhotoClass] = useState("");
   const removePhotoToggleHandler = () => {
@@ -138,8 +144,8 @@ const Profile: React.FC = () => {
       </div>
       <div style={{ overflowY: "auto", height: "100%" }}>
         <div className="main-image">
-          {profileData.get().avatar && profileData.get().avatar !== "" ? (
-            <img src={profileData.get().avatar} alt="" />
+          {profileStore.avatar && profileStore.avatar !== "" ? (
+            <img src={profileStore.avatar} alt="" />
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -160,8 +166,8 @@ const Profile: React.FC = () => {
           <div
             className={`hover-overlay ${
               menuClass === "open-top-left" ||
-              !profileData.get().avatar ||
-              profileData.get().avatar === ""
+              !profileStore.avatar ||
+              profileStore.avatar === ""
                 ? "active"
                 : ""
             }`}
@@ -183,7 +189,7 @@ const Profile: React.FC = () => {
                 ></path>
               </svg>
             </p>
-            {profileData.get().avatar && profileData.get().avatar !== "" ? (
+            {profileStore.avatar && profileStore.avatar !== "" ? (
               <p>
                 CHANGE <br></br> PROFILE PICTURE
               </p>
@@ -207,7 +213,7 @@ const Profile: React.FC = () => {
                     setName(nameInputElem.current?.innerHTML);
                 }}
               >
-                {profileData.get().name}
+                {profileStore.name}
               </div>
               <i>
                 {!editHandleOne ? (
@@ -270,7 +276,7 @@ const Profile: React.FC = () => {
                     setAbout(aboutInputElem.current?.innerHTML);
                 }}
               >
-                {profileData.get().status}
+                {profileStore.status}
               </div>
               <i>
                 {!editHandleTwo ? (
@@ -320,7 +326,7 @@ const Profile: React.FC = () => {
         style={{ top: pos.top, left: pos.left }}
         toggle={menuToggleHandler}
       >
-        {profileData.get().avatar && profileData.get().avatar !== "" ? (
+        {profileStore.avatar && profileStore.avatar !== "" ? (
           <li
             onClick={() => {
               viewPhotoToggleHandler();
@@ -346,7 +352,7 @@ const Profile: React.FC = () => {
         >
           Upload Photo
         </li>
-        {profileData.get().avatar && profileData.get().avatar !== "" ? (
+        {profileStore.avatar && profileStore.avatar !== "" ? (
           <li
             onClick={() => {
               removePhotoToggleHandler();
@@ -387,8 +393,9 @@ const Profile: React.FC = () => {
           <button
             className="submit"
             onClick={() => {
-              profileData.set({ ...profileData.get(), avatar: "" });
+              profileStore.updateAvatar("")
               removePhotoToggleHandler();
+              snackbarStore.addSnackbar("Profile Picture Removed");
             }}
           >
             Remove
