@@ -5,17 +5,17 @@ import { observer } from "mobx-react-lite";
 
 import {
   channelSectionHandler,
-  checkSystemTheme,
-  dataTheme,
-  profileData,
-  selectedTheme,
 } from "../../App";
 import Modal from "../../Sub-Components/Modal/Modal";
-import { handleWallpaper } from "../Wallpaper/Wallpaper";
+import { ProfileContext, SnackbarContext, ThemeContext } from "../../store";
+import { useStore } from "../../store/hooks";
 
 const Settings: React.FC = () => {
+  const profileStore = useStore(ProfileContext);
+  const themeStore = useStore(ThemeContext);
+  const snackbarStore = useStore(SnackbarContext);
   const [modalClass, setModalClass] = useState("");
-  const [theme, setTheme] = useState(selectedTheme.get());
+  const [theme, setTheme] = useState(themeStore.selectedTheme);
   const modalToggleHandler = () => {
     if (modalClass === `open`) {
       setModalClass(`close`);
@@ -27,15 +27,16 @@ const Settings: React.FC = () => {
     setTheme(val);
   }
   function saveTheme() {
+    snackbarStore.addSnackbar("Theme Updated");
     if (theme === "light" || theme === "dark") {
-      dataTheme.set(theme);
-      selectedTheme.set(theme);
+      themeStore.setDataTheme(theme);
+      themeStore.setSelectedTheme(theme);
     } else {
-      checkSystemTheme();
-      selectedTheme.set("system default");
+      themeStore.checkSystemTheme();
+      themeStore.setSelectedTheme("system default");
     }
-    handleWallpaper(dataTheme.get());
-    localStorage.setItem("theme", selectedTheme.get());
+    themeStore.handleWallpaper(themeStore.dataTheme);
+    localStorage.setItem("theme", themeStore.selectedTheme);
   }
 
   return (
@@ -49,8 +50,8 @@ const Settings: React.FC = () => {
           }}
         >
           <div className="image">
-            {profileData.get().avatar && profileData.get().avatar !== "" ? (
-              <img src={profileData.get().avatar} alt="" />
+            {profileStore.avatar && profileStore.avatar !== "" ? (
+              <img src={profileStore.avatar} alt="" />
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -70,8 +71,8 @@ const Settings: React.FC = () => {
             )}
           </div>
           <div className="content">
-            <h3>{profileData.get().name}</h3>
-            <p>{profileData.get().status}</p>
+            <h3>{profileStore.name}</h3>
+            <p>{profileStore.status}</p>
           </div>
         </div>
         <ul>
