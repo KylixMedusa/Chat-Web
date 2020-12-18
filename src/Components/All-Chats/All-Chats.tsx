@@ -250,6 +250,14 @@ const AllChats: React.FC = () => {
             </div>
           </div>
         </div>
+        <ListMenu
+          class={topMenuClass}
+          style={{ top: posTop.top, left: posTop.left }}
+          toggle={topMenuToggleHandler}
+        >
+          <li>Archived</li>
+          <li>Starred</li>
+        </ListMenu>
       </div>
       <ListMenu
         class={menuClass}
@@ -262,14 +270,6 @@ const AllChats: React.FC = () => {
         <li>Pin Chat</li>
         <li>Mark as Unread</li>
       </ListMenu>
-      {/* <ListMenu
-        class={topMenuClass}
-        style={{ top: posTop.top, left: posTop.left }}
-        toggle={topMenuToggleHandler}
-      >
-        <li>Archived</li>
-        <li>Starred</li>
-      </ListMenu> */}
     </React.Fragment>
   );
 };
