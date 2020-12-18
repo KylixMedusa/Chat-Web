@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import "./Navbar.scss";
 import { observer } from "mobx-react-lite";
 
-import { channelSectionHandler, profileData } from "../../App";
+import { channelSectionHandler } from "../../App";
 import ListMenu from "../../Sub-Components/ListMenu/ListMenu";
+import { ProfileContext } from "../../store";
+import { useStore } from "../../store/hooks";
 
 const Navbar: React.FC = () => {
+  const profileStore = useStore(ProfileContext);
   const [menuClass, setMenuClass] = useState("");
 
   function checkSection(val: string) {
@@ -153,9 +156,9 @@ const Navbar: React.FC = () => {
           <nav>
             <li>
               <div>
-                {profileData.get().avatar && profileData.get().avatar !== "" ? (
+                {profileStore.avatar && profileStore.avatar !== "" ? (
                   <img
-                    src={profileData.get().avatar}
+                    src={profileStore.avatar}
                     className="avatar-image"
                     alt=""
                   />
