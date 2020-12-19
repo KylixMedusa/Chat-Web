@@ -260,7 +260,11 @@ const MainChat: React.FC = () => {
                   style={{top:'120%',right:'50%'}}
                   toggle={menuToggleHandler}
                 >
-                  <li>Contact Info</li>
+                  <li onClick={()=>{
+                    themeStore.setSectionClass('open');
+                    menuToggleHandler();
+                  }}
+                  >Contact Info</li>
                   <li>Select Messages</li>
                   <li>Mute Notifications</li>
                   <li>Clear Messages</li>
